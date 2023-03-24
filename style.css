@@ -50,15 +50,21 @@ section {
   text-transform: capitalize;
 }
 
-section p{
+section p {
   font-size: 25px;
+  text-align: center;
   font-weight: bolder;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(156, 156, 247, 0.5)
+  );
 }
 
 .flexbox {
   display: flex;
   height: auto;
-  padding: 50px;
+  padding: 20px 50px;
   flex-wrap: wrap;
   background-color: rgb(156, 156, 247);
   justify-content: space-around;
@@ -127,11 +133,35 @@ footer {
   line-height: 40px;
 }
 
+
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(156, 156, 247);
+}
+
+.pagination a{
+  color: black;
+  padding: .5em .5em;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active{
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active){
+  background-color: #ddd;
+}
+
 /* ===============add-book=============== */
 
 .container-add {
   display: flex;
-  height: 100vh;
+  height: 90vh;
   padding: 2rem;
   align-items: center;
   justify-content: center;
@@ -199,7 +229,7 @@ input {
   margin-top: 5px;
 }
 
-.upload-image{
+.upload-image {
   width: 9rem;
 }
 
@@ -234,8 +264,8 @@ input {
   text-align: justify;
 }
 
-.bookdetail{
-text-align: center;
+.bookdetail {
+  text-align: center;
 }
 
 .bookdetail label {
