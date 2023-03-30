@@ -1,0 +1,297 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px;
+  line-height: 50px;
+  padding: 0px 30px;
+  background-color: cornflowerblue;
+  color: whitesmoke;
+  align-items: center;
+}
+
+nav p {
+  align-items: center;
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+nav p a {
+  text-decoration: none;
+  color: black;
+}
+
+nav .btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: white;
+  background-color: black;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
+nav .btn a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+section {
+  line-height: 60px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+section p {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bolder;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(156, 156, 247, 0.5)
+  );
+}
+
+.flexbox {
+  display: flex;
+  min-height: auto;
+  padding: 20px 50px;
+  flex-wrap: wrap;
+  background-color: rgb(156, 156, 247);
+  justify-content: space-around;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+label {
+  color: whitesmoke;
+}
+
+
+
+.info a {
+  color: whitesmoke;
+  background-color: cornflowerblue;
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 5px 25px;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+}
+
+.info i {
+  margin-left: 5px;
+}
+
+.indexbtn {
+  margin-top: 10px;
+}
+
+.indeximg {
+  margin-top: 10px;
+  max-width: 200px;
+  transition: transform 0.2s;
+}
+
+.indeximg:hover {
+  transform: scale(1.1);
+}
+
+.info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+/* ===============footer=============== */
+
+footer {
+  text-align: center;
+  background-color: black;
+  color: whitesmoke;
+  line-height: 40px;
+}
+
+/* ===============pagination=============== */
+
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(156, 156, 247);
+}
+
+.pagination a{
+  color: black;
+  padding: .5em .5em;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active{
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active){
+  background-color: #ddd;
+}
+
+/* ===============add-book=============== */
+
+.container-add {
+  display: flex;
+  min-height: 90vh;
+  max-height: auto;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(156, 156, 247);
+}
+
+ .flexadd {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inner {
+  width: 500px;
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  flex-direction: column;
+}
+
+label {
+  color: black;
+  outline: white;
+  text-transform: capitalize;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-color: whitesmoke;
+}
+
+.addbook-btn {
+  background-color: black;
+  border: black;
+  font-weight: bold;
+  padding: 5px 5rem;
+  margin-top: 50px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.inneraddbook {
+  width: 500px;
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.upload-image {
+  display: flex;
+  justify-items: center;
+  width: 9rem;
+}
+
+.upload-input{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  
+
+}
+
+.addbookimg {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.adbutton {
+  margin-top: 5px;
+}
+
+
+/* ===========read-more============ */
+
+.rmcontainer {
+  height: auto;
+  background-color: rgb(156, 156, 247);
+}
+
+.rmcover {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.rmbook {
+  padding: 2rem;
+}
+
+.rmimg {
+  width: 100%;
+  max-width: 400px;
+}
+
+.rmdetail {
+  padding: 2rem;
+  text-align: center;
+  width: 600px;
+  text-align: justify;
+}
+
+.bookdetail {
+  text-align: center;
+}
+
+.bookdetail label {
+  color: whitesmoke;
+}

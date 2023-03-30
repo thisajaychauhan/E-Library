@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="read-style.css">
+    <link rel="stylesheet" href="read-style.css" type="text/css">
 
     <!-- bootstrap -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
@@ -32,6 +32,16 @@
     <section>
         <p>Read and grow</p>
     </section>
+<?php
+include 'connection.php';
+
+$query = "SELECT * FROM e-library";
+$result = mysqli_query($con, $query);
+
+while(mysqli_fetch_array($result)){
+
+?>
+
 
     <!-- main -->
 
@@ -39,20 +49,18 @@
         <div class="rmcover">
             <div class="rmbook">
                 <div class="bookimg">
-                    <img class="rmimg" src="../image/money.jpg" alt="">
+                    <img class="rmimg" src="upload/<?php echo $row['upload'];?>" alt="">
                 </div>
             </div>
 
             <div class="rmdetail">
                 <div class="bookdetail">
                     <label for="">Book Name</label>
-                    <h3>The Psychology of Money</h3>
+                    <h3><?php echo $row['bookname']; ?></h3>
                     <label for="">Author Name</label>
-                    <h3>Morgan Housel</h3>
+                    <h3><?php echo $row['authorname'] ?></h3>
                     <label for="">Description</label>
-                    <h3>The Psychology of Money explores how money moves around in an economy and how personal biases
-                        and the emotional factor play an important role in our financial decisions, as well as how to
-                        think more rationally and make better decisions when it comes to money.</h3>
+                    <h3><?php echo $row['description'] ?></h3>
                     <h3></h3>
                 </div>
             </div>
@@ -60,6 +68,10 @@
 
     </div>
 
+
+    <?php 
+}
+?>
     <!-- footer -->
 
     <footer>
