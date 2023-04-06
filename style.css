@@ -116,6 +116,16 @@ footer {
 
 /* ================front page================ */
 
+.indexcontainer-add {
+  display: flex;
+  height: 90vh;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(156, 156, 247);
+}
+
 .indexlbtn {
   background-color: white;
   padding: 8px;
@@ -245,9 +255,9 @@ section p {
   text-align: center;
 }
 
-.container-add {
+.logincontainer-add {
   display: flex;
-  height: 90vh;
+  height: 81vh;
   padding: 2rem;
   align-items: center;
   justify-content: center;
@@ -292,7 +302,8 @@ input {
   padding: 8px;
   height: 40px;
   border-radius: 5px;
-  font-size: 20px;border: none;
+  font-size: 20px;
+  border: none;
   color: whitesmoke;
   text-decoration: none;
   cursor: pointer;
@@ -576,6 +587,8 @@ section p {
 .card-container {
   display: flex;
   flex-wrap: wrap;
+  height:auto;
+  min-height: 77vh;
   justify-content: space-around;
   background-color: rgb(156, 156, 247);
 }
@@ -648,7 +661,7 @@ section p {
 
 .container-add {
   display: flex;
-  min-height: 80vh;
+  min-height: 81vh;
   height: 100%;
   padding: 2rem;
   align-items: center;
@@ -695,10 +708,9 @@ input {
   font-size: 20px;
 }
 
-
 .inneraddbook {
   width: 500px;
-  height:auto;
+  height: auto;
   display: flex;
   padding: 2rem;
   justify-content: center;
@@ -734,7 +746,9 @@ input {
 /* ===========read-more============ */
 
 .rmcontainer {
-  height: 80vh;
+  height: 81vh;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(156, 156, 247);
 }
 
@@ -798,9 +812,9 @@ input {
 
 .edit {
   display: flex;
-  background-color:  rgb(156, 156, 247);
+  background-color: rgb(156, 156, 247);
   flex-direction: row;
-  height: 80vh;
+  height: 81vh;
   justify-content: center;
   align-items: center;
 }
@@ -825,7 +839,6 @@ input {
   line-height: 0px;
   font-size: 15px;
 }
-
 
 /* ============pagination=========== */
 
@@ -854,13 +867,11 @@ input {
   background-color: rgb(99, 149, 243);
   color: white;
   border-radius: 5px;
-  
 }
 
 .page-numbers {
   display: flex;
   justify-content: center;
-
 }
 
 .page-numbers a,
@@ -872,17 +883,15 @@ input {
 /* media query */
 
 @media screen and (max-width: 900px) {
-    
-    .rightnav {
-        margin-top: 10px;
-    }
-    
-    .rightnav form {
-        margin-right: 0;
-    }
-    
-    .rightnav button {
-        margin-left: 10px;
-    }
-}
+  .rightnav {
+    margin-top: 10px;
+  }
 
+  .rightnav form {
+    margin-right: 0;
+  }
+
+  .rightnav button {
+    margin-left: 10px;
+  }
+}

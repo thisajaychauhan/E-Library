@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
         <p>Read and grow</p>
     </section>
 
-    <div class="container-add">
+    <div class="logincontainer-add">
 
         <form action="" method="post">
             <div class="flexadd">

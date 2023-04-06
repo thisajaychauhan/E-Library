@@ -25,7 +25,7 @@
         <p>Read and grow</p>
     </section>
 
-    <div class="container-add">
+    <div class="indexcontainer-add">
         <div class="flexindex">
             <p>E-library</p>
             <div class="inner">
