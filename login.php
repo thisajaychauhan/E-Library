@@ -12,13 +12,18 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($con, $check_email);
 
     $check = mysqli_fetch_array($result);
-    if (isset($check)) {
-        //    ?> <script Type="javascript">alert("login success")</script><?php
-        echo "<script type=\"text/javascript\">alert('This works');</script>"; 
-        header("location:mainpage.php");
+    if ($check) {
+        echo "<script>alert('Login Successfull')</script>";
+        echo '<script type="text/javascript">showPopup("' . $message . '");</script>';
+?>
+        ?>
+            <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
+        <?php
     } else {
-        ?> <script Type="javascript">alert("login fail")</script><?php
-        header("location:login.php");
+        echo "<script>alert('Login Failed')</script>";
+        ?>
+            <meta http-equiv="refresh" content="0; url = http://localhost:8888/login.php" />
+        <?php
     }
 }
 ?>
@@ -32,7 +37,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <title>E-Library</title>
 </head>
 
@@ -43,10 +48,7 @@ if (isset($_POST['submit'])) {
 
     <nav>
         <p><a href="index.php">E-library</a></p>
-        <button class="btn"> <a href="register.php">Register</a></button>
     </nav>
-
-
 
     <!-- tagline -->
 
@@ -58,30 +60,25 @@ if (isset($_POST['submit'])) {
 
         <form action="" method="post">
             <div class="flexadd">
-                <div class="loginbanner">
-                    <p class="bannerpara">Login here</p>
-                </div>
-                <div class="inner">
-                    <label for="">Email</label>
-                    <input type="text" name="email">
-                    <label for="">Password</label>
-                    <input type="password" name="password">
-
-                    <button class="loginbtn" type="submit" name="submit">login</button>
-                </div>
+                <!-- <div class="loginbanner"> -->
+                <p class="bannerpara">Login here</p>
             </div>
-        </form>
+            <div class="inner">
+                <label for="">Email</label>
+                <input type="text" name="email">
+                <label for="">Password</label>
+                <input type="password" name="password">
+
+                <input class="loginlbtn" type="submit" value="Login" name="submit">
+                <p>not register yet ?<a href="register.php"> Register here</a></p>
+            </div>
+    </div>
+    </form>
     </div>
 
     </div>
 
-    <!-- footer -->
-
-    <footer>
-        <p>&copy; E-Library 2023</p>
-    </footer>
-    </div>
-    </section>
+    <?php include 'footer.php' ?>
 </body>
 
 </html>

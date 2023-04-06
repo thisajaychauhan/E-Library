@@ -26,20 +26,16 @@
     </section>
 
     <div class="container-add">
-        <div class="flexadd">
+        <div class="flexindex">
             <p>E-library</p>
             <div class="inner">
-                <button class="loginbtn" name="loginbtn"><a href="login.php
-                    ">login</a></button>
-                <button class="registerbtn" name="registerbtn"><a href="register.php">register</a></button>
+                <a href="login.php"><button class="indexlbtn" name="loginbtn" style="width:100%;">login</button></a>
+                <a href="register.php"><button class="registerlbtn" name="registerbtn" style="width:100%;">register</button></a>
             </div>
         </div>
     </div>
 
-    <!-- footer -->
-    <footer>
-        <p>&copy; E-Library 2023</p>
-    </footer>
+    <?php include 'footer.php' ?>
 
 </body>
 

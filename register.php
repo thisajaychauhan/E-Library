@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="register.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <title>E-Library</title>
 </head>
 
@@ -45,7 +45,6 @@ if (isset($_POST['submit'])) {
 
     <nav>
         <p><a href="index.php">E-library</a></p>
-        <button class="btn"> <a href="login.php">Login</a></button>
     </nav>
 
 
@@ -60,32 +59,22 @@ if (isset($_POST['submit'])) {
 
         <form action="" method="post">
             <div class="flexadd">
-                <div class="loginbanner">
-                    <p class="bannerpara">Register here</p>
-                </div>
-                <div class="inner">
-                    <label for="">Email</label>
-                    <input type="text" name="email">
-                    <label for="">Password</label>
-                    <input type="password" name="password">
+                <!-- <div class="loginbanner"> -->
+                <p class="bannerpara">Register here</p>
+            </div>
+            <div class="inner">
+                <label for="">Email</label>
+                <input type="text" name="email">
+                <label for="">Password</label>
+                <input type="password" name="password">
 
-                    <button class="registerbtn" type="submit" name="submit">Register</button>
-                </div>
+                <input class="registerRbtn" type="submit" name="submit" value="Register">
+                <p>if registered.<a href="login.php"> Login here</a></p>
             </div>
         </form>
     </div>
 
-    </div>
-
-    <!-- footer -->
-
-    <footer>
-        <p>&copy; E-Library 2023</p>
-    </footer>
-    </div>
-    </section>
-
-    <script src="myscripts.js"></script>
+    <?php include 'footer.php' ?>
 </body>
 
 </html>

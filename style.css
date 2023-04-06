@@ -101,10 +101,9 @@ button a {
   margin-top: 10px;
 }
 
-button:hover{
-   background-color: rgb(214, 214, 214);
+button:hover {
+  background-color: rgb(214, 214, 214);
 }
-
 
 /* ===============footer=============== */
 
@@ -114,3 +113,776 @@ footer {
   color: whitesmoke;
   line-height: 40px;
 }
+
+/* ================front page================ */
+
+.indexlbtn {
+  background-color: white;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.indexlbtn a {
+  color: black;
+}
+
+.flexindex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexindex p {
+  display: flex;
+  width: 500px;
+  background-color: black;
+  color: whitesmoke;
+  font-size: 30px;
+  padding: 15px;
+  border: 1px solid black;
+  justify-content: center;
+  text-align: center;
+}
+
+.registerlbtn {
+  background-color: white;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.registerlbtn a {
+  color: white;
+}
+
+/* ================login================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px;
+  line-height: 50px;
+  padding: 0px 30px;
+  background-color: cornflowerblue;
+  color: whitesmoke;
+  align-items: center;
+}
+
+nav p {
+  align-items: center;
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+nav p a {
+  text-decoration: none;
+  color: black;
+}
+
+nav .btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: white;
+  background-color: black;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
+nav .btn a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+section {
+  line-height: 60px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+section p {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bolder;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(156, 156, 247, 0.5)
+  );
+}
+
+.login-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bannerpara {
+  display: flex;
+  width: 400px;
+  background-color: black;
+  color: whitesmoke;
+  font-size: 30px;
+  padding: 8px;
+  border: 1px solid black;
+  justify-content: center;
+  text-align: center;
+}
+
+.container-add {
+  display: flex;
+  height: 90vh;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(156, 156, 247);
+}
+
+.flexadd {
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inner {
+  width: 400px;
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+label {
+  color: black;
+  outline: white;
+  text-transform: capitalize;
+  font-weight: bolder;
+}
+
+input {
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  border: none;
+  outline-color: white;
+  padding: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.loginlbtn {
+  background-color: black;
+  padding: 8px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 20px;border: none;
+  color: whitesmoke;
+  text-decoration: none;
+  cursor: pointer;
+}
+.inner p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+.inner a {
+  margin-top: 10px;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  background-color: black;
+  color: whitesmoke;
+  line-height: 40px;
+}
+
+/* ==============register================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px;
+  line-height: 50px;
+  padding: 0px 30px;
+  background-color: cornflowerblue;
+  color: whitesmoke;
+  align-items: center;
+}
+
+nav p {
+  align-items: center;
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+nav p a {
+  text-decoration: none;
+  color: black;
+}
+
+nav .btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: white;
+  background-color: black;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
+nav .btn a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+section {
+  line-height: 60px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+section p {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bolder;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(156, 156, 247, 0.5)
+  );
+}
+
+.login-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-banner,
+.bannerpara {
+  display: flex;
+  width: 400px;
+  background-color: black;
+  color: whitesmoke;
+  font-size: 30px;
+  padding: 8px;
+  border: 1px solid black;
+  justify-content: center;
+  text-align: center;
+}
+
+.container-add {
+  display: flex;
+  height: 90vh;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(156, 156, 247);
+}
+
+.flexadd {
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inner {
+  width: 400px;
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+label {
+  color: black;
+  outline: white;
+  text-transform: capitalize;
+  font-weight: bolder;
+}
+
+input {
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.registerRbtn {
+  background-color: black;
+  height: 40px;
+  color: whitesmoke;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+footer {
+  text-align: center;
+  background-color: black;
+  color: whitesmoke;
+  line-height: 40px;
+}
+
+/* ==================mainpage====================== */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px;
+  line-height: 70px;
+  padding: 0px 30px;
+  background-color: cornflowerblue;
+  color: whitesmoke;
+  align-items: center;
+}
+
+.rightnav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sortbtn {
+  padding: 12px 18px;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: black;
+  background-color: black;
+  color: whitesmoke;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
+select {
+  border: white;
+  outline: white;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+/* .searchdiv{
+  display: flex;
+  align-items: center;
+} */
+
+.searchbtn {
+  padding: 6px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: black;
+  background-color: black;
+  color: whitesmoke;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
+.example {
+  display: flex;
+}
+
+.example input {
+  margin-right: 5px;
+  border-radius: 5px;
+  outline: white;
+  font-size: 17px;
+  padding: 6px;
+  border: none;
+}
+
+.addbtn {
+  padding: 12px 18px;
+  border-radius: 5px;
+  border: black;
+  margin-right: 5px;
+  /* background-color: black; */
+  /* color: whitesmoke; */
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
+nav .btn a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.logoutbtn {
+  padding: 12px 18px;
+  border-radius: 5px;
+  border: rgb(172, 50, 50);
+  background-color: rgb(172, 50, 50);
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
+.logoutbtn a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+section {
+  line-height: 60px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+section p {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bolder;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgba(156, 156, 247, 0.5)
+  );
+}
+
+/* book box */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgb(156, 156, 247);
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: auto;
+  background-color: cornflowerblue;
+  /* border: 1px solid #ccc; */
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+}
+
+.box {
+  display: flex;
+  width: 250px;
+  height: auto;
+  background-color: cornflowerblue;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
+
+.detail {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.info a {
+  color: whitesmoke;
+  background-color: cornflowerblue;
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 5px 25px;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+}
+
+.info i {
+  margin-left: 5px;
+}
+
+.indexbtn {
+  margin-top: 10px;
+}
+
+.indeximg {
+  margin-top: 10px;
+  max-width: 200px;
+  transition: transform 0.2s;
+}
+
+.indeximg:hover {
+  transform: scale(1.1);
+}
+
+.info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ===============add-book=============== */
+
+.container-add {
+  display: flex;
+  min-height: 80vh;
+  height: 100%;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(156, 156, 247);
+}
+
+.flexadd {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inner {
+  width: 500px;
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  flex-direction: column;
+}
+
+label {
+  color: black;
+  outline: white;
+  text-transform: capitalize;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-color: whitesmoke;
+}
+
+.addbook-btn {
+  background-color: black;
+  border-color: black;
+  color: white;
+  line-height: 0px;
+  font-size: 20px;
+}
+
+
+.inneraddbook {
+  width: 500px;
+  height:auto;
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.upload-image {
+  display: flex;
+  justify-items: center;
+  width: 9rem;
+}
+
+.upload-input {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.addbookimg {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.adbutton {
+  margin-top: 5px;
+}
+
+/* ===========read-more============ */
+
+.rmcontainer {
+  height: 80vh;
+  background-color: rgb(156, 156, 247);
+}
+
+.rmcover {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.rmbook {
+  padding: 2rem;
+}
+
+.rmimg {
+  width: 100%;
+  max-width: 250px;
+}
+
+.rmdetail {
+  display: flex;
+  /* flex-wrap: wrap; */
+  padding: 2rem;
+  text-align: center;
+  width: 600px;
+  text-align: justify;
+}
+
+.bookdetail {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  justify-content: center;
+}
+
+.bookdetail label {
+  color: whitesmoke;
+}
+
+.editbtn {
+  background-color: black;
+  color: whitesmoke;
+  border-color: black;
+  font-size: 15px;
+  line-height: 0px;
+  cursor: pointer;
+}
+
+.deletebtn {
+  cursor: pointer;
+  line-height: 0px;
+  margin-left: 10px;
+  background-color: rgb(156, 25, 25);
+  color: whitesmoke;
+  border-color: rgb(156, 25, 25);
+  font-size: 15px;
+}
+
+/* ================edit book=================== */
+
+.edit {
+  display: flex;
+  background-color:  rgb(156, 156, 247);
+  flex-direction: row;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+.editimg {
+  display: flex;
+  /* flex-direction: column; */
+  width: 400px;
+}
+
+.editdetail {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.editupdatebtn {
+  cursor: pointer;
+  margin-top: 20px;
+  background-color: black;
+  color: whitesmoke;
+  border-radius: 5px;
+  line-height: 0px;
+  font-size: 15px;
+}
+
+
+/* ============pagination=========== */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(156, 156, 247);
+}
+
+.prev-btn,
+.next-btn {
+  padding: 8px 16px;
+  /* border: 1px solid black; */
+  text-decoration: none;
+  color: #555;
+  border-radius: 5px;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: #f1f1f1;
+}
+
+.current {
+  padding: 8px 16px;
+  background-color: rgb(99, 149, 243);
+  color: white;
+  border-radius: 5px;
+  
+}
+
+.page-numbers {
+  display: flex;
+  justify-content: center;
+
+}
+
+.page-numbers a,
+.page-numbers span {
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* media query */
+
+@media screen and (max-width: 900px) {
+    
+    .rightnav {
+        margin-top: 10px;
+    }
+    
+    .rightnav form {
+        margin-right: 0;
+    }
+    
+    .rightnav button {
+        margin-left: 10px;
+    }
+}
+
