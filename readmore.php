@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['email']))
+    header('location:login.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +54,6 @@
         ?>
             <div class="rmcontainer">
                 <div class="rmcover">
-
                     <div class="rmdetail">
                         <div class="rmimg">
                             <img src="uploadimg/<?php echo $row['uploadimgDB']; ?>" style="width:200px; height:280px;">

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'connection.php';
 
 if (isset($_POST['submit'])) {
@@ -8,15 +8,17 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
 
-    $check_email = "SELECT * FROM registration WHERE email = '$email' and password = '$password'";
+    $check_email = "SELECT * FROM registration WHERE email = '$email' and password = '$password' and username = '$username'";
     $result = mysqli_query($con, $check_email);
 
     $check = mysqli_fetch_array($result);
     if ($check) {
+        $_SESSION["email"] = $email;
+        $_SESSION['username'] = $username;
+
         echo "<script>alert('Login Successfull')</script>";
-        echo '<script type="text/javascript">showPopup("' . $message . '");</script>';
+        // echo '<script type="text/javascript">showPopup("' . $message . '");</script>';
 ?>
-        ?>
             <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
         <?php
     } else {
@@ -65,12 +67,12 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="inner">
                 <label for="">Email</label>
-                <input type="text" name="email">
+                <input class="logininput" type="text" name="email">
                 <label for="">Password</label>
-                <input type="password" name="password">
+                <input class="logininput" type="password" name="password">
 
                 <input class="loginlbtn" type="submit" value="Login" name="submit">
-                <p>not register yet ?<a href="register.php"> Register here</a></p>
+                <p><a href="register.php"> not register yet ? Register here</a></p>
             </div>
     </div>
     </form>

@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['email']))
+    header('location:login.php');
+
+
 include 'connection.php';
 
 if (isset($_POST['submit'])) {
@@ -67,9 +72,9 @@ if (isset($_POST['submit'])) {
             <div class="flexadd">
                 <div class="inner">
                     <label for="">book name</label>
-                    <input type="text" name="bookname">
+                    <input class="addbookinput" type="text" name="bookname">
                     <label for="">author name</label>
-                    <input type="text" name="authorname">
+                    <input class="addbookinput" type="text" name="authorname">
                     <label for="">description</label>
                     <textarea name="description" cols="30" rows="10"></textarea>
                 </div>

@@ -2,6 +2,7 @@
 include 'connection.php';
 
 if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -13,7 +14,7 @@ if (isset($_POST['submit'])) {
         echo "email is already exists";
         header("location:register.php");
     } else {
-        $query = "INSERT INTO registration (email, password)VALUES ('$email','$password')";
+        $query = "INSERT INTO registration (username,email, password)VALUES ('$username','$email','$password')";
         $query_result = mysqli_query($con, $query);
 
         if ($query_result) {
@@ -63,13 +64,15 @@ if (isset($_POST['submit'])) {
                 <p class="bannerpara">Register here</p>
             </div>
             <div class="inner">
+                <label for="">Username</label>
+                <input class="registerinput" type="text" name="username">
                 <label for="">Email</label>
-                <input type="text" name="email">
+                <input class="registerinput" type="text" name="email">
                 <label for="">Password</label>
-                <input type="password" name="password">
+                <input class="registerinput" type="password" name="password">
 
                 <input class="registerRbtn" type="submit" name="submit" value="Register">
-                <p>if registered.<a href="login.php"> Login here</a></p>
+                <p><a href="login.php">if registered. Login here</a></p>
             </div>
         </form>
     </div>

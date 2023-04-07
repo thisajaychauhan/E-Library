@@ -63,7 +63,7 @@ section p {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
 }
 
 .flexadd {
@@ -88,7 +88,7 @@ section p {
 
 button a {
   text-decoration: none;
-  color: black;
+  /* color: black; */
   font-size: 20px;
 }
 
@@ -102,16 +102,7 @@ button a {
 }
 
 button:hover {
-  background-color: rgb(214, 214, 214);
-}
-
-/* ===============footer=============== */
-
-footer {
-  text-align: center;
-  background-color: black;
-  color: whitesmoke;
-  line-height: 40px;
+  background-color: whitesmoke;
 }
 
 /* ================front page================ */
@@ -123,7 +114,7 @@ footer {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
 }
 
 .indexlbtn {
@@ -174,58 +165,6 @@ footer {
 
 /* ================login================ */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 0px;
-  line-height: 50px;
-  padding: 0px 30px;
-  background-color: cornflowerblue;
-  color: whitesmoke;
-  align-items: center;
-}
-
-nav p {
-  align-items: center;
-  font-weight: bolder;
-  font-size: 25px;
-}
-
-nav p a {
-  text-decoration: none;
-  color: black;
-}
-
-nav .btn {
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: white;
-  background-color: black;
-  font-weight: bolder;
-  text-transform: capitalize;
-}
-
-nav .btn a {
-  text-decoration: none;
-  color: whitesmoke;
-}
-
-section {
-  line-height: 60px;
-  text-align: center;
-  text-transform: capitalize;
-}
-
 section p {
   font-size: 25px;
   text-align: center;
@@ -262,7 +201,7 @@ section p {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
 }
 
 .flexadd {
@@ -286,11 +225,11 @@ label {
   font-weight: bolder;
 }
 
-input {
+.logininput {
   width: 100%;
   height: 20px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid black;
   outline-color: white;
   padding: 20px;
   margin-top: 8px;
@@ -301,6 +240,7 @@ input {
   background-color: black;
   padding: 8px;
   height: 40px;
+  margin-top: 20px;
   border-radius: 5px;
   font-size: 20px;
   border: none;
@@ -330,58 +270,6 @@ footer {
 }
 
 /* ==============register================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 0px;
-  line-height: 50px;
-  padding: 0px 30px;
-  background-color: cornflowerblue;
-  color: whitesmoke;
-  align-items: center;
-}
-
-nav p {
-  align-items: center;
-  font-weight: bolder;
-  font-size: 25px;
-}
-
-nav p a {
-  text-decoration: none;
-  color: black;
-}
-
-nav .btn {
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: white;
-  background-color: black;
-  font-weight: bolder;
-  text-transform: capitalize;
-}
-
-nav .btn a {
-  text-decoration: none;
-  color: whitesmoke;
-}
-
-section {
-  line-height: 60px;
-  text-align: center;
-  text-transform: capitalize;
-}
 
 section p {
   font-size: 25px;
@@ -420,7 +308,7 @@ section p {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
 }
 
 .flexadd {
@@ -437,14 +325,7 @@ section p {
   flex-direction: column;
 }
 
-label {
-  color: black;
-  outline: white;
-  text-transform: capitalize;
-  font-weight: bolder;
-}
-
-input {
+.registerinput {
   width: 100%;
   height: 20px;
   border-radius: 5px;
@@ -458,15 +339,9 @@ input {
   height: 40px;
   color: whitesmoke;
   padding: 8px;
+  margin-top: 20px;
   border-radius: 5px;
   font-size: 20px;
-}
-
-footer {
-  text-align: center;
-  background-color: black;
-  color: whitesmoke;
-  line-height: 40px;
 }
 
 /* ==================mainpage====================== */
@@ -504,46 +379,6 @@ select {
   outline: white;
   padding: 10px 10px;
   border-radius: 5px;
-}
-
-/* .searchdiv{
-  display: flex;
-  align-items: center;
-} */
-
-.searchbtn {
-  padding: 6px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
-  border: black;
-  background-color: black;
-  color: whitesmoke;
-  font-weight: bolder;
-  text-transform: capitalize;
-}
-
-.example {
-  display: flex;
-}
-
-.example input {
-  margin-right: 5px;
-  border-radius: 5px;
-  outline: white;
-  font-size: 17px;
-  padding: 6px;
-  border: none;
-}
-
-.addbtn {
-  padding: 12px 18px;
-  border-radius: 5px;
-  border: black;
-  margin-right: 5px;
-  /* background-color: black; */
-  /* color: whitesmoke; */
-  font-weight: bolder;
-  text-transform: capitalize;
 }
 
 nav .btn a {
@@ -587,10 +422,10 @@ section p {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  height:auto;
+  height: auto;
   min-height: 77vh;
   justify-content: space-around;
-  background-color: rgb(156, 156, 247);
+  background-color: white;
 }
 
 .card {
@@ -599,7 +434,7 @@ section p {
   align-items: center;
   width: 300px;
   height: auto;
-  background-color: cornflowerblue;
+  background-color: whitesmoke;
   /* border: 1px solid #ccc; */
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -610,7 +445,7 @@ section p {
   display: flex;
   width: 250px;
   height: auto;
-  background-color: cornflowerblue;
+  background-color: whitesmoke;
   flex-direction: column;
   align-items: center;
   border: 2px solid black;
@@ -625,7 +460,7 @@ section p {
 
 .info a {
   color: whitesmoke;
-  background-color: cornflowerblue;
+  background-color: whitesmoke;
   border: 2px solid black;
   border-radius: 25px;
   padding: 5px 25px;
@@ -645,6 +480,7 @@ section p {
 .indeximg {
   margin-top: 10px;
   max-width: 200px;
+  height: 280px;
   transition: transform 0.2s;
 }
 
@@ -667,7 +503,7 @@ section p {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
 }
 
 .flexadd {
@@ -686,15 +522,11 @@ section p {
   flex-direction: column;
 }
 
-label {
-  color: black;
-  outline: white;
-  text-transform: capitalize;
-}
-
-input {
+.addbookinput {
   width: 100%;
   height: 30px;
+  border: none;
+  border-radius: 5px;
   margin-top: 8px;
   margin-bottom: 8px;
   border-color: whitesmoke;
@@ -704,8 +536,11 @@ input {
   background-color: black;
   border-color: black;
   color: white;
-  line-height: 0px;
-  font-size: 20px;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+  line-height: 30px;
+  font-size: 15px;
 }
 
 .inneraddbook {
@@ -725,10 +560,6 @@ input {
 
 .upload-input {
   display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
 }
 
 .addbookimg {
@@ -746,15 +577,15 @@ input {
 /* ===========read-more============ */
 
 .rmcontainer {
-  height: 81vh;
+  height: 81vh;display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
 }
 
 .rmcover {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
   justify-content: center;
   padding: 4rem;
@@ -766,7 +597,6 @@ input {
 
 .rmimg {
   width: 100%;
-  max-width: 250px;
 }
 
 .rmdetail {
@@ -774,14 +604,14 @@ input {
   /* flex-wrap: wrap; */
   padding: 2rem;
   text-align: center;
-  width: 600px;
+  width: 800px;
   text-align: justify;
 }
 
 .bookdetail {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 800px;
   justify-content: center;
 }
 
@@ -794,13 +624,17 @@ input {
   color: whitesmoke;
   border-color: black;
   font-size: 15px;
-  line-height: 0px;
+  border-radius: 5px;
+  padding: 3px 16px ;
+  line-height: 30px;
   cursor: pointer;
 }
 
 .deletebtn {
   cursor: pointer;
-  line-height: 0px;
+  line-height: 30px;
+  border-radius: 5px;
+  padding: 3px 16px ;
   margin-left: 10px;
   background-color: rgb(156, 25, 25);
   color: whitesmoke;
@@ -812,7 +646,7 @@ input {
 
 .edit {
   display: flex;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
   flex-direction: row;
   height: 81vh;
   justify-content: center;
@@ -845,7 +679,7 @@ input {
 .pagination {
   display: flex;
   justify-content: center;
-  background-color: rgb(156, 156, 247);
+  background-color: whitesmoke;
 }
 
 .prev-btn,
@@ -878,20 +712,4 @@ input {
 .page-numbers span {
   padding: 8px 16px;
   text-decoration: none;
-}
-
-/* media query */
-
-@media screen and (max-width: 900px) {
-  .rightnav {
-    margin-top: 10px;
-  }
-
-  .rightnav form {
-    margin-right: 0;
-  }
-
-  .rightnav button {
-    margin-left: 10px;
-  }
 }

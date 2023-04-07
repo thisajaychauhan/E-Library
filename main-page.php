@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['email']))
+    header('location:login.php');
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,45 +14,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
+    <!-- bootstrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
     <title>mainpage</title>
 </head>
 
 <body>
+
     <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar bg-blue d-flex justify-content-between mr-2">
+        <div>
+            <a class="navbar-brand" href="main-page.php">E-library</a>
+        </div>
+        <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <nav>
-        <p><a href="main-page.php">E-library</a></p>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- sorting button -->
+                <form action="" method="get">
+                    <select name="sort_alphabet">
+                        <option value="">sort as</option>
+                        <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
+                                                echo "selected";
+                                            } ?>>A-Z</option>
+                        <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
+                                                echo "selected";
+                                            } ?>>Z-A</option>
+                    </select>
+                    <button class="btn btn-primary m-1" name="submit" type="submit">sort</button>
+                </form>
 
-        <div class="rightnav">
-            <!-- sorting button -->
-            <form action="" method="get">
-                <select name="sort_alphabet">
-                    <option value="">sort as</option>
-                    <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
-                                            echo "selected";
-                                        } ?>>A-Z</option>
-                    <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
-                                            echo "selected";
-                                        } ?>>Z-A</option>
-                </select>
-                <button class="sortbtn" name="submit" type="submit">sort</button>
-            </form>
+                <!-- search button -->
+                <form method="get" class="form-inline my-2 my-lg-0 d-flex">
+                    <input class="form-control height-4" type="text" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
 
-            <!-- search button -->
-            <form class="example" method="get">
-                <input type="text" name="search">
-                <button class="searchbtn" type="submit">search</button>
-            </form>
+                <!-- add book button -->
+                <!-- <button type="button" class="btn btn-info">Add a Book</button> -->
+                <a href="add-book.php" class="btn btn-primary m-1" role="button">Add a Book</a>
 
-            <!-- add book button -->
-            <button class="addbtn"><a href="add-book.php">Add A Book</a></button>
-            <button class="logoutbtn"><a href="logout.php">Logout</a></button>
+                <!-- logout-button -->
+                <!-- <button type="button" class="btn btn-danger">Logout</button> -->
+                <a href="logout.php" class="btn btn-danger" role="button">Logout</a>
+            </div>
         </div>
     </nav>
 
     <!-- tagline -->
 
     <section>
+        <b>Welcome : <i><?php echo $_SESSION['email']; ?></i></b>
         <p>Read and grow</p>
     </section>
     <!-- ========================================================================= -->
@@ -93,13 +117,13 @@
                         <div class="detail">
                             <div class="info">
                                 <label for="">book name</label>
-                                <h4><?= $row['bookname']; ?></h4>
+                                <h6><?= $row['bookname']; ?></h6>
 
                                 <label for="">author name</label>
-                                <h4><?= $row['authorname']; ?></h4>
+                                <h6><?= $row['authorname']; ?></h6>
 
                                 <!-- <label for="">description</label>
-                                <h4><?= $row['description']; ?></h4> -->
+                                <h6><?= $row['description']; ?></h6> -->
 
                                 <div class="info">
                                     <a style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">read more <i class="fa fa right-angle"></i></a>
@@ -154,8 +178,10 @@
 
     ?>
 
-
     <?php include 'footer.php' ?>
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>
