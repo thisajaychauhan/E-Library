@@ -1,4 +1,3 @@
-
 <!-- session IN -->
 <?php include 'session/sessionIN.php'; ?>
 
@@ -7,7 +6,7 @@
 
 <!-- navbar -->
 
-<nav class="navbar navbar-expand-lg bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,6 +52,7 @@
                                 <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                                     <i class="fa fa-user"></i></button>
                                 <ul class="dropdown-menu bg-dark dropdown-menu-end text-center">
+
                                     <!-- add new admin button -->
                                     <li><a href="register.php" class="m-1 btn btn-primary" role="button">Add new Admin</a></li>
                             <?php
@@ -61,7 +61,7 @@
                             ?>
 
                             <!-- logout-button -->
-                            <li><a href="/session/logout.php" class="m-1 btn btn-danger" role="button">Logout</a></li>
+                            <li><a href="sessionOUT.php" class="m-1 btn btn-danger" role="button">Logout</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -179,7 +179,17 @@ echo "</div>";
 ?>
 
 <!-- footer -->
-<?php include 'partials/footer.php' ?>
+
+<footer class="bg-dark text-center">
+    <div class="container text-white p-1">
+        <h6>&copy; E-Library 2023</h6>
+    </div>
+</footer>
+
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
 
 </body>
 

@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
         $record = mysqli_fetch_assoc($result);
         $user_data = array($record['role'], $record['email'], $record['password']);
 
-        $_SESSION["user_data"] = $user_data;
+        $user_data = $_SESSION["user_data"];
         $role = $record['role'];
         if ($role == 'user') {
             echo "<script>alert('Login Successful as an user')</script>";
@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
             <input class="registerinput" type="password" name="password">
 
             <input class="registerRbtn" type="submit" name="submit" value="login">
-            <p><a href="login.php">if not register. register here</a></p>
+            <p><a href="register.php">if not register. <span class="fw-medium text-info"> register here</span></a></p>
         </div>
     </form>
 </div>

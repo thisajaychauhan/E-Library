@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 
 <div class="container-add">
 
-    <form action="" method="post">
+    <form action="mailer.php" method="post">
         <div class="flexadd">
             <!-- <div class="loginbanner"> -->
             <p class="bannerpara">Register here</p>
@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
             } ?>
 
             <input class="registerRbtn" type="submit" name="submit" value="Register">
-            <p><a href="login.php">if registered. Login here</a></p>
+            <p><a href="login.php">if registered. <span class="fw-medium text-info"> Login here</span></a></p>
         </div>
     </form>
 </div>
