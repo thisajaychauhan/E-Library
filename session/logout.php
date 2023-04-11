@@ -1,3 +1,5 @@
+<!-- session out -->
+
 <?php 
 session_start();
 session_unset();

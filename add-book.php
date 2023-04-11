@@ -1,9 +1,26 @@
+<!-- session IN -->
+<?php include 'session/sessionIN.php'; ?>
+
+<!-- html header -->
+<?php include 'partials/html-header.php'; ?>
+
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+
+            <!-- Back button -->
+            <a href="main-page.php" class="btn btn-light fw-bold" role="button" name="submit" type="submit"><i class="fa fa-arrow-left"></i> back</a>
+    </div>
+</nav>
+
+<!-- /tagline -->
+<?php include 'partials/tagline.php'; ?>
+
+
 <?php
-session_start();
-if (!isset($_SESSION['email']))
-    header('location:login.php');
-
-
 include 'connection.php';
 
 if (isset($_POST['submit'])) {
@@ -30,70 +47,38 @@ if (isset($_POST['submit'])) {
         header("location:add-book.php");
     }
 }
-
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- main -->
+<div class="container-add">
+    <form action="" enctype="multipart/form-data" method="post">
+        <div class="flexadd">
+            <div class="inner">
+                <label for="">book name</label>
+                <input class="addbookinput" type="text" name="bookname">
+                <label for="">author name</label>
+                <input class="addbookinput" type="text" name="authorname">
+                <label for="">description</label>
+                <textarea name="description" cols="30" rows="10"></textarea>
+            </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-
-
-</head>
-<title>E-library</title>
-</head>
-
-<body>
-
-    <!-- navbar -->
-
-    <nav>
-        <p><a href="">E-library</a></p>
-        <button class="btn"><a href="main-page.php">back to list</a></button>
-    </nav>
-
-
-
-    <!-- tagline -->
-
-    <section>
-        <p>Read and grow</p>
-    </section>
-
-
-    <!-- main -->
-
-    <div class="container-add">
-        <form action="" enctype="multipart/form-data" method="post">
-            <div class="flexadd">
-                <div class="inner">
-                    <label for="">book name</label>
-                    <input class="addbookinput" type="text" name="bookname">
-                    <label for="">author name</label>
-                    <input class="addbookinput" type="text" name="authorname">
-                    <label for="">description</label>
-                    <textarea name="description" cols="30" rows="10"></textarea>
-                </div>
-
-
-                <div class="addbookimg">
-                    <div class="inneraddbook">
-                        <div class="uploadimage">
-                            <input class="upload-input" type="file" name="upload"></input>
-                        </div>
-                        <div class="adbutton">
-                            <input class="addbook-btn" value="Add a Book" type="submit" name="submit">
-                        </div>
+            <div class="addbookimg">
+                <div class="inneraddbook">
+                    <div class="uploadimage">
+                        <input class="upload-input" type="file" name="upload"></input>
+                    </div>
+                    <div class="adbutton">
+                        <input class="addbook-btn" value="Add a Book" type="submit" name="submit">
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <?php include 'footer.php' ?>
+        </div>
+    </form>
+</div>
+
+<!-- footer -->
+<?php include 'partials/footer.php' ?>
+
 </body>
 
 </html>

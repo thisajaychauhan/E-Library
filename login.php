@@ -8,79 +8,71 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
 
-    $check_email = "SELECT * FROM registration WHERE email = '$email' and password = '$password' and username = '$username'";
+    $check_email = "SELECT * FROM registration WHERE email = '$email' and password = '$password'";
     $result = mysqli_query($con, $check_email);
 
-    $check = mysqli_fetch_array($result);
+    $check = mysqli_num_rows($result);
     if ($check) {
-        $_SESSION["email"] = $email;
-        $_SESSION['username'] = $username;
+        $record = mysqli_fetch_assoc($result);
+        $user_data = array($record['role'], $record['email'], $record['password']);
 
-        echo "<script>alert('Login Successfull')</script>";
-        // echo '<script type="text/javascript">showPopup("' . $message . '");</script>';
+        $_SESSION["user_data"] = $user_data;
+        $role = $record['role'];
+        if ($role == 'user') {
+            echo "<script>alert('Login Successful as an user')</script>";
 ?>
             <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
         <?php
-    } else {
-        echo "<script>alert('Login Failed')</script>";
+        } elseif ($role == 'admin') {
+            echo "<script>alert('Login Successful as an admin')</script>";
+        ?>
+            <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
+        <?php
+        } else {
+            echo "<script>alert('Login Failed')</script>";
         ?>
             <meta http-equiv="refresh" content="0; url = http://localhost:8888/login.php" />
-        <?php
+<?php
+        }
     }
 }
 ?>
 
 
+<!-- html header -->
+<?php include 'partials/html-header.php'; ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- navbar -->
+<?php include 'partials/navbar.php'; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <title>E-Library</title>
-</head>
-
-<body>
+<!-- /tagline -->
+<?php include 'partials/tagline.php'; ?>
 
 
-    <!-- navbar -->
+<div class="container-add">
 
-    <nav>
-        <p><a href="index.php">E-library</a></p>
-    </nav>
+    <form action="" method="post">
+        <div class="flexadd">
+            <!-- <div class="loginbanner"> -->
+            <p class="bannerpara">Login here</p>
+        </div>
+        <div class="inner">
 
-    <!-- tagline -->
+            <label for="">Email</label>
+            <input class="registerinput" type="text" name="email">
+            <label for="">Password</label>
+            <input class="registerinput" type="password" name="password">
 
-    <section>
-        <p>Read and grow</p>
-    </section>
-
-    <div class="logincontainer-add">
-
-        <form action="" method="post">
-            <div class="flexadd">
-                <!-- <div class="loginbanner"> -->
-                <p class="bannerpara">Login here</p>
-            </div>
-            <div class="inner">
-                <label for="">Email</label>
-                <input class="logininput" type="text" name="email">
-                <label for="">Password</label>
-                <input class="logininput" type="password" name="password">
-
-                <input class="loginlbtn" type="submit" value="Login" name="submit">
-                <p><a href="register.php"> not register yet ? Register here</a></p>
-            </div>
-    </div>
+            <input class="registerRbtn" type="submit" name="submit" value="login">
+            <p><a href="login.php">if not register. register here</a></p>
+        </div>
     </form>
-    </div>
+</div>
 
-    </div>
 
-    <?php include 'footer.php' ?>
+<!-- footer -->
+<?php include 'partials/footer.php' ?>
+
 </body>
 
 </html>

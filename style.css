@@ -8,39 +8,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 0px;
-  line-height: 50px;
-  padding: 0px 30px;
-  background-color: cornflowerblue;
-  color: whitesmoke;
-  align-items: center;
-}
-
-nav p {
-  align-items: center;
-  font-weight: bolder;
-  font-size: 25px;
-}
-
-nav p a {
-  text-decoration: none;
-  color: black;
-}
-
-nav .btn {
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: white;
-  background-color: black;
-  font-weight: bolder;
-  text-transform: capitalize;
-}
 
 section {
-  line-height: 60px;
+  /* line-height: 60px; */
   text-align: center;
   text-transform: capitalize;
 }
@@ -54,127 +24,9 @@ section p {
     rgba(255, 0, 0, 0),
     rgba(156, 156, 247, 0.5)
   );
-}
-
-.container-add {
-  display: flex;
-  height: 90vh;
-  padding: 2rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  background-color: whitesmoke;
-}
-
-.flexadd {
-  padding: 1rem;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.flexadd p {
-  text-align: center;
-  font-size: 40px;
-  font-weight: bolder;
-}
-
-.inner {
-  width: 300px;
-  display: flex;
-  padding: 2rem;
-  justify-content: center;
-  flex-direction: column;
-}
-
-button a {
-  text-decoration: none;
-  /* color: black; */
-  font-size: 20px;
-}
-
-.loginbtn {
-  padding: 10px;
-}
-
-.registerbtn {
-  padding: 10px;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: whitesmoke;
-}
-
-/* ================front page================ */
-
-.indexcontainer-add {
-  display: flex;
-  height: 90vh;
-  padding: 2rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  background-color: whitesmoke;
-}
-
-.indexlbtn {
-  background-color: white;
-  padding: 8px;
-  border-radius: 5px;
-  font-size: 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.indexlbtn a {
-  color: black;
-}
-
-.flexindex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.flexindex p {
-  display: flex;
-  width: 500px;
-  background-color: black;
-  color: whitesmoke;
-  font-size: 30px;
-  padding: 15px;
-  border: 1px solid black;
-  justify-content: center;
-  text-align: center;
-}
-
-.registerlbtn {
-  background-color: white;
-  margin-top: 5px;
-  padding: 8px;
-  border-radius: 5px;
-  font-size: 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.registerlbtn a {
-  color: white;
 }
 
 /* ================login================ */
-
-section p {
-  font-size: 25px;
-  text-align: center;
-  font-weight: bolder;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    rgba(156, 156, 247, 0.5)
-  );
-}
 
 .login-banner {
   display: flex;
@@ -262,36 +114,12 @@ label {
   text-decoration: none;
 }
 
-footer {
-  text-align: center;
-  background-color: black;
-  color: whitesmoke;
-  line-height: 40px;
-}
-
 /* ==============register================= */
-
-section p {
-  font-size: 25px;
-  text-align: center;
-  font-weight: bolder;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    rgba(156, 156, 247, 0.5)
-  );
-}
-
-.login-banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .login-banner,
 .bannerpara {
   display: flex;
-  width: 400px;
+  width: 450px;
   background-color: black;
   color: whitesmoke;
   font-size: 30px;
@@ -320,7 +148,7 @@ section p {
 .inner {
   width: 400px;
   display: flex;
-  margin-top: 20px;
+  margin-top: 0px;
   justify-content: center;
   flex-direction: column;
 }
@@ -345,77 +173,6 @@ section p {
 }
 
 /* ==================mainpage====================== */
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 0px;
-  line-height: 70px;
-  padding: 0px 30px;
-  background-color: cornflowerblue;
-  color: whitesmoke;
-  align-items: center;
-}
-
-.rightnav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sortbtn {
-  padding: 12px 18px;
-  border-radius: 5px;
-  margin-right: 5px;
-  border: black;
-  background-color: black;
-  color: whitesmoke;
-  font-weight: bolder;
-  text-transform: capitalize;
-}
-
-select {
-  border: white;
-  outline: white;
-  padding: 10px 10px;
-  border-radius: 5px;
-}
-
-nav .btn a {
-  text-decoration: none;
-  color: whitesmoke;
-}
-
-.logoutbtn {
-  padding: 12px 18px;
-  border-radius: 5px;
-  border: rgb(172, 50, 50);
-  background-color: rgb(172, 50, 50);
-  font-weight: bolder;
-  text-transform: capitalize;
-}
-
-.logoutbtn a {
-  text-decoration: none;
-  color: whitesmoke;
-}
-
-section {
-  line-height: 60px;
-  text-align: center;
-  text-transform: capitalize;
-}
-
-section p {
-  font-size: 25px;
-  text-align: center;
-  font-weight: bolder;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    rgba(156, 156, 247, 0.5)
-  );
-}
 
 /* book box */
 
@@ -499,11 +256,11 @@ section p {
   display: flex;
   min-height: 81vh;
   height: 100%;
-  padding: 2rem;
+  padding:0px 2rem ;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .flexadd {
@@ -525,11 +282,11 @@ section p {
 .addbookinput {
   width: 100%;
   height: 30px;
-  border: none;
+  border: black solid 1px;
   border-radius: 5px;
   margin-top: 8px;
   margin-bottom: 8px;
-  border-color: whitesmoke;
+  border-color: black;
 }
 
 .addbook-btn {
@@ -580,7 +337,7 @@ section p {
   height: 81vh;display: flex;
   align-items: center;
   justify-content: center;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .rmcover {
@@ -616,37 +373,14 @@ section p {
 }
 
 .bookdetail label {
-  color: whitesmoke;
-}
-
-.editbtn {
-  background-color: black;
-  color: whitesmoke;
-  border-color: black;
-  font-size: 15px;
-  border-radius: 5px;
-  padding: 3px 16px ;
-  line-height: 30px;
-  cursor: pointer;
-}
-
-.deletebtn {
-  cursor: pointer;
-  line-height: 30px;
-  border-radius: 5px;
-  padding: 3px 16px ;
-  margin-left: 10px;
-  background-color: rgb(156, 25, 25);
-  color: whitesmoke;
-  border-color: rgb(156, 25, 25);
-  font-size: 15px;
+  color: black;
 }
 
 /* ================edit book=================== */
 
 .edit {
   display: flex;
-  background-color: whitesmoke;
+  background-color: white;
   flex-direction: row;
   height: 81vh;
   justify-content: center;
@@ -670,8 +404,16 @@ section p {
   background-color: black;
   color: whitesmoke;
   border-radius: 5px;
-  line-height: 0px;
   font-size: 15px;
+}
+
+.editinput{
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 /* ============pagination=========== */
@@ -679,13 +421,13 @@ section p {
 .pagination {
   display: flex;
   justify-content: center;
-  background-color: whitesmoke;
+  background-color: white;
+  margin-bottom: 5px;
 }
 
 .prev-btn,
 .next-btn {
   padding: 8px 16px;
-  /* border: 1px solid black; */
   text-decoration: none;
   color: #555;
   border-radius: 5px;
@@ -698,7 +440,7 @@ section p {
 
 .current {
   padding: 8px 16px;
-  background-color: rgb(99, 149, 243);
+  background-color: rgb(160, 190, 245);
   color: white;
   border-radius: 5px;
 }

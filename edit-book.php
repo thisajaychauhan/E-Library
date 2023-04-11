@@ -1,9 +1,18 @@
-<?php
-session_start();
-if (!isset($_SESSION['email']))
-    header('location:login.php');
+
+<!-- session IN -->
+<?php include 'session/sessionIN.php'; ?>
+
+<!-- html header -->
+<?php include 'partials/html-header.php'; ?>
+
+<!-- navbar -->
+<?php include 'partials/navbar.php'; ?>
+
+<!-- /tagline -->
+<?php include 'partials/tagline.php'; ?>
 
 
+<?php 
 include 'connection.php';
 
 if (isset($_GET['id'])) {
@@ -54,67 +63,42 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <title>E-Library</title>
-</head>
+<form action="" enctype="multipart/form-data" method="post">
+    <section class="edit">
+        <div class="editimg">
+            <div>
+                <label>old image</label>
+                <img src="uploadimg/<?php echo  $single_row['uploadimgDB'] ?>" alt="" style="width:150px; height:200px; margin-right:20px;">
+                <input type="hidden" name="oldimg" value="<?php echo  $single_row['uploadimgDB'] ?>">
+            </div>
 
-<body>
-
-
-    <!-- navbar -->
-
-    <nav>
-        <p><a href="main-page.php">E-library</a></p>
-    </nav>
+            <div>
+                <label>choose new image</label>
+                <input type="file" name="upload" value="<?php echo $update_imgname['uploadimgDB']; ?>">
+            </div>
 
 
+        </div>
 
-    <!-- tagline -->
+        <div class="editdetail">
+            <label for="">bookname</label>
+            <input class="editinput" type="text" name="bookname" value="<?= $single_row['bookname']; ?>">
 
-    <section>
-        <p>Read and grow</p>
+            <label for="">authorname</label>
+            <input class="editinput" type="text" name="authorname" value="<?= $single_row['authorname']; ?>">
+
+            <label for="">description</label>
+            <input class="editinput" type="text" name="description" value="<?= $single_row['description']; ?>">
+
+            <input class="editupdatebtn" type="submit" value="save" name="submit">
+        </div>
     </section>
+</form>
 
-    <form action="" enctype="multipart/form-data" method="post">
-        <section class="edit">
-            <div class="editimg">
-                <div>
-                    <h3>old image</h3>
-                    <img src="uploadimg/<?php echo  $single_row['uploadimgDB'] ?>" alt="" style="width:150px; height:200px; margin-right:20px;">
-                    <input type="hidden" name="oldimg" value="<?php echo  $single_row['uploadimgDB'] ?>">
-                </div>
+<!-- footer -->
+<?php include 'partials/footer.php'; ?>
 
-                <div>
-                    <h3>choose new image</h3>
-                    <input type="file" name="upload" value="<?php echo $update_imgname['uploadimgDB']; ?>">
-                </div>
-
-
-            </div>
-
-            <div class="editdetail">
-                <label for="">bookname</label>
-                <input type="text" name="bookname" value="<?= $single_row['bookname']; ?>">
-
-                <label for="">authorname</label>
-                <input type="text" name="authorname" value="<?= $single_row['authorname']; ?>">
-
-                <label for="">description</label>
-                <input type="text" name="description" value="<?= $single_row['description']; ?>">
-
-                <input class="editupdatebtn" type="submit" value="save" name="submit">
-            </div>
-        </section>
-    </form>
-
-    <?php include 'footer.php' ?>
 </body>
 
 </html>
