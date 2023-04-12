@@ -15,8 +15,7 @@ if (isset($_POST['submit'])) {
     if ($check) {
         $record = mysqli_fetch_assoc($result);
         $user_data = array($record['role'], $record['email'], $record['password']);
-
-        $user_data = $_SESSION["user_data"];
+        $_SESSION["user_data"] = $user_data;
         $role = $record['role'];
         if ($role == 'user') {
             echo "<script>alert('Login Successful as an user')</script>";

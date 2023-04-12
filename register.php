@@ -1,6 +1,8 @@
 <?php
 include 'connection.php';
 
+
+
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -40,7 +42,7 @@ if (isset($_POST['submit'])) {
 
 <div class="container-add">
 
-    <form action="mailer.php" method="post">
+    <form action="" method="post">
         <div class="flexadd">
             <!-- <div class="loginbanner"> -->
             <p class="bannerpara">Register here</p>
@@ -65,12 +67,11 @@ if (isset($_POST['submit'])) {
             ?>
                     <label for="">User Role</label>
                     <input class="registerinput" type="text" value="admin" name="role" readonly>
-                <?php
-                } else { ?>
-                    <label for="">User Role</label>
-                    <input class="registerinput" type="text" value="user" name="role" readonly>
-            <?php }
+            <?php
+                }
             } ?>
+            <label for="">User Role</label>
+            <input class="registerinput" type="text" value="user" name="role" readonly>
 
             <input class="registerRbtn" type="submit" name="submit" value="Register">
             <p><a href="login.php">if registered. <span class="fw-medium text-info"> Login here</span></a></p>

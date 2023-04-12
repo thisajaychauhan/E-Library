@@ -50,10 +50,10 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!-- main -->
-<div class="container-add">
-    <form action="" enctype="multipart/form-data" method="post">
-        <div class="flexadd">
-            <div class="inner">
+<form action="" enctype="multipart/form-data" method="post">
+    <div class="container justify-content-center">
+        <div class="card mb-3 d-flex">
+            <div class="card-body col-12 col-sm-12 col-md-6 col-lg-6 d-flex flex-column">
                 <label for="">book name</label>
                 <input class="addbookinput" type="text" name="bookname">
                 <label for="">author name</label>
@@ -62,19 +62,18 @@ if (isset($_POST['submit'])) {
                 <textarea name="description" cols="30" rows="10"></textarea>
             </div>
 
-            <div class="addbookimg">
-                <div class="inneraddbook">
-                    <div class="uploadimage">
-                        <input class="upload-input" type="file" name="upload"></input>
-                    </div>
-                    <div class="adbutton">
-                        <input class="addbook-btn" value="Add a Book" type="submit" name="submit">
-                    </div>
+            <div class="card-body col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                <div class="d-flex flex-column p-4">
+                    <input class="upload-input" type="file" name="upload"></input>
+                </div>
+
+                <div class="d-flex flex-column p-4">
+                    <input class="addbook-btn" value="Add a Book" type="submit" name="submit">
                 </div>
             </div>
         </div>
-    </form>
-</div>
+    </div>
+</form>
 
 <!-- footer -->
 <?php include 'partials/footer.php' ?>

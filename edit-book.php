@@ -1,4 +1,3 @@
-
 <!-- session IN -->
 <?php include 'session/sessionIN.php'; ?>
 
@@ -12,7 +11,7 @@
 <?php include 'partials/tagline.php'; ?>
 
 
-<?php 
+<?php
 include 'connection.php';
 
 if (isset($_GET['id'])) {
@@ -62,39 +61,40 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-
-
+<!-- main -->
 <form action="" enctype="multipart/form-data" method="post">
-    <section class="edit">
-        <div class="editimg">
-            <div>
-                <label>old image</label>
-                <img src="uploadimg/<?php echo  $single_row['uploadimgDB'] ?>" alt="" style="width:150px; height:200px; margin-right:20px;">
-                <input type="hidden" name="oldimg" value="<?php echo  $single_row['uploadimgDB'] ?>">
+    <div class="container justify-content-center">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="text-center">
+                    <div class="d-flex flex-column p-4">
+                        <label class="mb-4">old image</label>
+                        <img src="uploadimg/<?php echo  $single_row['uploadimgDB'] ?>" alt="" style="width:150px; height:200px;">
+                        <input type="hidden" name="oldimg" value="<?php echo  $single_row['uploadimgDB'] ?>">
+                    </div>
+
+                    <div class="d-flex flex-column p-4">
+                        <label class="mb-4">choose new image</label>
+                        <input type="file" name="upload" value="<?php echo $update_imgname['uploadimgDB']; ?>">
+                    </div>
+                </div>
+                <div class="card-body col-12 col-sm-12 col-md-6 col-lg-6 d-flex flex-column">
+                    <label for="">bookname</label>
+                    <input class="editinput" type="text" name="bookname" value="<?= $single_row['bookname']; ?>">
+
+                    <label for="">authorname</label>
+                    <input class="editinput" type="text" name="authorname" value="<?= $single_row['authorname']; ?>">
+
+                    <label for="">description</label>
+                    <input class="editinput" type="text" name="description" value="<?= $single_row['description']; ?>">
+
+                    <input class="mt-4" type="submit" value="save" name="submit">
+                </div>
             </div>
-
-            <div>
-                <label>choose new image</label>
-                <input type="file" name="upload" value="<?php echo $update_imgname['uploadimgDB']; ?>">
-            </div>
-
-
         </div>
-
-        <div class="editdetail">
-            <label for="">bookname</label>
-            <input class="editinput" type="text" name="bookname" value="<?= $single_row['bookname']; ?>">
-
-            <label for="">authorname</label>
-            <input class="editinput" type="text" name="authorname" value="<?= $single_row['authorname']; ?>">
-
-            <label for="">description</label>
-            <input class="editinput" type="text" name="description" value="<?= $single_row['description']; ?>">
-
-            <input class="editupdatebtn" type="submit" value="save" name="submit">
-        </div>
-    </section>
+    </div>
 </form>
+
 
 <!-- footer -->
 <?php include 'partials/footer.php'; ?>

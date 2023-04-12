@@ -7,7 +7,7 @@
 
 <!-- navbar -->
 
-<nav class="navbar navbar-expand-lg bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library</a>
 
@@ -51,27 +51,23 @@
     $row = mysqli_fetch_array($result);
     if ($row) {
     ?>
-        <div class="rmcontainer">
-            <div class="rmcover">
-                <div class="rmdetail">
-                    <div class="rmimg">
-                        <img src="uploadimg/<?php echo $row['uploadimgDB']; ?>" style="width:200px; height:280px;">
+        <div class="container justify-content-center">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 px-4">
+                        <img src="uploadimg/<?php echo $row['uploadimgDB']; ?>" style="width:500px" class="img-fluid rounded-start">
                     </div>
-                    <div class="bookdetail">
-                        <h3><?php echo $row['id']; ?></h3>
 
-                        <label for="">book name</label>
-                        <h3><?php echo $row['bookname']; ?></h3>
-
-                        <label for="">author name</label>
-                        <h3><?php echo $row['authorname']; ?></h3>
-
-                        <label for="">description</label>
-                        <h3><?php echo $row['description']; ?></h3>
+                    <div class="card-body col-12 col-sm-12 col-md-6 col-lg-6">
+                        <h4 class="card-title text-capitalize">Book name :</h4>
+                        <h5><?php echo $row['bookname']; ?></h5>
+                        <h4 class="card-title text-capitalize">Author name :</h4>
+                        <h5 class="card-title text-capitalize"><?php echo $row['authorname']; ?></h5>
+                        <h4 class="card-title text-capitalize">Description :</h4>
+                        <p class="card-text"><?php echo $row['description']; ?></p>
                     </div>
                 </div>
             </div>
-
         </div>
     <?php
     }
