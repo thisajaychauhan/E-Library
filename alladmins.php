@@ -13,15 +13,15 @@
 
 <div class="container">
     <ul class="nav nav-pills" role="tablist">
-        <li class="active ">
-            <a class="nav-link rounded-0 bg-dark text-light" data-toggle="tab" href="#admin" role="tab"> admin detail</a>
+        <li class="active">
+            <a class="nav-link rounded-0 border" data-toggle="tab" href="#admin" role="tab"> admin detail</a>
         </li>
         <li class="">
-            <a class="nav-link rounded-0 " data-toggle="tab" href="#user" role="tab">user detail</a>
+            <a class="nav-link rounded-0 border" data-toggle="tab" href="#user" role="tab">user detail</a>
         </li>
     </ul>
 
-    <div class="tab-content text-center">
+    <div class="tab-content clearfix text-center">
         <!-- admin detail tab -->
         <div class="tab-pane active" id="admin">
             <?php

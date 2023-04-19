@@ -14,6 +14,9 @@
         <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
+                <!--  -->
+                <li><a href="book-wishlist.php" class="btn btn-success text-white"><i class="fa fa-shopping-cart"></i></a></li>
+
                 <!-- sorting button -->
                 <div class="mx-1 d-flex">
                     <form action="" method="get" class="d-flex">
@@ -55,48 +58,44 @@
                                     <!-- all book button -->
                                     <li><a href="allbooks.php" class="dropdown-item">All Books</a></li>
 
-                            <?php
-                        }
-                    }
-                            ?>
-
-                            <!-- logout-button
-                            <li><a href="sessionOUT.php" class="m-1 btn btn-danger" role="button">Logout</a></li>
-                            <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
                                 </ul>
                             </div>
                         </li>
 
-                        <?php
-                        if (isset($_SESSION['user_data'])) {
-                            $data = $_SESSION['user_data'];
-                            $role = $data['0'];
-                            if ($role == 'admin') {
-                        ?>
+                    <?php
+                    }
+                }
+                if (isset($_SESSION['user_data'])) {
+                    $data = $_SESSION['user_data'];
+                    $role = $data['0'];
+                    if ($role == 'admin') {
+                    ?>
 
-                                <!-- admin menu dropdown -->
-                                <li>
-                                    <div class="dropdown">
-                                        <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                            <i class="fa fa-user"></i></button>
-                                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center">
+                        <!-- admin menu dropdown -->
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"><i class="fa fa-user"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center">
 
-                                            <!-- all admins button -->
-                                            <li><a href="alladmins.php" class="dropdown-item">Admin Detail</a></li>
+                                    <!-- all admins button -->
+                                    <li><a href="alladmins.php" class="dropdown-item">Admin Detail</a></li>
 
-                                            <!-- add new admin button -->
-                                            <li><a href="register.php" class="dropdown-item">Add new Admin</a></li>
+                                    <!-- add new admin button -->
+                                    <li><a href="register.php" class="dropdown-item">Add new Admin</a></li>
 
-                                    <?php
-                                }
-                            }
-                                    ?>
-                                    <!-- logout-button -->
-                                    <li><a href="sessionOUT.php" class="dropdown-item text-light">Logout</a></li>
-                                    <!-- <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
-                                        </ul>
-                                    </div>
-                                </li>
+                                    <!-- admin logout button -->
+                                    <li><a href="sessionOUT.php" class="dropdown-item text-light"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <?php
+                    } else { ?>
+                        <!--user logout button -->
+                        <li><a href="sessionOUT.php" class="btn btn-danger m-1">Logout</a></li>
+                        <!-- <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
+                <?php
+                    }
+                } ?>
             </ul>
         </div>
     </div>
@@ -152,16 +151,16 @@ $results = mysqli_query($con, $query);
     if (mysqli_num_rows($results) > 0) {
         while ($row = mysqli_fetch_array($results)) {
     ?>
-            <div class="card">
+            <div class="card" style="max-width:220px">
                 <img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>" style="width:300px">
-                <div class="text-start text-wrap break-word overflow-hidden">
-                    <label class="text-danger text-capitalize ">book name :</label>
-                    <h6 class="text-capitalize "><?= $row['bookname']; ?></h6>
+                <div class="card-body d-flex flex-column p-0">
+                    <label class="text-danger text-capitalize">book name :</label>
+                    <h6 class="text-capitalize"><?= $row['bookname']; ?></h6>
 
                     <label class="text-danger text-capitalize ">author name :</label>
                     <h6 class="text-capitalize"><?= $row['authorname']; ?></h6>
 
-                    <a class="fw-bold px-1 rounded float-end text-decoration-none" style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">read <i class="fa fa-arrow-right"></i></a>
+                    <a class="text-dark mt-auto align-self-end fw-bold px-1 rounded text-decoration-none" style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">details <i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
         <?php
