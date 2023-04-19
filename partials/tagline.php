@@ -1,5 +1,5 @@
 <!-- tagline -->
 
-<div class="container-fluid bg-info text-center">
-    <p class="navbar-brand fw-medium fs-4 text-black py-2">Read and Grow</p>
+<div class="container-fluid text-center" style="background-color: rgb(160, 190, 245);">
+    <h1 class="fw-lighter">"Read and Grow"</h1>
 </div>

@@ -1,8 +1,8 @@
 <!-- footer -->
 
-<footer class="bg-dark text-center fixed-bottom">
+<footer class="bg-dark text-center fixed">
     <div class="container text-white p-1">
-        <h6>&copy; E-Library 2023</h6>
+    <small>&copy; E-Library 2023. Made with &#10084; in  <a href="https://coloredcow.com/"><img style="width:16px" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

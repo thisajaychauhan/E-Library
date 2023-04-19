@@ -7,13 +7,12 @@
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
+        <a class="navbar-brand fw-medium fs-4 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-
 
                 <!-- sorting button -->
                 <div class="mx-1 d-flex">
@@ -57,6 +56,9 @@
                                     <!-- all book button -->
                                     <li><a href="allbooks.php" class="m-1 btn btn-primary" role="button">All Books</a></li>
 
+                                    <!-- all admins button -->
+                                    <li><a href="alladmins.php" class="m-1 btn btn-info" role="button">All admin</a></li>
+
                                     <!-- add new admin button -->
                                     <li><a href="register.php" class="m-1 btn btn-primary" role="button">Add new Admin</a></li>
                             <?php
@@ -66,6 +68,7 @@
 
                             <!-- logout-button -->
                             <li><a href="sessionOUT.php" class="m-1 btn btn-danger" role="button">Logout</a></li>
+                            <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -75,9 +78,15 @@
 </nav>
 
 
+<div class="text-center bg-light">
+    <small class="fw-bold">Welcome - 
+        <?php $data = $_SESSION['user_data'];
+        echo $role = $data['3']; ?>
+    </small>
+</div>
+
 <!-- /tagline -->
 <?php include 'partials/tagline.php'; ?>
-
 
 <?php
 include 'connection.php';
@@ -88,7 +97,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 } else {
     $current_page = 1;
 }
-$items_per_page = 8;
+$items_per_page = 10;
 $offset = ($current_page - 1) * $items_per_page;
 
 // search 
@@ -113,33 +122,25 @@ $results = mysqli_query($con, $query);
 ?>
 
 <!-- main -->
-<div class="card-container">
+<div class="container d-flex">
     <?php
     if (mysqli_num_rows($results) > 0) {
         while ($row = mysqli_fetch_array($results)) {
     ?>
-            <div class="card" style="width:300px">
-                <div class="box">
-                    <img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>">
-                    <div class="detail">
-                        <div class="info">
-                            <label for="">book name</label>
-                            <h6><?= $row['bookname']; ?></h6>
+            <div class="card">
+                <img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>" style="width:300px">
+                <div class="text-start text-wrap break-word overflow-hidden">
+                    <label class="text-danger text-capitalize ">book name :</label>
+                    <h6 class="text-capitalize "><?= $row['bookname']; ?></h6>
 
-                            <label for="">author name</label>
-                            <h6><?= $row['authorname']; ?></h6>
+                    <label class="text-danger text-capitalize ">author name :</label>
+                    <h6 class="text-capitalize"><?= $row['authorname']; ?></h6>
 
-                            <!-- <label for="">description</label>
-                                <h6><?= $row['description']; ?></h6> -->
-
-                            <div class="info">
-                                <a style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">read more <i class="fa fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <a class="fw-bold px-1 rounded float-end text-decoration-none" style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">read <i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
-        <?php }
+        <?php
+        }
     } else {
         ?>
         <h3>Sorry..!!!! Add Book Please</h3>
@@ -162,9 +163,6 @@ $total_pages = ceil($total_items / $items_per_page);
 $prev_page = $current_page - 1;
 $next_page = $current_page + 1;
 echo "<div class='pagination'>";
-if ($current_page > 1) {
-    echo "<a href='main-page.php?page=$prev_page' class='prev-btn'>&laquo; </a>";
-}
 
 // Show all pages
 echo "<div class='page-numbers'>";
@@ -176,15 +174,16 @@ for ($i = 1; $i <= $total_pages; $i++) {
     }
 }
 echo "</div>";
-if ($current_page < $total_pages) {
-    echo "<a href='main-page.php?page=$next_page' class='next-btn'> &raquo;</a>";
-}
 echo "</div>";
 
 ?>
 
 <!-- footer -->
-
+<footer class="bg-dark text-center fixed">
+    <div class="container text-white p-1">
+        <small>&copy; E-Library 2023. Made with &#10084; in <a href="https://coloredcow.com/"><img style="width:16px" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    </div>
+</footer>
 
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

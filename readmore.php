@@ -23,10 +23,10 @@
                 ?>
                         <div style="display: flex;">
                             <!-- edit button -->
-                            <li> <a href="edit-book.php?id=<?= $_GET['id']; ?>" class="btn btn-primary m-1" role="button">edit</a></li>
+                            <li> <a href="edit-book.php?id=<?= $_GET['id']; ?>" class="btn btn-primary m-1" role="button">Edit</a></li>
 
                             <!-- delete button -->
-                            <li> <a href="deletebook.php?id=<?= $_GET['id']; ?>" class="btn btn-danger m-1" role="button">delete</a></li>
+                            <li> <a href="deletebook.php?id=<?= $_GET['id']; ?>" class="btn btn-danger m-1" role="button">Delete</a></li>
                         </div>
                 <?php }
                 }
@@ -52,26 +52,31 @@
     if ($row) {
     ?>
         <div class="container justify-content-center">
-            <div class="card mb-3">
+            <div class="card">
                 <div class="row g-0">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 px-4">
-                        <img src="uploadimg/<?php echo $row['uploadimgDB']; ?>" style="width:500px" class="img-fluid rounded-start">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 p-3 d-flex justify-content-center align-items-center">
+                        <img src="uploadimg/<?php echo $row['uploadimgDB']; ?>" style="width:350px" class="img-fluid rounded-start">
                     </div>
 
-                    <div class="card-body col-12 col-sm-12 col-md-6 col-lg-6">
-                        <h4 class="card-title text-capitalize">Book name :</h4>
-                        <h5><?php echo $row['bookname']; ?></h5>
-                        <h4 class="card-title text-capitalize">Author name :</h4>
-                        <h5 class="card-title text-capitalize"><?php echo $row['authorname']; ?></h5>
-                        <h4 class="card-title text-capitalize">Description :</h4>
-                        <p class="card-text"><?php echo $row['description']; ?></p>
+                    <div class="text-capitalize col-12 col-sm-12 col-md-12 col-lg-8 p-3">
+                        <div class="d-flex flex-row flex-wrap">
+                            <h5 class="card-title text-danger">Book name: &nbsp;</h5>
+                            <h5 class="card-text text-capitalize"><?php echo $row['bookname']; ?></h5>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap">
+                            <h5 class="card-title text-danger">Author name: &nbsp;</h5>
+                            <h5 class="card-text text-capitalize"><?php echo $row['authorname']; ?></h5>
+                        </div>
+                        <div class="">
+                            <h5 class="card-title text-danger">Description: </h5>
+                            <h6 class="card-text text-justify"><?php echo $row['description']; ?></h6>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php
+        <?php
     }
-    ?>
+        ?>
 </form>
 
 <!-- footer -->

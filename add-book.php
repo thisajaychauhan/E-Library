@@ -12,7 +12,7 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
             <!-- Back button -->
-            <a href="main-page.php" class="btn btn-light fw-bold" role="button" name="submit" type="submit"><i class="fa fa-arrow-left"></i> back</a>
+            <a href="main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-arrow-left"></i> back</a>
     </div>
 </nav>
 
@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($con, $save_bookdetail);
 
     if ($result) {
-        echo "<script>alert('book Updated successfully')</script>";
+        echo "<script>alert('book added successfully')</script>";
 ?>
         <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
 <?php
@@ -50,30 +50,46 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!-- main -->
-<form action="" enctype="multipart/form-data" method="post">
-    <div class="container justify-content-center">
-        <div class="card mb-3 d-flex">
-            <div class="card-body col-12 col-sm-12 col-md-6 col-lg-6 d-flex flex-column">
-                <label for="">book name</label>
-                <input class="addbookinput" type="text" name="bookname">
-                <label for="">author name</label>
-                <input class="addbookinput" type="text" name="authorname">
-                <label for="">description</label>
-                <textarea name="description" cols="30" rows="10"></textarea>
-            </div>
+<div class="container mb-3" style="">
+    <div class="d-flex justify-content-center align-items-center">
+        <form action="" enctype="multipart/form-data" method="post">
+            <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="fw-bold" for="bookname">Book Name</label>
+                                <input type="text" class="form-control" id="bookname" name="bookname">
+                            </div>
+                            <div class="form-group">
+                                <label class="fw-bold" for="authorname">Author Name</label>
+                                <input type="text" class="form-control" id="authorname" name="authorname">
+                            </div>
+                            <div class="form-group">
+                                <label class="fw-bold" for="description">Description</label>
+                                <textarea class="form-control" id="description" name="description" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center align-items-center">
+                        <div class="form-group text-center">
+                            <label class="fw-bold mb-2" class="fw-bold" for="upload">Upload Image</label>
+                            <input type="file" class="form-control" id="upload" name="upload">
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center align-items-center">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary form-control" name="submit">Add a Book</button>
+                        </div>
+                    </div>
 
-            <div class="card-body col-12 col-sm-12 col-md-6 col-lg-6 text-center">
-                <div class="d-flex flex-column p-4">
-                    <input class="upload-input" type="file" name="upload"></input>
-                </div>
-
-                <div class="d-flex flex-column p-4">
-                    <input class="addbook-btn" value="Add a Book" type="submit" name="submit">
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-</form>
+</div>
+
+
 
 <!-- footer -->
 <?php include 'partials/footer.php' ?>

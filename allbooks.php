@@ -18,22 +18,22 @@ $allbook_query = "SELECT * FROM bookdetail";
 $result = mysqli_query($con, $allbook_query);
 if ($row = mysqli_num_rows($result)) {
 ?>
-    <div class="container">
-        <table class="table table-hover table-sm text-center">
+    <div class="container-fluid">
+        <table class="table table-bordered table-hover text-capitalize table-sm text-center">
             <tr class="table-dark">
                 <th>id</th>
-                <th>Book name</th>
-                <th>Author name</th>
-                <th>Book image</th>
+                <th>book name</th>
+                <th>author name</th>
+                <th>book image</th>
             </tr>
-            <tr class="fw-normal">
+            <tr >
                 <?php
                 while ($row = mysqli_fetch_array($result)) {
                 ?>
-                    <th><?= $row['id']; ?></th>
-                    <th><?= $row['bookname']; ?></th>
-                    <th><?= $row['authorname']; ?></th>
-                    <th><img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>" style="width: 30px; height:50px;"></th>
+                    <th class="fw-normal"><?= $row['id']; ?></th>
+                    <th class="fw-normal"><?= $row['bookname']; ?></th>
+                    <th class="fw-normal"><?= $row['authorname']; ?></th>
+                    <th class="fw-normal"><img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>" style="width: 20px; height:30px;"></th>
             </tr>
 
     <?php
@@ -44,8 +44,12 @@ if ($row = mysqli_num_rows($result)) {
     </div>
 
 
-    <!-- footer -->
-    <?php include 'partials/footer.php' ?>
+<!-- footer -->
+<footer class="bg-dark text-center fixed">
+    <div class="container text-white p-1">
+        <small>&copy; E-Library 2023. Made with &#10084; in <a href="https://coloredcow.com/"><img style="width:16px" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    </div>
+</footer>
 
     </body>
 
