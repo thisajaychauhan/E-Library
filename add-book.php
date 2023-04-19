@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!-- main -->
-<div class="container mb-3" style="">
+<div class="container mb-3">
     <div class="d-flex justify-content-center align-items-center">
         <form action="" enctype="multipart/form-data" method="post">
             <div class="card">
