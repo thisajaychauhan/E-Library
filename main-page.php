@@ -37,41 +37,66 @@
                     <button class="btn btn-primary my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                 </form>
 
+                <!-- book dropdown -->
                 <?php
                 if (isset($_SESSION['user_data'])) {
                     $data = $_SESSION['user_data'];
                     $role = $data['0'];
                     if ($role == 'admin') {
                 ?>
-                        <!-- add book button -->
-                        <li> <a href="add-book.php" class="btn btn-primary m-1" role="button">Add a <i class=" fa fa-book"></i></a></li>
-
-                        <!-- admin menu dropdown -->
                         <li>
-                            <div class="dropdown">
-                                <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                    <i class="fa fa-user"></i></button>
-                                <ul class="dropdown-menu bg-dark dropdown-menu-end text-center">
+                            <div class="dropdown m-1">
+                                <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Book</button>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center text-capitalize">
+
+                                    <!-- add book button -->
+                                    <li> <a href="add-book.php" class="dropdown-item">Add a book</a></li>
 
                                     <!-- all book button -->
-                                    <li><a href="allbooks.php" class="m-1 btn btn-primary" role="button">All Books</a></li>
+                                    <li><a href="allbooks.php" class="dropdown-item">All Books</a></li>
 
-                                    <!-- all admins button -->
-                                    <li><a href="alladmins.php" class="m-1 btn btn-info" role="button">All admin</a></li>
-
-                                    <!-- add new admin button -->
-                                    <li><a href="register.php" class="m-1 btn btn-primary" role="button">Add new Admin</a></li>
                             <?php
                         }
                     }
                             ?>
 
-                            <!-- logout-button -->
+                            <!-- logout-button
                             <li><a href="sessionOUT.php" class="m-1 btn btn-danger" role="button">Logout</a></li>
-                            <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li>
+                            <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
                                 </ul>
                             </div>
                         </li>
+
+                        <?php
+                        if (isset($_SESSION['user_data'])) {
+                            $data = $_SESSION['user_data'];
+                            $role = $data['0'];
+                            if ($role == 'admin') {
+                        ?>
+
+                                <!-- admin menu dropdown -->
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                            <i class="fa fa-user"></i></button>
+                                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center">
+
+                                            <!-- all admins button -->
+                                            <li><a href="alladmins.php" class="dropdown-item">Admin Detail</a></li>
+
+                                            <!-- add new admin button -->
+                                            <li><a href="register.php" class="dropdown-item">Add new Admin</a></li>
+
+                                    <?php
+                                }
+                            }
+                                    ?>
+                                    <!-- logout-button -->
+                                    <li><a href="sessionOUT.php" class="dropdown-item text-light">Logout</a></li>
+                                    <!-- <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
+                                        </ul>
+                                    </div>
+                                </li>
             </ul>
         </div>
     </div>
@@ -79,7 +104,7 @@
 
 
 <div class="text-center bg-light">
-    <small class="fw-bold">Welcome - 
+    <small class="fw-bold">Welcome -
         <?php $data = $_SESSION['user_data'];
         echo $role = $data['3']; ?>
     </small>

@@ -392,3 +392,181 @@ The significant changes you want to make in your life depend more on creating sm
     </div>
   </div>
 </div>
+
+
+<!-- tab pills -->
+<?php include 'partials/html-header.php'; ?>
+
+<div id="exTab1" class="container">
+  <ul class="nav nav-pills">
+    <li class="active">
+      <a href="#1a" data-toggle="tab">Overview</a>
+    </li>
+    <li><a href="#2a" data-toggle="tab">Using nav-pills</a>
+    </li>
+    <li><a href="#3a" data-toggle="tab">Applying clearfix</a>
+    </li>
+    <li><a href="#4a" data-toggle="tab">Background color</a>
+    </li>
+  </ul>
+
+  <div class="tab-content clearfix">
+    <div class="tab-pane active" id="1a">
+      <h3>Content's background color is the same for the tab</h3>
+    </div>
+    <div class="tab-pane" id="2a">
+      <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>
+    </div>
+    <div class="tab-pane" id="3a">
+      <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
+    </div>
+    <div class="tab-pane" id="4a">
+      <h3>We use css to change the background color of the content to be equal to the tab</h3>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  body {
+    padding: 10px;
+
+  }
+
+  #exTab1 .tab-content {
+    color: white;
+    background-color: #428bca;
+    padding: 5px 15px;
+  }
+
+  #exTab2 h3 {
+    color: white;
+    background-color: #428bca;
+    padding: 5px 15px;
+  }
+
+  /* remove border radius for the tab */
+
+  #exTab1 .nav-pills>li>a {
+    border-radius: 0;
+  }
+
+  /* change border radius for the tab , apply corners on top*/
+
+  #exTab3 .nav-pills>li>a {
+    border-radius: 4px 4px 0 0;
+  }
+
+  #exTab3 .tab-content {
+    color: white;
+    background-color: #428bca;
+    padding: 5px 15px;
+  }
+</style>
+
+<?php include 'partials/footer.php'; ?>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
+
+
+<!-- all admin  -->
+
+<?php
+include 'connection.php';
+
+$alladmin_query = "SELECT * FROM registration ";
+$result = mysqli_query($con, $alladmin_query);
+if ($row = mysqli_num_rows($result)) {
+?>
+  <div class="container-fluid">
+    <table class="table table-bordered table-hover table-sm text-center">
+      <tr class="table-dark text-capitalize">
+        <th>id</th>
+        <th>role</th>
+        <th>username</th>
+        <th>e-mail</th>
+        <th>verify status</th>
+        <th>update</th>
+        <th>delete</th>
+      </tr>
+      <tr>
+        <?php
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+          <th class="fw-normal"><?= $row['id']; ?></th>
+          <th class="fw-normal"><?= $row['role']; ?></th>
+          <th class="fw-normal"><?= $row['username']; ?></th>
+          <th class="fw-normal"><?= $row['email']; ?></th>
+          <th class="fw-normal"><?= $row['verify_status']; ?></th>
+          <th><a href="edit-book.php?id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></th>
+          <th><a href="deletebook.php?id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
+
+          <!-- <th><img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>" style="width: 30px; height:50px;"></th> -->
+      </tr>
+  <?php
+        }
+      }
+  ?>
+    </table>
+  </div>
+
+  <!-- new tab pills -->
+
+
+  <div class="container mt-5">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+            <i class="now-ui-icons objects_umbrella-13"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
+            <i class="now-ui-icons shopping_cart-simple"></i> Profile
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content text-center">
+        <div class="tab-pane active" id="home" role="tabpanel">
+          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+        </div>
+      </div>
+
+  </div>
+  </div>
+
+  <!-- tab pill active -->
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <!-- Scrollspy -->
+    <div id="scrollspy1" class="sticky-top">
+        <ul class="nav nav-pills menu-sidebar ps-2">
+            <li class="nav-item">
+                <a class="nav-link" href="#example-1">Section 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#example-2">Section 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#example-3">Section 3</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#example-4">Section 4</a>
+            </li>
+        </ul>
+    </div>
+    <!-- Scrollspy -->
+</nav>

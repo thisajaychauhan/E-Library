@@ -60,14 +60,12 @@
 
                     <div class="text-capitalize col-12 col-sm-12 col-md-12 col-lg-8 p-3">
                         <div class="d-flex flex-row flex-wrap">
-                            <h5 class="card-title text-danger">Book name: &nbsp;</h5>
-                            <h5 class="card-text text-capitalize"><?php echo $row['bookname']; ?></h5>
+                            <h1 class="card-text text-capitalize"><?php echo $row['bookname']; ?></h1>
                         </div>
-                        <div class="d-flex flex-row flex-wrap">
-                            <h5 class="card-title text-danger">Author name: &nbsp;</h5>
+                        <div class="d-flex flex-row flex-wrap mt-2 text-success">
                             <h5 class="card-text text-capitalize"><?php echo $row['authorname']; ?></h5>
                         </div>
-                        <div class="">
+                        <div class="mt-3">
                             <h5 class="card-title text-danger">Description: </h5>
                             <h6 class="card-text text-justify"><?php echo $row['description']; ?></h6>
                         </div>
@@ -80,7 +78,16 @@
 </form>
 
 <!-- footer -->
-<?php include 'partials/footer.php'; ?>
+
+<footer class="bg-dark text-center fixed">
+    <div class="container text-white p-1">
+    <small>&copy; E-Library 2023. Made with &#10084; in  <a href="https://coloredcow.com/"><img style="width:16px" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    </div>
+</footer>
+
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 
 </body>
 

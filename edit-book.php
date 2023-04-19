@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
       <div class="row justify-content-center">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-3">
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <label class="mb-1 fw-bold fs-5 text-capitalize bg-dark text-light text-center" style="width:350px">old image</label>
+            <label class="mb-1 fw-bold fs-5 text-capitalize bg-dark text-light text-center" style="width:350px">current book</label>
             <img src="uploadimg/<?php echo  $single_row['uploadimgDB'] ?>" style="width:350px" class="img-fluid rounded-start">
             <input type="hidden" name="oldimg" value="<?php echo  $single_row['uploadimgDB'] ?>">
           </div>
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
 
         <div class="text-capitalize col-12 col-sm-12 col-md-12 col-lg-6 p-3">
           <div class="justify-content-center align-items-center">
-            <label class="mb-2 fw-bold">choose new image</label>
+            <label class="mb-2 fw-bold">choose new book cover</label>
             <input class="form-control " type="file" name="upload" value="<?php echo $update_imgname['uploadimgDB']; ?>">
 
             <div class="mb-3">

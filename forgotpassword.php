@@ -40,7 +40,7 @@ if (isset($_POST['forgot'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'ajayc0343@gmail.com';
-        $mail->Password = 'itufvivjplhdasyu';
+        $mail->Password = 'google password';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
