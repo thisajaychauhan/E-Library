@@ -523,27 +523,27 @@ if ($row = mysqli_num_rows($result)) {
 
 
   <div class="container mt-5">
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
-            <i class="now-ui-icons objects_umbrella-13"></i> Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
-            <i class="now-ui-icons shopping_cart-simple"></i> Profile
-          </a>
-        </li>
-      </ul>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+          <i class="now-ui-icons objects_umbrella-13"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
+          <i class="now-ui-icons shopping_cart-simple"></i> Profile
+        </a>
+      </li>
+    </ul>
 
-      <div class="tab-content text-center">
-        <div class="tab-pane active" id="home" role="tabpanel">
-          <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-        </div>
-        <div class="tab-pane" id="profile" role="tabpanel">
-          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-        </div>
+    <div class="tab-content text-center">
+      <div class="tab-pane active" id="home" role="tabpanel">
+        <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
       </div>
+      <div class="tab-pane" id="profile" role="tabpanel">
+        <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+      </div>
+    </div>
 
   </div>
   </div>
@@ -553,20 +553,78 @@ if ($row = mysqli_num_rows($result)) {
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <!-- Scrollspy -->
     <div id="scrollspy1" class="sticky-top">
-        <ul class="nav nav-pills menu-sidebar ps-2">
-            <li class="nav-item">
-                <a class="nav-link" href="#example-1">Section 1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#example-2">Section 2</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#example-3">Section 3</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#example-4">Section 4</a>
-            </li>
-        </ul>
+      <ul class="nav nav-pills menu-sidebar ps-2">
+        <li class="nav-item">
+          <a class="nav-link" href="#example-1">Section 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#example-2">Section 2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#example-3">Section 3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#example-4">Section 4</a>
+        </li>
+      </ul>
     </div>
     <!-- Scrollspy -->
-</nav>
+  </nav>
+
+
+  <!-- wish book duplicacy -->
+
+
+  <?php
+  if (isset($_GET['id'])) {
+    // Get user data from session
+    $data = $_SESSION['user_data'];
+    $username = $data['3'];
+    $email = $data['1'];
+
+    // Get book data from bookdetail table
+    $id_book = $_GET['id'];
+    $query = "SELECT bookname,uploadimgDB FROM bookdetail WHERE id = '$id_book'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_array($result);
+    $bookname = $row['bookname'];
+    $bookimage = $row['uploadimgDB'];
+
+    // Check if the book is already in the wishlist
+    $duplicacy_query = "SELECT book_id FROM user_book_details WHERE username = '$username' AND book_id = '$id_book'";
+    $duplicacy_result = mysqli_query($con, $duplicacy_query);
+
+    if (mysqli_num_rows($duplicacy_result) > 0) {
+      // The book is already in the wishlist, so remove it
+      $remove_query = "DELETE FROM user_book_details WHERE username = '$username' AND book_id = '$id_book'";
+      $remove_result = mysqli_query($con, $remove_query);
+
+      if ($remove_result) {
+        echo "<script>alert('Book removed from wishlist')</script>";
+      } else {
+        echo "<script>alert('Error removing book from wishlist')</script>";
+      }
+    } else {
+      // The book is not in the wishlist, so add it
+      $query = "INSERT INTO user_book_details (book_id,username, email, bookname, bookimage) VALUES('$id_book','$username','$email','$bookname','$bookimage')";
+      $results = mysqli_query($con, $query);
+
+      if ($results) {
+        echo "<script>alert('Book added to wishlist')</script>";
+      } else {
+        echo "<script>alert('Error adding book to wishlist')</script>";
+      }
+    }
+  }
+
+  // Redirect back to the previous page
+  header("Location: {$_SERVER['HTTP_REFERER']}");
+  exit();
+  ?>
+
+
+  <!-- book wishlist -->
+
+  <!-- readed book tab -->
+  <div class="tab-pane" id="readed">readed book
+  </div>

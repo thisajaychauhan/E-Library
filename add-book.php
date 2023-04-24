@@ -28,13 +28,13 @@ if (isset($_POST['submit'])) {
     $bookname = $_POST['bookname'];
     $authorname = $_POST['authorname'];
     $description = $_POST['description'];
+    $totalbook = $_POST['totalbook'];
 
     $imgname = $_FILES['upload']['name'];
     $tempname = $_FILES['upload']['tmp_name'];
     move_uploaded_file($tempname, 'uploadimg/' . $imgname);
 
-    $save_bookdetail = "INSERT INTO bookdetail (bookname,authorname,description,uploadimgDB)
-    VALUES('$bookname','$authorname','$description','$imgname')";
+    $save_bookdetail = "INSERT INTO bookdetail (bookname,authorname,description,uploadimgDB,total_books) VALUES('$bookname','$authorname','$description','$imgname', '$totalbook')";
     $result = mysqli_query($con, $save_bookdetail);
 
     if ($result) {
@@ -71,18 +71,23 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 d-flex justify-content-center align-items-center">
-                        <div class="form-group text-center">
-                            <label class="fw-bold mb-2" class="fw-bold" for="upload">Upload Image</label>
-                            <input type="file" class="form-control" id="upload" name="upload" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-center align-items-center">
+                    <div class="col-md-6 justify-content-center align-items-center">
                         <div class="card-body">
-                            <button type="submit" class="btn btn-primary form-control" name="submit">Add a Book</button>
+                            <div class="form-group">
+                                <label class="fw-bold" for="authorname">Number of books</label>
+                                <input type="number" class="form-control" id="totalbook" name="totalbook" min="0" max="10" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="fw-bold mb-2" class="fw-bold" for="upload">Upload Image</label>
+                                <input type="file" class="form-control" id="upload" name="upload" required>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center align-items-center">
+                                <div class="card-body px-0 mt-3">
+                                    <button type="submit" class="btn btn-primary form-control" name="submit">Add a Book</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </form>
@@ -92,7 +97,16 @@ if (isset($_POST['submit'])) {
 
 
 <!-- footer -->
-<?php include 'partials/footer.php' ?>
+<footer class="bg-dark text-center fixed-bottom">
+    <div class="container text-white p-1">
+    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    </div>
+</footer>
+
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
 
 </body>
 

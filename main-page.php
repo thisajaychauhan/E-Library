@@ -4,18 +4,24 @@
 <!-- html header -->
 <?php include 'partials/html-header.php'; ?>
 
+<!-- sidebar -->
+<?php include 'partials/sidebar.php'; ?>
+
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand fw-medium fs-4 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
+        <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+            <i class="fa fa-arrow-right text-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
+        </button>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
-                <!--  -->
-                <li><a href="book-wishlist.php" class="btn btn-success text-white"><i class="fa fa-shopping-cart"></i></a></li>
+                <!-- book issue button -->
+                <li><a href="wishlist.php" class="btn btn-success text-white"><i class="fa fa-shopping-cart"></i></a></li>
 
                 <!-- sorting button -->
                 <div class="mx-1 d-flex">
@@ -36,8 +42,8 @@
 
                 <!-- search button -->
                 <form method="get" class="form-inline my-lg-0 d-flex">
-                    <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                    <input class="form-control rounded-start" type="text" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary my-sm-0 rounded-end" type="submit"><i class="fa fa-search"></i></button>
                 </form>
 
                 <!-- book dropdown -->
@@ -53,7 +59,7 @@
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center text-capitalize">
 
                                     <!-- add book button -->
-                                    <li> <a href="add-book.php" class="dropdown-item">Add a book</a></li>
+                                    <li> <a href="add-book.php" class="dropdown-item">Add Book</a></li>
 
                                     <!-- all book button -->
                                     <li><a href="allbooks.php" class="dropdown-item">All Books</a></li>
@@ -84,7 +90,7 @@
                                     <li><a href="register.php" class="dropdown-item">Add new Admin</a></li>
 
                                     <!-- admin logout button -->
-                                    <li><a href="sessionOUT.php" class="dropdown-item text-light"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                                    <li><a href="sessionOUT.php" class="dropdown-item  text-danger"><i class="fa fa-sign-out  text-danger"></i> Log Out</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -146,6 +152,7 @@ $results = mysqli_query($con, $query);
 ?>
 
 <!-- main -->
+<!-- <form action="" enctype="multipart/form-data" method="post"> -->
 <div class="container d-flex">
     <?php
     if (mysqli_num_rows($results) > 0) {
@@ -159,8 +166,22 @@ $results = mysqli_query($con, $query);
 
                     <label class="text-danger text-capitalize ">author name :</label>
                     <h6 class="text-capitalize"><?= $row['authorname']; ?></h6>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <!-- wishlist card-button -->
+                        <a class="text-light align-self-start px-1 py-0 rounded bg-danger" name="wish" href="wishlist.php?id=<?= $row['id']; ?>"><i class="fa fa-heart"></i></a>
 
-                    <a class="text-dark mt-auto align-self-end fw-bold px-1 rounded text-decoration-none" style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">details <i class="fa fa-arrow-right"></i></a>
+                        <!-- readed card button -->
+                        <a class="text-light align-self-start px-1 py-0 rounded bg-success" name="read" href="wishlist.php?id=<?= $row['id']; ?>"><i class="fa fa-check"></i></a>
+                       
+                        <!-- issued card button -->
+                        <a class="text-light align-self-start px-1 py-0 rounded bg-info" name="issued" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book"></i></a>
+                    </div>
+
+                    <!-- detail button -->
+                    <a class="text-dark mt-auto align-self-end fw-bold px-1 rounded text-decoration-none" type="button" style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">details <i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
         <?php
@@ -172,6 +193,7 @@ $results = mysqli_query($con, $query);
     }
     ?>
 </div>
+<!-- </form> -->
 
 
 
@@ -205,7 +227,7 @@ echo "</div>";
 <!-- footer -->
 <footer class="bg-dark text-center fixed">
     <div class="container text-white p-1">
-        <small>&copy; E-Library 2023. Made with &#10084; in <a href="https://coloredcow.com/"><img style="width:16px" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

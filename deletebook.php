@@ -20,9 +20,8 @@ $del_admin_query = "DELETE FROM registration WHERE id='$del_id' ";
 $del_admin_result = mysqli_query($con, $del_admin_query);
 
 if ((mysqli_affected_rows($con)) > 0) {
-    echo "<script>alert('admin Deleted successfully')</script>";
+    echo "<script>alert('are you sure you want to delete')</script>";
 ?>
     <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
 <?php
 }
-?>

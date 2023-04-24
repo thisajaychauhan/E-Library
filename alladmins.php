@@ -27,11 +27,29 @@
             <?php
             include 'connection.php';
 
+            // to delete book from wish-list
+
+            if (isset($_GET['delete_id'])) {
+                $id = $_GET['delete_id'];
+
+                $sql = "DELETE FROM registration WHERE id = '$id'";
+                $result = mysqli_query($con, $sql);
+
+                if ($result) {
+                    echo "<script>confirm('Are you sure want to delete')</script>";
+            ?>
+                    <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
+                <?php
+                }
+            }
+
+            // admin detail 
+
             $alladmin_query = "SELECT * FROM registration WHERE role = 'admin' ";
             $result = mysqli_query($con, $alladmin_query);
             if ($row = mysqli_num_rows($result)) {
-            ?>
-                <div class="">
+                ?>
+                <div>
                     <table class="table table-bordered table-hover table-sm text-center">
                         <tr class="table-dark text-capitalize">
                             <th>id</th>
@@ -51,8 +69,8 @@
                                 <th class="fw-normal"><?= $row['username']; ?></th>
                                 <th class="fw-normal"><?= $row['email']; ?></th>
                                 <th class="fw-normal"><?= $row['verify_status']; ?></th>
-                                <th><a href="edit-book.php?id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></th>
-                                <th><a href="deletebook.php?id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
+                                <th><a href="edit-book.php?delete_id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></th>
+                                <th><a href="?delete_id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
                         </tr>
                 <?php
                             }
@@ -60,18 +78,33 @@
                 ?>
                     </table>
                 </div>
-
-
         </div>
+
+        <!-- user detail tab -->
         <div class="tab-pane" id="user">
-            <!-- user detail tab -->
-            <?php
-            include 'connection.php';
+            <?php include 'connection.php';
+
+            // to delete book from wish-list
+            if (isset($_GET['delete_id'])) {
+                $id = $_GET['delete_id'];
+
+                $sql = "DELETE FROM registration WHERE id = '$id'";
+                $result = mysqli_query($con, $sql);
+
+                if ($result) {
+                    echo "<script>confirm('Are you sure want to delete')</script>";
+            ?>
+                    <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
+                <?php
+                }
+            }
+
+            // user details
 
             $all_user_query = "SELECT * FROM registration WHERE role = 'user' ";
             $result = mysqli_query($con, $all_user_query);
             if ($row = mysqli_num_rows($result)) {
-            ?>
+                ?>
                 <div>
                     <table class="table table-bordered table-hover table-sm text-center">
                         <tr class="table-dark text-capitalize">
@@ -93,7 +126,7 @@
                                 <th class="fw-normal"><?= $row['email']; ?></th>
                                 <th class="fw-normal"><?= $row['verify_status']; ?></th>
                                 <th><a href="edit-book.php?id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></th>
-                                <th><a href="deletebook.php?id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
+                                <th><a href="?id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
                         </tr>
                 <?php
                             }
@@ -112,7 +145,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-        <small>&copy; E-Library 2023. Made with &#10084; in <a href="https://coloredcow.com/"><img style="width:16px" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 
