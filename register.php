@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
     $mail->Username = 'ajayc0343@gmail.com';
 
     //my google mail app password
-    $mail->Password = 'rmmejfkkaqpgnwtp';
+    $mail->Password = '';
 
     //Enable TLS encryption;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
