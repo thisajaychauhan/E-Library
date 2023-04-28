@@ -57,15 +57,15 @@ if (isset($_POST['submit'])) {
                 <div class="row no-gutters">
                     <div class="col-md-6">
                         <div class="card-body">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label class="fw-bold" for="bookname">Book Name</label>
-                                <input type="text" class="form-control" id="bookname" name="bookname" required>
+                                <input type="text" class="form-control text-capitalize" id="bookname" name="bookname" required>
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label class="fw-bold" for="authorname">Author Name</label>
-                                <input type="text" class="form-control" id="authorname" name="authorname" required>
+                                <input type="text" class="form-control text-capitalize" id="authorname" name="authorname" required>
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label class="fw-bold" for="description">Description</label>
                                 <textarea class="form-control" id="description" name="description" cols="30" rows="10" required></textarea>
                             </div>
@@ -73,11 +73,11 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col-md-6 justify-content-center align-items-center">
                         <div class="card-body">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label class="fw-bold" for="authorname">Number of books</label>
-                                <input type="number" class="form-control" id="totalbook" name="totalbook" min="0" max="10" required>
+                                <input type="number" class="form-control" id="totalbook" name="totalbook" min="0" max="2" required>
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label class="fw-bold mb-2" class="fw-bold" for="upload">Upload Image</label>
                                 <input type="file" class="form-control" id="upload" name="upload" required>
                             </div>
@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

@@ -20,16 +20,17 @@
 
 <body>
 
-    <div class="container d-flex justify-content-center mt-5 py-5">
+    <div class="container d-flex justify-content-center mt-5">
         <div class="card mt-5" style="width:700px">
         <div class="card-header bg-dark text-white">
             <h1 class="text-center text-capitalize">access denied</h1>
         </div>
-            <div class="card-body text-center">
-                <p class="display-1 text-danger fw-bold">403</p>
+        <div class="card-body text-center m-0 p-0">
+                <h1 class="m-0 p-0"><i class="fa fa-lock text-danger display-1"></i></h1>
+                <p class="display-1 text-danger fw-bold m-0 p-0">403</p>
                 <h1 class="text-danger fw-bold">Ooops...!!!</h1>
                 <h3>you dont have permission to access this page.</h3>
-                <h5>pleae login first <a href="../login.php">login please</a></h5>
+                <h5 class="mb-5">please login first <a href="../login.php">Click here</a></h5>
                 
             </div>
         </div>

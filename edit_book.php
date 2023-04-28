@@ -5,7 +5,15 @@
 <?php include 'partials/html-header.php'; ?>
 
 <!-- navbar -->
-<?php include 'partials/navbar.php'; ?>
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+
+      <!-- Back button -->
+      <a href="main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+  </div>
+</nav>
 
 <!-- /tagline -->
 <?php include 'partials/tagline.php'; ?>
@@ -104,7 +112,11 @@ if (isset($_POST['submit'])) {
 
 
 <!-- footer -->
-<?php include 'partials/footer.php'; ?>
+<footer class="bg-dark text-center bottom">
+    <div class="container text-white p-1">
+    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    </div>
+</footer>
 
 </body>
 

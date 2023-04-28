@@ -36,6 +36,11 @@ if (isset($_POST['submit'])) {
         ?>
             <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
         <?php
+        } elseif ($role == 'superadmin') {
+            echo "<script>alert('Login Successful as super-admin')</script>";
+        ?>
+            <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
+        <?php
         } else {
             echo "<script>alert('Login Failed')</script>";
         ?>
@@ -64,22 +69,22 @@ if (isset($_POST['submit'])) {
 
 
 <div class="container d-flex justify-content-center">
-    <div class="card" style="width:500px">
-        <div class="card-header bg-dark text-white">
+    <div class="card rounded-0" style="width:500px">
+        <div class="card-header rounded-0 bg-dark text-white">
             <h1 class="text-center text-capitalize">Login here</h1>
         </div>
         <div class="card-body">
             <form action="" method="post">
-                <div class="form-group">
+                <div class="mt-2 fw-bold">
                     <label for="">Email</label>
-                    <input class="form-control" type="text" name="email" required>
+                    <input class="form-control rounded-0" type="text" name="email" required>
                 </div>
-                <div class="form-group">
+                <div class="mt-2 fw-bold">
                     <label for="">Password</label>
-                    <input class="form-control" type="password" name="password" required>
+                    <input class="form-control rounded-0" type="password" name="password" required>
                 </div>
 
-                <button class="btn btn-primary form-control mt-3" type="submit" name="submit">login</button>
+                <button class="btn btn-primary form-control rounded-0 mt-3" type="submit" name="submit">login</button>
 
             </form>
         </div>
@@ -96,7 +101,7 @@ if (isset($_POST['submit'])) {
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

@@ -31,7 +31,7 @@ if (isset($_POST['verify'])) {
                 echo "<script>alert('Registration successful')</script>";
 ?>
                 <meta http-equiv="refresh" content="0; url = http://localhost:8888/login.php" />
-            <?php
+<?php
             }
         } else {
             echo "<script>alert('Invalid or expired token')</script>";
@@ -42,16 +42,17 @@ if (isset($_POST['verify'])) {
 
 <!-- main -->
 <div class="container d-flex justify-content-center">
-    <div class="card" style="width:500px">
-        <div class="card-header bg-dark text-white">
+    <div class="card rounded-0" style="width:500px">
+        <div class="card-header rounded-0 bg-dark text-white">
             <h1 class="text-capitalize text-center">registration email verification</h1>
         </div>
-        <small>Please verify your email address by using one time password which we will send you to your registered email.</small>
-        <div class="class-body">
+        <small class="mt-2 text-center">Please verify your email address by using one time password which is sended to your registered email.</small>
+        <div class="class-body mt-3">
             <form action="" method="post">
-                <input class="form-control mt-2" type="text" name="email" placeholder="Enter your email" required>
-                <input class="form-control mt-2" type="text" name="verify_code" placeholder="Enter verification code" required>
-                <button class="btn btn-primary mt-4" name="verify">verify email</button>
+                <input class="form-control rounded-0 mt-2" type="text" name="email" placeholder="Enter your email" required>
+                <input class="form-control rounded-0 mt-2" type="text" name="verify_code" placeholder="Enter verification code" required>
+                <div class="float-end"> <button class="btn btn-primary rounded-0 mt-4" name="verify">verify email</button></div>
+
         </div>
     </div>
 </div>
@@ -62,7 +63,7 @@ if (isset($_POST['verify'])) {
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

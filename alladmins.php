@@ -5,7 +5,15 @@
 <?php include 'partials/html-header.php'; ?>
 
 <!-- navbar -->
-<?php include 'partials/navbar.php'; ?>
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+
+            <!-- Back button -->
+            <a href="main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+    </div>
+</nav>
 
 <!-- /tagline -->
 <?php include 'partials/tagline.php'; ?>
@@ -52,27 +60,49 @@
                 <div>
                     <table class="table table-bordered table-hover table-sm text-center">
                         <tr class="table-dark text-capitalize">
+                            <th>S no.</th>
                             <th>id</th>
                             <th>role</th>
                             <th>username</th>
                             <th>e-mail</th>
                             <th>verify status</th>
-                            <th>update</th>
-                            <th>delete</th>
+                            <?php
+                            if (isset($_SESSION['user_data'])) {
+                                $data = $_SESSION['user_data'];
+                                $role = $data['0'];
+                                if ($role == 'superadmin') {
+                            ?>
+                                    <th>update</th>
+                                    <th>delete</th>
+                            <?php }
+                            } ?>
+
                         </tr>
                         <tr>
                             <?php
+                            $a = 1;
                             while ($row = mysqli_fetch_array($result)) {
                             ?>
-                                <th class="fw-normal"><?= $row['id']; ?></th>
-                                <th class="fw-normal"><?= $row['role']; ?></th>
-                                <th class="fw-normal"><?= $row['username']; ?></th>
-                                <th class="fw-normal"><?= $row['email']; ?></th>
-                                <th class="fw-normal"><?= $row['verify_status']; ?></th>
-                                <th><a href="edit-book.php?delete_id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></th>
-                                <th><a href="?delete_id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
+                                <td><?= $a; ?></td>
+                                <td><?= $row['id']; ?></td>
+                                <td><?= $row['role']; ?></td>
+                                <td><?= $row['username']; ?></td>
+                                <td><?= $row['email']; ?></td>
+                                <td><?= $row['verify_status']; ?></td>
+
+                                <?php
+                                if (isset($_SESSION['user_data'])) {
+                                    $data = $_SESSION['user_data'];
+                                    $role = $data['0'];
+                                    if ($role == 'superadmin') {
+                                ?>
+                                        <td><a href="edit_admin.php?admin_id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></td>
+                                        <td><a href="?delete_id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></td>
+                                <?php }
+                                } ?>
                         </tr>
                 <?php
+                                $a++;
                             }
                         }
                 ?>
@@ -85,8 +115,8 @@
             <?php include 'connection.php';
 
             // to delete book from wish-list
-            if (isset($_GET['delete_id'])) {
-                $id = $_GET['delete_id'];
+            if (isset($_GET['del_user_id'])) {
+                $id = $_GET['del_user_id'];
 
                 $sql = "DELETE FROM registration WHERE id = '$id'";
                 $result = mysqli_query($con, $sql);
@@ -108,27 +138,29 @@
                 <div>
                     <table class="table table-bordered table-hover table-sm text-center">
                         <tr class="table-dark text-capitalize">
+                            <th>S no.</th>
                             <th>id</th>
                             <th>role</th>
                             <th>username</th>
                             <th>e-mail</th>
                             <th>verify status</th>
-                            <th>update</th>
                             <th>delete</th>
                         </tr>
                         <tr>
                             <?php
+                            $a = 1;
                             while ($row = mysqli_fetch_array($result)) {
                             ?>
-                                <th class="fw-normal"><?= $row['id']; ?></th>
-                                <th class="fw-normal"><?= $row['role']; ?></th>
-                                <th class="fw-normal"><?= $row['username']; ?></th>
-                                <th class="fw-normal"><?= $row['email']; ?></th>
-                                <th class="fw-normal"><?= $row['verify_status']; ?></th>
-                                <th><a href="edit-book.php?id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></th>
-                                <th><a href="?id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
+                                <td><?= $a; ?></td>
+                                <td><?= $row['id']; ?></td>
+                                <td><?= $row['role']; ?></td>
+                                <td><?= $row['username']; ?></td>
+                                <td><?= $row['email']; ?></td>
+                                <td><?= $row['verify_status']; ?></td>
+                                <td><a href="?del_user_id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></td>
                         </tr>
                 <?php
+                                $a++;
                             }
                         }
                 ?>
@@ -145,7 +177,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

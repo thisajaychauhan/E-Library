@@ -9,17 +9,23 @@
 
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand fw-medium fs-4 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
-        <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
-            <i class="fa fa-arrow-right text-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
-        </button>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-
+                <?php if (isset($_SESSION['user_data'])) {
+                    $data = $_SESSION['user_data'];
+                    $role = $data['0'];
+                    if ($role == 'user') {
+                ?>
+                        <!-- history sidebar button -->
+                        <li><button class="btn btn-outline-light mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button"><i class="fa fa-history"></i></button></li>
+                <?php }
+                }
+                ?>
                 <!-- book issue button -->
                 <li><a href="wishlist.php" class="btn btn-success text-white"><i class="fa fa-shopping-cart"></i></a></li>
 
@@ -41,7 +47,7 @@
                 </div>
 
                 <!-- search button -->
-                <form method="get" class="form-inline my-lg-0 d-flex">
+                <form method="get" class="form-inline my-lg-0 d-flex ml-1">
                     <input class="form-control rounded-start" type="text" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-sm-0 rounded-end" type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -51,10 +57,9 @@
                 if (isset($_SESSION['user_data'])) {
                     $data = $_SESSION['user_data'];
                     $role = $data['0'];
-                    if ($role == 'admin') {
-                ?>
+                    if ($role == 'admin' || $role == 'superadmin') { ?>
                         <li>
-                            <div class="dropdown m-1">
+                            <div class="dropdown ml-1">
                                 <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Book</button>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center text-capitalize">
 
@@ -62,56 +67,62 @@
                                     <li> <a href="add-book.php" class="dropdown-item">Add Book</a></li>
 
                                     <!-- all book button -->
-                                    <li><a href="allbooks.php" class="dropdown-item">All Books</a></li>
+                                    <li><a href="allbooks.php" class="dropdown-item">Book list</a></li>
 
                                 </ul>
                             </div>
                         </li>
+                <?php }
+                } ?>
 
-                    <?php
-                    }
-                }
-                if (isset($_SESSION['user_data'])) {
-                    $data = $_SESSION['user_data'];
-                    $role = $data['0'];
-                    if ($role == 'admin') {
-                    ?>
+                <!-- user menu dropdown -->
+                <li>
+                    <div class="dropdown m-1">
+                        <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"><i class="fa fa-user"></i></button>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center">
 
-                        <!-- admin menu dropdown -->
-                        <li>
-                            <div class="dropdown">
-                                <button class="btn btn-dark btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"><i class="fa fa-user"></i></button>
-                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center">
+                            <!--user profile button -->
+                            <li><a href="profile.php" class="dropdown-item">Profile</a></li>
 
+                            <?php
+                            if (isset($_SESSION['user_data'])) {
+                                $data = $_SESSION['user_data'];
+                                $role = $data['0'];
+                                if ($role == 'admin' || $role == 'superadmin') { ?>
                                     <!-- all admins button -->
                                     <li><a href="alladmins.php" class="dropdown-item">Admin Detail</a></li>
 
-                                    <!-- add new admin button -->
-                                    <li><a href="register.php" class="dropdown-item">Add new Admin</a></li>
-
+                                    <?php if (isset($_SESSION['user_data'])) {
+                                        $data = $_SESSION['user_data'];
+                                        $role = $data['0'];
+                                        if ($role == 'superadmin') {
+                                    ?>
+                                            <!-- add new admin button -->
+                                            <li><a href="register.php" class="dropdown-item">Add new Admin</a></li>
+                                    <?php
+                                        }
+                                    } ?>
                                     <!-- admin logout button -->
-                                    <li><a href="sessionOUT.php" class="dropdown-item  text-danger"><i class="fa fa-sign-out  text-danger"></i> Log Out</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    <?php
-                    } else { ?>
-                        <!--user logout button -->
-                        <li><a href="sessionOUT.php" class="btn btn-danger m-1">Logout</a></li>
-                        <!-- <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
-                <?php
-                    }
-                } ?>
-            </ul>
-        </div>
-    </div>
-</nav>
+                                    <li><a href="sessionOUT.php" class="dropdown-item text-danger"><i class="fa fa-sign-out text-danger"></i> Log Out</a></li>
 
+                                <?php } else { ?>
+                                    <!--user logout button -->
+                                    <li><a href="sessionOUT.php" class="dropdown-item text-danger"><i class="fa fa-sign-out text-danger"></i> Log Out</a></li>
+                                    <!-- <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
+                            <?php
+                                }
+                            } ?>
+                        </ul>
+                    </div>
+                </li>
+        </div>
+</nav>
 
 <div class="text-center bg-light">
     <small class="fw-bold">Welcome -
         <?php $data = $_SESSION['user_data'];
-        echo $role = $data['3']; ?>
+        echo $role = $data['3'] . '&nbsp;';
+        echo  '[' . $role = $data['0'] . ']'; ?>
     </small>
 </div>
 
@@ -158,37 +169,57 @@ $results = mysqli_query($con, $query);
     if (mysqli_num_rows($results) > 0) {
         while ($row = mysqli_fetch_array($results)) {
     ?>
-            <div class="card" style="max-width:220px">
+            <div class="card rounded-0" style="max-width:221px">
                 <img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>" style="width:300px">
-                <div class="card-body d-flex flex-column p-0">
+                <div class="card-body d-flex flex-column p-0 mt-2">
                     <label class="text-danger text-capitalize">book name :</label>
                     <h6 class="text-capitalize"><?= $row['bookname']; ?></h6>
 
                     <label class="text-danger text-capitalize ">author name :</label>
                     <h6 class="text-capitalize"><?= $row['authorname']; ?></h6>
                 </div>
-                <hr class="my-2">
+                <hr class="my-3">
                 <div class="d-flex justify-content-between">
                     <div>
                         <!-- wishlist card-button -->
-                        <a class="text-light align-self-start px-1 py-0 rounded bg-danger" name="wish" href="wishlist.php?id=<?= $row['id']; ?>"><i class="fa fa-heart"></i></a>
+                        <a class="btn text-light align-self-start px-1 py-0 bg-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" href="wishlist.php?wish_id=<?= $row['id']; ?>"><i class="fa fa-heart"></i></a>
 
                         <!-- readed card button -->
-                        <a class="text-light align-self-start px-1 py-0 rounded bg-success" name="read" href="wishlist.php?id=<?= $row['id']; ?>"><i class="fa fa-check"></i></a>
-                       
-                        <!-- issued card button -->
-                        <a class="text-light align-self-start px-1 py-0 rounded bg-info" name="issued" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book"></i></a>
+                        <a class="btn text-light align-self-start px-1 py-0 bg-success" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="wishlist.php?readed_id=<?= $row['id']; ?>"><i class="fa fa-check"></i></a>
+
+                        <?php
+                        $id_book = $row['id'];
+                        $query = "SELECT available_book FROM bookdetail WHERE id = '$id_book' ";
+                        $result = mysqli_query($con, $query);
+                        $record = mysqli_fetch_assoc($result);
+                        // print_r($record);
+                        $book_data = array($record['available_book']);
+                        $_SESSION['book_data'] = $book_data;
+                        $available_book = $record['available_book'];
+                        // print_r($available_book);
+                        if ($available_book == 0) {
+                        ?>
+                            <!-- disabled issued card button -->
+                            <a class="btn text-light align-self-start px-1 py-0 bg-secondary disabled position-relative" aria-disabled="true" data-bs-toggle="tooltip" data-bs-placement="top" title="not available yet" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?php echo $available_book; ?></span></a>
+                        <?php
+                        } else {
+                        ?>
+                            <!--enabled issued card button -->
+                            <a class="btn text-light align-self-start px-1 py-0 bg-info position-relative" data-bs-toggle="tooltip" data-bs-placement="top" title="issue this book" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"><?php echo $available_book; ?></span></a>
+                        <?php
+                        }
+                        ?>
                     </div>
 
                     <!-- detail button -->
-                    <a class="text-dark mt-auto align-self-end fw-bold px-1 rounded text-decoration-none" type="button" style="background-color: wheat;" href="readmore.php?id=<?= $row['id']; ?>">details <i class="fa fa-arrow-right"></i></a>
+                    <a class="btn text-dark mt-auto align-self-end fw-bold px-1 py-0 text-decoration-none" type="button" style="background-color: wheat;" href="read_more.php?id=<?= $row['id']; ?>">detail <i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
         <?php
         }
     } else {
         ?>
-        <h3>Sorry..!!!! Add Book Please</h3>
+        <h3>Add Book first... click here <a href="add-book.php"></a></h3>
     <?php
     }
     ?>
@@ -227,7 +258,7 @@ echo "</div>";
 <!-- footer -->
 <footer class="bg-dark text-center fixed">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

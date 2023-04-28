@@ -4,127 +4,95 @@
 <!-- html header -->
 <?php include 'partials/html-header.php'; ?>
 
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+
+            <!-- Back button -->
+            <a href="main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+    </div>
+</nav>
+
 <!-- tagline -->
 <?php include 'partials/tagline.php'; ?>
 
 
-
 <div class="container">
     <ul class="nav nav-pills" role="tablist">
-        <li class="active">
-            <a class="nav-link rounded-0 border" data-toggle="tab" href="#wish" role="tab"> wish to read <i class="fa fa-heart"></i></a>
-        </li>
-        <li class="">
-            <a class="nav-link rounded-0 border" data-toggle="tab" href="#readed" role="tab">readed <i class="fa fa-check"></i> </a>
-        </li>
-        <li class="">
-            <a class="nav-link rounded-0 border" data-toggle="tab" href="#issued" role="tab">issued <i class="fa fa-book"></i> </a>
-        </li>
+        <?php if (isset($_SESSION['user_data'])) {
+            $data = $_SESSION['user_data'];
+            $role = $data['0'];
+            if ($role == 'user') {
+        ?>
+                <li class="active">
+                    <a class="nav-link rounded-0 border" data-toggle="tab" href="#wish" role="tab"> wish to read <i class="fa fa-heart"></i></a>
+                </li>
+                <li class="">
+                    <a class="nav-link rounded-0 border" data-toggle="tab" href="#readed" role="tab">readed <i class="fa fa-check"></i> </a>
+                </li>
+                <li class="">
+                    <a class="nav-link rounded-0 border" data-toggle="tab" href="#issued" role="tab">issued <i class="fa fa-book"></i> </a>
+                </li>
     </ul>
 
     <div class="tab-content clearfix text-center">
+
         <!-- wish to read tab -->
         <div class="tab-pane active" id="wish">
             <?php
-            include 'connection.php';
-            // to delete book from wish-list
-            if (isset($_GET['del_id'])) {
-                $id = $_GET['del_id'];
+                include 'connection.php';
+                // to delete book from wish-list
+                if (isset($_GET['del_wish_id'])) {
+                    $id = $_GET['del_wish_id'];
 
-                $sql = "DELETE FROM user_book_details WHERE book_id = '$id'";
-                $result = mysqli_query($con, $sql);
-                header("Location :wishlist.php");
-            }
+                    // get user data from session
+                    $data = $_SESSION['user_data'];
+                    $email = $data['1'];
 
-            // wishlist button
-            if (isset($_GET['id'])) {
-
-                // get user data from session
-                $data = $_SESSION['user_data'];
-                $username = $data['3'];
-                $email = $data['1'];
-
-                // get book data from bookdetail table
-                $id_book = $_GET['id'];
-                $query = "SELECT bookname,uploadimgDB FROM bookdetail WHERE id = '$id_book' ";
-                $result = mysqli_query($con, $query);
-                $row = mysqli_fetch_array($result);
-                $bookname = $row['bookname'];
-                $bookimage = $row['uploadimgDB'];
-
-                // check the book in wish-list
-                $duplicacy_query = "SELECT book_id FROM user_book_details WHERE book_id = '$id_book'";
-                $duplicacy_result = mysqli_query($con, $duplicacy_query);
-                $record = mysqli_fetch_assoc($duplicacy_result);
-                $db_book_id = $record['book_id'];
-
-                if ($id_book !== $db_book_id) {
-                    // insert data into user_book_details when click on wish-to-read button
-                    $query = "INSERT INTO user_book_details (book_id,username, email, bookname, bookimage) VALUES('$id_book','$username','$email','$bookname','$bookimage')";
-                    $results = mysqli_query($con, $query);
-                    echo '<script>alert("Book added to wishlist"); window.location.href = "main-page.php";</script>';
-                } else {
-                    echo '<script>alert("Book already added in wishlist"); window.location.href = "main-page.php";</script>';
+                    $sql = "DELETE FROM user_book_details WHERE book_id = '$id' AND email = '$email' ";
+                    $result = mysqli_query($con, $sql);
+                    header("Location :wishlist.php");
                 }
-            }
 
+                // wishlist button
+                if (isset($_GET['wish_id'])) {
+                    $id_book = $_GET['wish_id'];
 
-            // data fetch from user_book_details
-            $search_query = "SELECT * FROM user_book_details";
-            $result = mysqli_query($con, $search_query);
-            if ($row = mysqli_num_rows($result)) {
+                    // get user data from session
+                    $data = $_SESSION['user_data'];
+                    $username = $data['3'];
+                    $email = $data['1'];
+
+                    // check the book in wish-list
+                    $duplicacy_query = "SELECT * FROM user_book_details WHERE book_id = '$id_book' AND username = '$username' AND email = '$email'";
+                    $duplicacy_result = mysqli_query($con, $duplicacy_query);
+
+                    if (mysqli_num_rows($duplicacy_result) > 0) {
+                        echo '<script>alert("Book already added in wishlist"); window.location.href = "main-page.php";</script>';
+                    } else {
+                        // get book data from bookdetail table
+                        $query = "SELECT bookname,uploadimgDB FROM bookdetail WHERE id = '$id_book' ";
+                        $result = mysqli_query($con, $query);
+                        $row = mysqli_fetch_array($result);
+                        $bookname = $row['bookname'];
+                        $bookimage = $row['uploadimgDB'];
+                        // var_dump($row);die();
+
+                        // insert data into user_book_details when click on wish-to-read button
+                        $query = "INSERT INTO user_book_details (book_id,username, email, bookname, bookimg) VALUES('$id_book','$username','$email','$bookname','$bookimage')";
+                        $results = mysqli_query($con, $query);
+
+                        echo '<script>alert("Book added to wishlist"); window.location.href = "main-page.php";</script>';
+                    }
+                }
             ?>
-                <div>
-                    <table class="table table-bordered table-hover table-sm text-center">
-                        <tr class="table-dark text-capitalize">
-                            <th>S no.</th>
-                            <th>book id</th>
-                            <th>bookname</th>
-                            <th>username</th>
-                            <th>email</th>
-                            <th class="text-center">book image</th>
-                            <th class="text-center">delete</th>
-                        </tr>
-
-                        <tr>
-                            <?php
-                            $a = 1;
-                            // if ($row = mysqli_fetch_array($result)) {
-                            while ($row = mysqli_fetch_array($result)) {
-                            ?>
-                                <th class="fw-normal"><?php echo $a; ?></th>
-                                <th class="fw-normal"><?php echo $row['book_id']; ?></th>
-                                <th class="fw-normal"><?php echo $row['bookname']; ?></th>
-                                <th class="fw-normal"><?php echo $row['username']; ?></th>
-                                <th class="fw-normal"><?php echo $row['email']; ?></th>
-                                <th class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></th>
-                                <th class="text-center"><a href="?del_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash text-danger"></i></a></th>
-                        </tr>
-                <?php
-                                $a++;
-                            }
-                        }
-                ?>
-                    </table>
-                </div>
-        </div>
-
-        <!-- readed book detail tab -->
-        <div class="tab-pane" id="readed">
-            <?php
-            include 'connection.php';
-
-            // readed button
-            $search_query = "SELECT * FROM book_readed";
-            $result = mysqli_query($con, $search_query);
-            $row = mysqli_num_rows($result);
-
-            ?>
-            <div class="">
+            <div>
                 <table class="table table-bordered table-hover table-sm text-center">
                     <tr class="table-dark text-capitalize">
                         <th>S no.</th>
-                        <th>id</th>
+                        <th>book id</th>
                         <th>bookname</th>
                         <th>username</th>
                         <th>email</th>
@@ -135,16 +103,114 @@
                     <tr>
                         <?php
                         $a = 1;
+                        // get data from session
+                        $data = $_SESSION['user_data'];
+                        $email = $data['1'];
+
+                        // data fetch from user_book_details
+                        $search_query = "SELECT * FROM user_book_details WHERE email = '$email' ";
+                        $result = mysqli_query($con, $search_query);
+                        while ($row = mysqli_fetch_array($result)) {
+                        ?>
+                            <td><?php echo $a; ?></td>
+                            <td><?php echo $row['book_id']; ?></td>
+                            <td><?php echo $row['bookname']; ?></td>
+                            <td><?php echo $row['username']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
+                            <td class="text-center"><a href="?del_wish_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash text-danger"></i></a></td>
+                    </tr>
+                <?php
+                            $a++;
+                        }
+                ?>
+                </table>
+            </div>
+        </div>
+
+        <!-- readed book detail tab -->
+        <div class="tab-pane" id="readed">
+            <?php
+                include 'connection.php';
+                // to delete book from book readed
+                if (isset($_GET['read_del_id'])) {
+                    $id = $_GET['read_del_id'];
+
+                    // get user data from session
+                    $data = $_SESSION['user_data'];
+                    $email = $data['1'];
+
+                    $sql = "DELETE FROM book_readed WHERE book_id = '$id' AND email = '$email'";
+                    $result = mysqli_query($con, $sql);
+                }
+
+                // book readed button
+                if (isset($_GET['readed_id'])) {
+                    $id_book = $_GET['readed_id'];
+
+                    // get user data from session
+                    $data = $_SESSION['user_data'];
+                    $username = $data['3'];
+                    $email = $data['1'];
+
+                    // check the book in wish-list
+                    $duplicacy_query = "SELECT * FROM user_book_details WHERE book_id = '$id_book' AND username = '$username' AND email = '$email'";
+                    $duplicacy_result = mysqli_query($con, $duplicacy_query);
+
+                    if (mysqli_num_rows($duplicacy_result) > 0) {
+                        echo '<script>alert("Book already added in book readed"); window.location.href = "main-page.php";</script>';
+                    } else {
+                        // current time
+                        date_default_timezone_set('Asia/kolkata');
+                        $readed_date = date("Y-m-d H:i:s");
+
+                        // get book data from bookdetail table
+                        $query = "SELECT bookname,uploadimgDB FROM bookdetail WHERE id = '$id_book' ";
+                        $result = mysqli_query($con, $query);
+                        $row = mysqli_fetch_array($result);
+                        $bookname = $row['bookname'];
+                        $bookimage = $row['uploadimgDB'];
+
+                        // insert data into user_book_details when click on book_readed button
+                        $query = "INSERT INTO book_readed (book_id,username, email, bookname, bookimg,readed_date) VALUES('$id_book','$username','$email','$bookname','$bookimage','$readed_date')";
+                        $results = mysqli_query($con, $query);
+                        echo '<script>alert("Book added to book readed"); window.location.href = "main-page.php";</script>';
+                    }
+                }
+            ?>
+            <div class="">
+                <table class="table table-bordered table-hover table-sm text-center">
+                    <tr class="table-dark text-capitalize">
+                        <th>S no.</th>
+                        <th>book id</th>
+                        <th>bookname</th>
+                        <th>username</th>
+                        <th>email</th>
+                        <th class="text-center">book image</th>
+                        <th class="text-center">delete</th>
+                    </tr>
+
+                    <tr>
+                        <?php
+                        $a = 1;
+
+                        // get email from session
+                        $data = $_SESSION['user_data'];
+                        $email = $data['1'];
+
+                        // data fetch from book_readed table
+                        $search_query = "SELECT * FROM book_readed WHERE email = '$email'";
+                        $result = mysqli_query($con, $search_query);
                         while ($row = mysqli_fetch_array($result)) {
 
                         ?>
-                            <th class="fw-normal"><?php echo $a; ?></th>
-                            <th class="fw-normal"><?php echo $row['book_id']; ?></th>
-                            <th class="fw-normal"><?php echo $row['bookname']; ?></th>
-                            <th class="fw-normal"><?php echo $row['username']; ?></th>
-                            <th class="fw-normal"><?php echo $row['email']; ?></th>
-                            <th class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></th>
-                            <th class="text-center"><a href="?delete_id=<?php echo $row['book_id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
+                            <td><?php echo $a; ?></td>
+                            <td><?php echo $row['book_id']; ?></td>
+                            <td><?php echo $row['bookname']; ?></td>
+                            <td><?php echo $row['username']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
+                            <td class="text-center"><a href="?read_del_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash text-danger"></i></a></td>
 
                     </tr>
                 <?php
@@ -156,29 +222,43 @@
         </div>
 
 
-
         <!-- issue bbok detail tab -->
         <div class="tab-pane" id="issued">
             <?php
-            include 'connection.php';
-            // to delete book from issued book
-            if (isset($_GET['delete_id'])) {
-                $id = $_GET['delete_id'];
+                include 'connection.php';
+                // to delete book from issued book
+                if (isset($_GET['del_id'])) {
+                    $id = $_GET['del_id'];
 
-                $sql = "DELETE FROM issued_book WHERE book_id = '$id'";
-                $result = mysqli_query($con, $sql);
-            }
-            // issued button
-            $search_query = "SELECT * FROM issued_book";
-            $result = mysqli_query($con, $search_query);
-            $row = mysqli_num_rows($result);
+                    // get user data from session
+                    $data = $_SESSION['user_data'];
+                    $email = $data['1'];
 
+                    // delete issued book
+                    $sql = "DELETE FROM issued_book WHERE book_id = '$id' AND email ='$email' ";
+                    $result = mysqli_query($con, $sql);
+
+                    if ($result) {
+                        // get available book data from 
+                        $search_query = "SELECT available_book FROM bookdetail WHERE id ='$id' ";
+                        $result = mysqli_query($con, $search_query);
+                        $row = mysqli_num_rows($result);
+                        if ($row) {
+                            $record = mysqli_fetch_assoc($result);
+                            $available_book = $record['available_book'];
+
+                            $update_query = "UPDATE bookdetail SET available_book = $available_book + 1 WHERE id = '$id' ";
+                            $update_result = mysqli_query($con, $update_query);
+                        }
+                    }
+                }
             ?>
+
             <div class="">
                 <table class="table table-bordered table-hover table-sm text-center">
                     <tr class="table-dark text-capitalize">
                         <th>S no.</th>
-                        <th>id</th>
+                        <th>book id</th>
                         <th>bookname</th>
                         <th>username</th>
                         <th>email</th>
@@ -186,40 +266,86 @@
                         <th>issued date</th>
                         <th>return date</th>
                         <th class="text-center">book image</th>
-                        <th class="text-center">delete</th>
+                        <th class="text-center">return</th>
                     </tr>
 
                     <tr>
                         <?php
                         $a = 1;
+
+                        // get data from session
+                        $data = $_SESSION['user_data'];
+                        $email = $data['1'];
+
+                        // issued button
+                        $search_query = "SELECT * FROM issued_book WHERE email = '$email'";
+                        $result = mysqli_query($con, $search_query);
                         while ($row = mysqli_fetch_array($result)) {
 
                         ?>
-                            <th class="fw-normal"><?php echo $a; ?></th>
-                            <th class="fw-normal"><?php echo $row['book_id']; ?></th>
-                            <th class="fw-normal"><?php echo $row['bookname']; ?></th>
-                            <th class="fw-normal"><?php echo $row['username']; ?></th>
-                            <th class="fw-normal"><?php echo $row['email']; ?></th>
-                            <th class="fw-normal"><?php echo $row['no_of_book']; ?></th>
-                            <th class="fw-normal"><?php echo $row['issue_date']; ?></th>
-                            <th class="fw-normal"><?php echo $row['return_date']; ?></th>
-                            <th class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></th>
-                            <th class="text-center"><a href="?delete_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash text-danger"></i></a></th>
-
-                    </tr>
-                <?php
+                            <td><?php echo $a; ?></td>
+                            <td><?php echo $row['book_id']; ?></td>
+                            <td><?php echo $row['bookname']; ?></td>
+                            <td><?php echo $row['username']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['no_of_book']; ?></td>
+                            <td><?php echo $row['issue_date']; ?></td>
+                            <td><?php echo $row['return_date']; ?></td>
+                            <td class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
+                            <td class="text-center"><a href="?del_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to return this book?')"><i class="fa fa-undo text-danger"></i></a></td>
+                        <?php
                             $a++;
                         }
-                ?>
+                    } else { ?>
+
+                        <div class="container">
+                            <table class="table table-bordered table-hover text-capitalize table-sm text-center">
+                                <tr class="table-dark">
+                                    <th>S no.</th>
+                                    <th>book id</th>
+                                    <th>bookname</th>
+                                    <th>username</th>
+                                    <th>email</th>
+                                    <th>number of book</th>
+                                    <th>issued date</th>
+                                    <th>return date</th>
+                                    <th class="text-center">book image</th>
+                                </tr>
+
+                                <tr>
+                                    <?php
+                                    include 'connection.php';
+                                    $a = 1;
+
+                                    // get data from session
+                                    $data = $_SESSION['user_data'];
+                                    $email = $data['1'];
+
+                                    // issued button
+                                    $search_query = "SELECT * FROM issued_book";
+                                    $result = mysqli_query($con, $search_query);
+                                    while ($row = mysqli_fetch_array($result)) { ?>
+                                        <td><?php echo $a; ?></td>
+                                        <td><?php echo $row['book_id']; ?></td>
+                                        <td><?php echo $row['bookname']; ?></td>
+                                        <td><?php echo $row['username']; ?></td>
+                                        <td><?php echo $row['email']; ?></td>
+                                        <td><?php echo $row['no_of_book']; ?></td>
+                                        <td><?php echo $row['issue_date']; ?></td>
+                                        <td><?php echo $row['return_date']; ?></td>
+                                        <td class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
+                                </tr>
+                        <?php }
+                                } ?>
+                            </table>
+                        </div>
+                    <?php } ?>
+                    </tr>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 
 
 <!-- footer -->
