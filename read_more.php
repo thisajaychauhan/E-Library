@@ -26,7 +26,9 @@
               <li> <a href="edit_book.php?id=<?= $_GET['id']; ?>" class="btn btn-primary m-1" role="button"><i class="fa fa-edit"></i></a></li>
 
               <!-- delete button -->
-              <li> <a href="delete_book.php?id=<?= $_GET['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger m-1" role="button"><i class="fa fa-trash"></i></a></li>
+              <li> <a href="delete_book.php?id=<?= $_GET['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger mt-1" role="button"><i class="fa fa-trash"></i></a></li>
+               <!-- Back button -->
+            <li><a href="main-page.php" class="btn bg-light text-dark fw-bold m-1" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i></a></li>
             </div>
           <?php } else { ?>
             <!-- Back button -->
@@ -57,7 +59,7 @@
       <div class="card">
         <div class="row g-0">
           <div class="col-12 col-sm-12 col-md-12 col-lg-4 p-3 d-flex justify-content-center align-items-center">
-            <img src="uploadimg/<?php echo $row['uploadimgDB']; ?>" style="width:350px" class="img-fluid rounded-start">
+            <img src="uploadimg/<?php echo $row['uploadimgDB']; ?>" style="width:350px" class="img-fluid rounded">
           </div>
 
           <div class="text-capitalize col-12 col-sm-12 col-md-12 col-lg-8 p-3">

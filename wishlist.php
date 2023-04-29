@@ -84,7 +84,7 @@
                         $query = "INSERT INTO user_book_details (book_id,username, email, bookname, bookimg) VALUES('$id_book','$username','$email','$bookname','$bookimage')";
                         $results = mysqli_query($con, $query);
 
-                        echo '<script>alert("Book added to wishlist"); window.location.href = "main-page.php";</script>';
+                        echo '<script>window.location.href = "main-page.php";</script>';
                     }
                 }
             ?>
@@ -154,7 +154,7 @@
                     $email = $data['1'];
 
                     // check the book in wish-list
-                    $duplicacy_query = "SELECT * FROM user_book_details WHERE book_id = '$id_book' AND username = '$username' AND email = '$email'";
+                    $duplicacy_query = "SELECT * FROM book_readed WHERE book_id = '$id_book' AND username = '$username' AND email = '$email'";
                     $duplicacy_result = mysqli_query($con, $duplicacy_query);
 
                     if (mysqli_num_rows($duplicacy_result) > 0) {
@@ -174,7 +174,7 @@
                         // insert data into user_book_details when click on book_readed button
                         $query = "INSERT INTO book_readed (book_id,username, email, bookname, bookimg,readed_date) VALUES('$id_book','$username','$email','$bookname','$bookimage','$readed_date')";
                         $results = mysqli_query($con, $query);
-                        echo '<script>alert("Book added to book readed"); window.location.href = "main-page.php";</script>';
+                        echo '<script>window.location.href = "main-page.php";</script>';
                     }
                 }
             ?>

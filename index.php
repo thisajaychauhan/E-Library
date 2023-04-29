@@ -9,13 +9,13 @@
 
 <!-- card view -->
 <div class="container d-flex justify-content-center mt-5">
-    <div class="card mt-5" style="width:500px">
-        <div class="card-header bg-dark text-white">
-            <h1 class="text-center text-capitalize">welcome</h1>
+    <div class="card rounded-0" style="width:500px">
+        <div class="card-header rounded-0 bg-dark text-white">
+            <h1 class="text-center text-capitalize">welcome to the <br> e-library</h1>
         </div>
         <div class="card-body">
-      <a href="login.php" role="button" class="btn btn-light m-1 col-12 text-dark border" name="registerbtn">login</a>
-      <a href="register.php" role="button" class="btn btn-light m-1 col-12 text-dark border" name="registerbtn">register</a>
+      <a href="login.php" role="button" class="btn btn-light m-1 col-12 text-dark border rounded-0" name="registerbtn">login</a>
+      <a href="register.php" role="button" class="btn btn-light m-1 col-12 text-dark border rounded-0" name="registerbtn">register</a>
     </div>
   </div>
 </div>

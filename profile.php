@@ -28,18 +28,21 @@
     if ($row) {
     ?>
         <div class="container d-flex justify-content-center align-items-center">
-            <div class="card col-lg-8">
+            <div class="card rounded-0 col-lg-8">
+                <div class="card-header rounded-0 bg-dark text-white">
+                    <h1 class="text-center text-capitalize">Profile</h1>
+                </div>
                 <div class="row g-0">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-3 d-flex justify-content-center align-items-center">
-                        <img src="./uploadimg/monk.jpg" style="width:250px" class="img-fluid rounded-start">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-1 d-flex justify-content-center align-items-center">
+                        <img src="./uploadimg/monk.jpg" style="width:250px" class="img-fluid rounded-0">
                     </div>
 
-                    <div class="text-capitalize col-12 col-sm-12 col-md-6 col-lg-6 p-3 justify-content-center align-items-center">
+                    <div class="text-capitalize col-12 col-sm-12 col-md-6 col-lg-6 justify-content-center align-items-center">
                         <div class="d-flex flex-row flex-wrap">
                             <h1 class="card-text text-capitalize"><?php echo $row['username']; ?></h1>
                         </div>
                         <div class="d-flex flex-row flex-wrap mt-2 text-success">
-                            <h6 class="card-text text-capitalize"><?php echo $row['email']; ?></h6>
+                            <h7 class="card-text"><?php echo $row['email']; ?></h7>
                         </div>
                         <div class="d-flex">
                             <div class="m-3">

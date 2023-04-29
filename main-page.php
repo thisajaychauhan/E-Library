@@ -27,10 +27,10 @@
                 }
                 ?>
                 <!-- book issue button -->
-                <li><a href="wishlist.php" class="btn btn-success text-white"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="wishlist.php" class="btn btn-success text-white ml-1"><i class="fa fa-shopping-cart"></i></a></li>
 
                 <!-- sorting button -->
-                <div class="mx-1 d-flex">
+                <div class="ms-1 d-flex">
                     <form action="" method="get" class="d-flex">
                         <select name="sort_alphabet" class="form-control">
                             <option value="">sort as</option>
@@ -47,7 +47,7 @@
                 </div>
 
                 <!-- search button -->
-                <form method="get" class="form-inline my-lg-0 d-flex ml-1">
+                <form method="get" class="form-inline my-lg-0 d-flex mx-1">
                     <input class="form-control rounded-start" type="text" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-sm-0 rounded-end" type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -174,6 +174,7 @@ $results = mysqli_query($con, $query);
                 <div class="card-body d-flex flex-column p-0 mt-2">
                     <label class="text-danger text-capitalize">book name :</label>
                     <h6 class="text-capitalize"><?= $row['bookname']; ?></h6>
+                    <h6 class="text-capitalize" hidden><?= $row['id']; ?></h6>
 
                     <label class="text-danger text-capitalize ">author name :</label>
                     <h6 class="text-capitalize"><?= $row['authorname']; ?></h6>
@@ -182,33 +183,55 @@ $results = mysqli_query($con, $query);
                 <div class="d-flex justify-content-between">
                     <div>
                         <!-- wishlist card-button -->
-                        <a class="btn text-light align-self-start px-1 py-0 bg-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" href="wishlist.php?wish_id=<?= $row['id']; ?>"><i class="fa fa-heart"></i></a>
+                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" href="wishlist.php?wish_id=<?= $row['id']; ?>">
+                            <?php
+                            include 'connection.php';
+                            $book_query = "SELECT * FROM user_book_details WHERE book_id = '$row[id]' AND email = '$email'";
+                            $result = mysqli_query($con, $book_query);
 
-                        <!-- readed card button -->
-                        <a class="btn text-light align-self-start px-1 py-0 bg-success" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="wishlist.php?readed_id=<?= $row['id']; ?>"><i class="fa fa-check"></i></a>
+                            if (mysqli_num_rows($result) > 0) { ?>
+                                <i class="fa fa-heart text-danger"></i></a>
+                    <?php } else { ?>
+                        <i class="fa fa-heart stroke-transparent"></i></a>
+                    <?php } ?>
 
+                    <!-- readed card button -->
+
+                    <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="wishlist.php?readed_id=<?= $row['id']; ?>">
                         <?php
-                        $id_book = $row['id'];
-                        $query = "SELECT available_book FROM bookdetail WHERE id = '$id_book' ";
-                        $result = mysqli_query($con, $query);
-                        $record = mysqli_fetch_assoc($result);
-                        // print_r($record);
-                        $book_data = array($record['available_book']);
-                        $_SESSION['book_data'] = $book_data;
-                        $available_book = $record['available_book'];
-                        // print_r($available_book);
-                        if ($available_book == 0) {
-                        ?>
-                            <!-- disabled issued card button -->
-                            <a class="btn text-light align-self-start px-1 py-0 bg-secondary disabled position-relative" aria-disabled="true" data-bs-toggle="tooltip" data-bs-placement="top" title="not available yet" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?php echo $available_book; ?></span></a>
-                        <?php
-                        } else {
-                        ?>
-                            <!--enabled issued card button -->
-                            <a class="btn text-light align-self-start px-1 py-0 bg-info position-relative" data-bs-toggle="tooltip" data-bs-placement="top" title="issue this book" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"><?php echo $available_book; ?></span></a>
-                        <?php
-                        }
-                        ?>
+                        include 'connection.php';
+                        $book_query = "SELECT * FROM user_book_details WHERE book_id = '$row[id]' AND email = '$email'";
+                        $result = mysqli_query($con, $book_query);
+
+                        if (mysqli_num_rows($result) > 0) { ?>
+                            <i class="fa fa-check text-success"></i></a>
+                <?php } else { ?>
+                    <i class="fa fa-check stroke-transparent"></i></a>
+                <?php } ?>
+
+
+                <?php
+                $id_book = $row['id'];
+                $query = "SELECT available_book FROM bookdetail WHERE id = '$id_book' ";
+                $result = mysqli_query($con, $query);
+                $record = mysqli_fetch_assoc($result);
+                // print_r($record);
+                $book_data = array($record['available_book']);
+                $_SESSION['book_data'] = $book_data;
+                $available_book = $record['available_book'];
+                // print_r($available_book);
+                if ($available_book == 0) {
+                ?>
+                    <!-- disabled issued card button -->
+                    <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg disabled position-relative" aria-disabled="true" data-bs-toggle="tooltip" data-bs-placement="top" title="not available yet" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book text-secondary"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?php echo $available_book; ?></span></a>
+                <?php
+                } else {
+                ?>
+                    <!--enabled issued card button -->
+                    <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg position-relative" data-bs-toggle="tooltip" data-bs-placement="top" title="issue this book" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book text-info"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"><?php echo $available_book; ?></span></a>
+                <?php
+                }
+                ?>
                     </div>
 
                     <!-- detail button -->
