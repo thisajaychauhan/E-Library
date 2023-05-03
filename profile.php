@@ -34,10 +34,10 @@
                 </div>
                 <div class="row g-0">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-1 d-flex justify-content-center align-items-center">
-                        <img src="./uploadimg/monk.jpg" style="width:250px" class="img-fluid rounded-0">
+                        <img src="demo.jpg" style="width:200px" class="img-fluid rounded-0">
                     </div>
 
-                    <div class="text-capitalize col-12 col-sm-12 col-md-6 col-lg-6 justify-content-center align-items-center">
+                    <div class="text-capitalize col-12 col-sm-12 col-md-6 col-lg-6 mt-3 justify-content-center align-items-center">
                         <div class="d-flex flex-row flex-wrap">
                             <h1 class="card-text text-capitalize"><?php echo $row['username']; ?></h1>
                         </div>

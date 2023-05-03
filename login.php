@@ -42,13 +42,13 @@ if (isset($_POST['submit'])) {
             <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
         <?php
         } else {
-            echo "<script>alert('Login Failed')</script>";
+            echo "<script>danger('Login Failed')</script>";
         ?>
             <meta http-equiv="refresh" content="0; url = http://localhost:8888/login.php" />
         <?php
         }
     } else {
-        echo "<script>alert('Wrong email or password')</script>";
+        echo "<script>danger('Wrong email or password')</script>";
         ?>
         <meta http-equiv="refresh" content="0; url = http://localhost:8888/login.php" />
 <?php
@@ -104,6 +104,7 @@ if (isset($_POST['submit'])) {
         <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
+
 
 </body>
 

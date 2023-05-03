@@ -9,7 +9,7 @@
 
 <!-- card view -->
 <div class="container d-flex justify-content-center mt-5">
-    <div class="card rounded-0" style="width:500px">
+    <div class="card rounded-0 mt-5" style="width:500px">
         <div class="card-header rounded-0 bg-dark text-white">
             <h1 class="text-center text-capitalize">welcome to the <br> e-library</h1>
         </div>

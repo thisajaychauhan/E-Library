@@ -99,8 +99,7 @@
                                     ?>
                                             <!-- add new admin button -->
                                             <li><a href="register.php" class="dropdown-item">Add new Admin</a></li>
-                                    <?php
-                                        }
+                                    <?php }
                                     } ?>
                                     <!-- admin logout button -->
                                     <li><a href="sessionOUT.php" class="dropdown-item text-danger"><i class="fa fa-sign-out text-danger"></i> Log Out</a></li>
@@ -109,8 +108,7 @@
                                     <!--user logout button -->
                                     <li><a href="sessionOUT.php" class="dropdown-item text-danger"><i class="fa fa-sign-out text-danger"></i> Log Out</a></li>
                                     <!-- <li><a href="test.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
-                            <?php
-                                }
+                            <?php }
                             } ?>
                         </ul>
                     </div>
@@ -167,8 +165,7 @@ $results = mysqli_query($con, $query);
 <div class="container d-flex">
     <?php
     if (mysqli_num_rows($results) > 0) {
-        while ($row = mysqli_fetch_array($results)) {
-    ?>
+        while ($row = mysqli_fetch_array($results)) { ?>
             <div class="card rounded-0" style="max-width:221px">
                 <img class="indeximg" src="uploadimg/<?= $row['uploadimgDB']; ?>" style="width:300px">
                 <div class="card-body d-flex flex-column p-0 mt-2">
@@ -183,55 +180,29 @@ $results = mysqli_query($con, $query);
                 <div class="d-flex justify-content-between">
                     <div>
                         <!-- wishlist card-button -->
-                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" href="wishlist.php?wish_id=<?= $row['id']; ?>">
-                            <?php
-                            include 'connection.php';
-                            $book_query = "SELECT * FROM user_book_details WHERE book_id = '$row[id]' AND email = '$email'";
-                            $result = mysqli_query($con, $book_query);
+                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" href="wishlist.php?wish_id=<?= $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></a>
 
-                            if (mysqli_num_rows($result) > 0) { ?>
-                                <i class="fa fa-heart text-danger"></i></a>
-                    <?php } else { ?>
-                        <i class="fa fa-heart stroke-transparent"></i></a>
-                    <?php } ?>
+                        <!-- readed card button -->
+                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="wishlist.php?readed_id=<?= $row['id']; ?>"><i class="fa fa-check stroke-transparent"></i></a>
 
-                    <!-- readed card button -->
-
-                    <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="wishlist.php?readed_id=<?= $row['id']; ?>">
                         <?php
-                        include 'connection.php';
-                        $book_query = "SELECT * FROM user_book_details WHERE book_id = '$row[id]' AND email = '$email'";
-                        $result = mysqli_query($con, $book_query);
+                        $id_book = $row['id'];
+                        $query = "SELECT available_book FROM bookdetail WHERE id = '$id_book' ";
+                        $result = mysqli_query($con, $query);
+                        $record = mysqli_fetch_assoc($result);
 
-                        if (mysqli_num_rows($result) > 0) { ?>
-                            <i class="fa fa-check text-success"></i></a>
-                <?php } else { ?>
-                    <i class="fa fa-check stroke-transparent"></i></a>
-                <?php } ?>
+                        $book_data = array($record['available_book']);
+                        $_SESSION['book_data'] = $book_data;
+                        $available_book = $record['available_book'];
 
-
-                <?php
-                $id_book = $row['id'];
-                $query = "SELECT available_book FROM bookdetail WHERE id = '$id_book' ";
-                $result = mysqli_query($con, $query);
-                $record = mysqli_fetch_assoc($result);
-                // print_r($record);
-                $book_data = array($record['available_book']);
-                $_SESSION['book_data'] = $book_data;
-                $available_book = $record['available_book'];
-                // print_r($available_book);
-                if ($available_book == 0) {
-                ?>
-                    <!-- disabled issued card button -->
-                    <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg disabled position-relative" aria-disabled="true" data-bs-toggle="tooltip" data-bs-placement="top" title="not available yet" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book text-secondary"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?php echo $available_book; ?></span></a>
-                <?php
-                } else {
-                ?>
-                    <!--enabled issued card button -->
-                    <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg position-relative" data-bs-toggle="tooltip" data-bs-placement="top" title="issue this book" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book text-info"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"><?php echo $available_book; ?></span></a>
-                <?php
-                }
-                ?>
+                        if ($available_book == 0) { ?>
+                            <!-- disabled issued card button -->
+                            <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg disabled position-relative" aria-disabled="true" data-bs-toggle="tooltip" data-bs-placement="top" title="not available yet" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book text-secondary"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?php echo $available_book; ?></span></a>
+                        <?php
+                        } else { ?>
+                            <!--enabled issued card button -->
+                            <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg position-relative" data-bs-toggle="tooltip" data-bs-placement="top" title="issue this book" name="issued" type="button" href="issue-book.php?id=<?= $row['id']; ?>"><i class="fa fa-book text-info"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"><?php echo $available_book; ?></span></a>
+                        <?php } ?>
                     </div>
 
                     <!-- detail button -->
@@ -240,19 +211,14 @@ $results = mysqli_query($con, $query);
             </div>
         <?php
         }
-    } else {
-        ?>
+    } else { ?>
         <h3>Add Book first... click here <a href="add-book.php"></a></h3>
-    <?php
-    }
-    ?>
+    <?php } ?>
 </div>
 <!-- </form> -->
 
 
-
 <?php
-
 $total_items_query = "SELECT COUNT(*) as total FROM bookdetail WHERE bookname LIKE '%$search%' OR authorname LIKE '%$search%'";
 $total_items_result = mysqli_query($con, $total_items_query);
 $total_items = mysqli_fetch_assoc($total_items_result)['total'];
@@ -284,6 +250,10 @@ echo "</div>";
         <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
+
+<!-- bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

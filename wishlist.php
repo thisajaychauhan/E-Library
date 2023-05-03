@@ -84,7 +84,7 @@
                         $query = "INSERT INTO user_book_details (book_id,username, email, bookname, bookimg) VALUES('$id_book','$username','$email','$bookname','$bookimage')";
                         $results = mysqli_query($con, $query);
 
-                        echo '<script>window.location.href = "main-page.php";</script>';
+                        echo '<script><script>alert("Book added to wishlist");window.location.href = "main-page.php";</script>';
                     }
                 }
             ?>
@@ -118,7 +118,26 @@
                             <td><?php echo $row['username']; ?></td>
                             <td><?php echo $row['email']; ?></td>
                             <td class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
-                            <td class="text-center"><a href="?del_wish_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash text-danger"></i></a></td>
+                            <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#wish_del"><i class="fa fa-trash text-danger"></i></a></td>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="wish_del" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content rounded-0">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Item</h1>
+                                            <button type="button" class="btn-close rounded-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to delete this item ?</h1>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
+                                            <a type="button" class="btn btn-danger rounded-0" href="?del_wish_id=<?php echo $row['book_id']; ?>">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </tr>
                 <?php
                             $a++;
@@ -174,7 +193,7 @@
                         // insert data into user_book_details when click on book_readed button
                         $query = "INSERT INTO book_readed (book_id,username, email, bookname, bookimg,readed_date) VALUES('$id_book','$username','$email','$bookname','$bookimage','$readed_date')";
                         $results = mysqli_query($con, $query);
-                        echo '<script>window.location.href = "main-page.php";</script>';
+                        echo '<script><script>alert("Book added to readed");window.location.href = "main-page.php";</script>';
                     }
                 }
             ?>
@@ -210,8 +229,15 @@
                             <td><?php echo $row['username']; ?></td>
                             <td><?php echo $row['email']; ?></td>
                             <td class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
-                            <td class="text-center"><a href="?read_del_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-trash text-danger"></i></a></td>
+                            <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-trash text-danger"></i></a></td>
 
+                            <?php
+                            // modal popup
+                            $link = '?read_del_id=' . $row['book_id'];
+                            $body = 'Are you sure you want to delete this item ?';
+                            $heading = 'Delete Item';
+                            include 'modal_popup.php';
+                            ?>
                     </tr>
                 <?php
                             $a++;
@@ -222,7 +248,7 @@
         </div>
 
 
-        <!-- issue bbok detail tab -->
+        <!-- issue book detail tab -->
         <div class="tab-pane" id="issued">
             <?php
                 include 'connection.php';
@@ -292,7 +318,15 @@
                             <td><?php echo $row['issue_date']; ?></td>
                             <td><?php echo $row['return_date']; ?></td>
                             <td class="text-center"><img class="indeximg" src="uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
-                            <td class="text-center"><a href="?del_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to return this book?')"><i class="fa fa-undo text-danger"></i></a></td>
+                            <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-undo text-danger"></i></a></td>
+
+                            <?php
+                            // modal popup
+                            $link = '?del_id=' . $row['book_id'];
+                            $body = 'Are you sure you want to return this item ?';
+                            $heading = 'return Item';
+                            include 'modal_popup.php';
+                            ?>
                         <?php
                             $a++;
                         }
@@ -300,6 +334,11 @@
 
                         <div class="container">
                             <table class="table table-bordered table-hover text-capitalize table-sm text-center">
+
+                                <tr class="table-dark tect-center fs-4 text-capitalize">
+                                    <th class=" fw-lighter" colspan="10">reader issued book</th>
+                                </tr>
+
                                 <tr class="table-dark">
                                     <th>S no.</th>
                                     <th>book id</th>
@@ -363,3 +402,6 @@
 
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+</html>

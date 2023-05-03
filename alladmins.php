@@ -35,7 +35,7 @@
             <?php
             include 'connection.php';
 
-            // to delete book from wish-list
+            // to delete admin from admin-list
 
             if (isset($_GET['delete_id'])) {
                 $id = $_GET['delete_id'];
@@ -44,7 +44,6 @@
                 $result = mysqli_query($con, $sql);
 
                 if ($result) {
-                    echo "<script>confirm('Are you sure want to delete')</script>";
             ?>
                     <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
                 <?php
@@ -97,7 +96,16 @@
                                     if ($role == 'superadmin') {
                                 ?>
                                         <td><a href="edit_admin.php?admin_id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></td>
-                                        <td><a href="?delete_id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></td>
+                                        <td><a data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-trash text-danger"></i></a></td>
+
+                                        <?php
+                                        // modal popup
+                                        $link = '?delete_id=' . $row['id'];
+                                        $body = 'Are you sure you want to delete the admin ?';
+                                        $heading = 'Delete admin';
+                                        include 'modal_popup.php';
+                                        ?>
+
                                 <?php }
                                 } ?>
                         </tr>
@@ -114,7 +122,7 @@
         <div class="tab-pane" id="user">
             <?php include 'connection.php';
 
-            // to delete book from wish-list
+            // to delete user from user-list
             if (isset($_GET['del_user_id'])) {
                 $id = $_GET['del_user_id'];
 
@@ -122,7 +130,6 @@
                 $result = mysqli_query($con, $sql);
 
                 if ($result) {
-                    echo "<script>confirm('Are you sure want to delete')</script>";
             ?>
                     <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
                 <?php
@@ -157,7 +164,16 @@
                                 <td><?= $row['username']; ?></td>
                                 <td><?= $row['email']; ?></td>
                                 <td><?= $row['verify_status']; ?></td>
-                                <td><a href="?del_user_id=<?php echo $row['id']; ?>"><i class="fa fa-trash text-danger"></i></a></td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-trash text-danger"></i></a></td>
+
+
+                                <?php
+                                // modal popup
+                                $link = '?del_user_id=' . $row['id'];
+                                $body = 'Are you sure you want to delete the user ?';
+                                $heading = 'Delete user';
+                                include 'modal_popup.php';
+                                ?>
                         </tr>
                 <?php
                                 $a++;
@@ -170,9 +186,6 @@
     </div>
 </div>
 
-<!-- bootstrap -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
@@ -180,6 +193,15 @@
         <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
+
+<!-- ajax -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- bootstrap -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
 

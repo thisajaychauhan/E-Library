@@ -5,7 +5,7 @@ $del_id = $_GET['id'];
 $del_query = "DELETE FROM bookdetail WHERE id='$del_id' ";
 $del_book_result = mysqli_query($con, $del_query);
 
-// for deletion of BOOK
+// for deletion of book
 if ($del_book_result) {
     echo "<script>alert('Book Deleted successfully')</script>";
     ?>
@@ -13,15 +13,3 @@ if ($del_book_result) {
     <?php
 }
 
-
-// //for deletion of ADMIN
-
-$del_admin_query = "DELETE FROM registration WHERE id='$del_id' ";
-$del_admin_result = mysqli_query($con, $del_admin_query);
-
-if ((mysqli_affected_rows($con)) > 0) {
-    echo "<script>alert('are you sure you want to delete')</script>";
-?>
-    <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
-<?php
-}

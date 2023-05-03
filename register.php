@@ -156,13 +156,15 @@ if (isset($_POST['submit'])) {
                 <button class="btn btn-primary form-control rounded-0 mt-3" type="submit" name="submit">Register</button>
 
                 <div class="mt-3 text-center">
-                    <a href="login.php" class="text-dark text-decoration-none">Already a member ? <span class="text-info"> Login here</span></a>
+                    <?php if ($role !== 'admin') {
+                        echo ' <a href="login.php" class="text-dark text-decoration-none">Already a member ? <span class="text-info"> Login here</span></a>';
+                    } ?>
                 </div>
         </div>
         </form>
     </div>
 </div>
-</div>
+
 
 
 <!-- footer -->

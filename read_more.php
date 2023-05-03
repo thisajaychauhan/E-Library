@@ -26,9 +26,18 @@
               <li> <a href="edit_book.php?id=<?= $_GET['id']; ?>" class="btn btn-primary m-1" role="button"><i class="fa fa-edit"></i></a></li>
 
               <!-- delete button -->
-              <li> <a href="delete_book.php?id=<?= $_GET['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger mt-1" role="button"><i class="fa fa-trash"></i></a></li>
-               <!-- Back button -->
-            <li><a href="main-page.php" class="btn bg-light text-dark fw-bold m-1" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i></a></li>
+              <li> <a data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-danger mt-1"><i class="fa fa-trash"></i></a></li>
+
+              <?php
+              // modal popup
+              $link = '?delete_book.php?id=' . $_GET['id'];
+              $body = 'Are you sure you want to delete this item ?';
+              $heading = 'Delete Item';
+              include 'modal_popup.php';
+              ?>
+
+              <!-- Back button -->
+              <li><a href="main-page.php" class="btn bg-light text-dark fw-bold m-1" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i></a></li>
             </div>
           <?php } else { ?>
             <!-- Back button -->
@@ -87,3 +96,16 @@
     <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
   </div>
 </footer>
+
+<!-- ajax -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- bootstrap -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

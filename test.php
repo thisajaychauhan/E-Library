@@ -617,266 +617,251 @@ if ($row = mysqli_num_rows($result)) {
     }
   }
 
-  // Redirect back to the previous page
-  header("Location: {$_SERVER['HTTP_REFERER']}");
-  exit();
   ?>
 
 
   <!-- book wishlist -->
 
   <!-- readed book tab -->
-  <div class="tab-pane" id="readed">readed book
-  </div>
+  
+
+<!-- instagram like button -->
+
+   <!-- wishlist card-button -->
+   <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" href="wishlist.php?wish_id=<?= $row['id']; ?>">
+                            <?php
+                            include 'connection.php';
+                            $book_query = "SELECT * FROM user_book_details WHERE book_id = '$row[id]' AND email = '$email'";
+                            $result = mysqli_query($con, $book_query);
+
+                            if (mysqli_num_rows($result) > 0) { ?>
+                                <i class="fa fa-heart text-danger"></i></a>
+                    <?php } else { ?>
+                        <i class="fa fa-heart stroke-transparent"></i></a>
+                    <?php } ?>
+
+                    <!-- readed card button -->
+
+                    <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="wishlist.php?readed_id=<?= $row['id']; ?>">
+                        <?php
+                        include 'connection.php';
+                        $book_query = "SELECT * FROM book_readed WHERE book_id = '$row[id]' AND email = '$email'";
+                        $result = mysqli_query($con, $book_query);
+
+                        if (mysqli_num_rows($result) > 0) { ?>
+                            <i class="fa fa-check text-success"></i></a>
+                <?php } else { ?>
+                    <i class="fa fa-check stroke-transparent"></i></a>
+                <?php } ?>
 
 
 
+                <!-- week wise reading history -->
+                <?php
+                // retrieve book data for the whole year, grouped by week and year
+                include 'connection.php';
+                $search_query = "SELECT WEEK(readed_date) AS week_num, 
+                DATE_FORMAT(MIN(readed_date), '%M %d') AS start_date, 
+                DATE_FORMAT(MAX(readed_date), '%M %d') AS end_date, 
+                GROUP_CONCAT(bookname ORDER BY readed_date SEPARATOR ', ') AS books_read
+                FROM book_readed 
+                WHERE email = '$email' AND YEAR(readed_date) = YEAR(NOW())
+                GROUP BY week_num
+                ORDER BY week_num DESC";
 
-  <!-- akki  wishlist-->
-<!-- Tab for want to read code -->
-<div class="tab-content">
-  <div class="tab-pane active" id="want_to_read-tab">
-  <?php
-include 'connection.php';
+                $result = mysqli_query($con, $search_query);
 
-// to delete book from wish-list
-if (isset($_GET['delete_id'])) {
-    $id = $_GET['delete_id'];
+                // loop through the weeks and display them
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $week_num = $row['week_num'];
+                        $year = $row['year'];
+                        $start_date = $row['start_date'];
+                        $end_date = $row['end_date'];
+                        $books_read = $row['books_read'];
+                ?>
+                        <div>
+                            <p>Week <?php echo $week_num; ?>, <?php echo $year; ?>: <?php echo $start_date; ?> - <?php echo $end_date; ?></p>
+                            <p><?php echo $books_read; ?></p>
+                        </div>
+                <?php
+                    }
+                } else {
+                    // display a message if there are no books for the year
+                    echo "<p>No books read this year</p>";
+                }
+                mysqli_free_result($result);
+                mysqli_close($con);
+                ?>
 
-    $sql = "DELETE FROM readerbook_details WHERE book_id = '$id'";
-    $result = mysqli_query($con, $sql);
+                <!-- accordion -->
 
-    if ($result) {
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
-    }
-}
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Accordion Item #1
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-// wishlist button
-if (isset($_GET['id'])) {
-    $book_id = $_GET['id'];
-
-    // fetch data using session
-    $data = $_SESSION['record'];
-    $username = $data['1'];
-    $email = $data['2'];
-
-    // check if book already exists in wishlist
-    $query = "SELECT * FROM readerbook_details WHERE book_id = '$book_id' AND username = '$username' AND email = '$email'";
-    $result = mysqli_query($con, $query);
-
-    if (mysqli_num_rows($result) > 0) {
-        echo "<script>alert('Book already exists in wishlist.')</script>";
-    } else {
-        $query = "SELECT bookname,uploadimage FROM addbook WHERE id = '$book_id' ";
-        $result = mysqli_query($con, $query);
-        $row = mysqli_fetch_array($result);
-        $bookname = $row['bookname'];
-        $bookimage = $row['uploadimage'];
-
-        $query = "INSERT INTO readerbook_details (book_id,username, email, bookname, bookimage) VALUES('$book_id','$username','$email','$bookname','$bookimage')";
-        $results = mysqli_query($con, $query);
-
-        if ($results) {
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
-        }
-    }
-}
-
-// fetch wishlist data for the current user
-$search_query = "SELECT * FROM readerbook_details WHERE username = '{$_SESSION['record']['1']}' AND email = '{$_SESSION['record']['2']}'";
-$result = mysqli_query($con, $search_query);
-?>
+     
 
 
-<div class="">
-    <table class="table table-bordered table-hover table-sm text-center" style=" border: 1px solid black;">
-        <tr class="table-dark text-capitalize">
-            <th>S No</th>
-            <th>book id</th>
-            <th>Book Name</th>
-            <th>User Name</th>
-            <th>Email</th>
-            <th class="text-center">Book Image</th>
-            <th class="text-center">Delete</th>
-        </tr>
 
-        <?php
-$a = 1;
-while ($row = mysqli_fetch_array($result)) {
-    ?>
-            <tr>
-                <th class="fw-normal"><?php echo $a; ?></th>
-                <th class="fw-normal"><?php echo $row['book_id']; ?></th>
-                <th class="fw-normal"><?php echo $row['bookname']; ?></th>
-                <th class="fw-normal"><?php echo $row['username']; ?></th>
-                <th class="fw-normal"><?php echo $row['email']; ?></th>
-                <th class="text-center"><img class="indeximag" src="bookimage/<?=$row['bookimage'];?>" style="width: 40px; height:50px;"></th>
-                <th><a href="?delete_id=<?php echo $row['book_id']; ?>" style="color: black;"onclick="alert('Are you sure you want to Delete?')"><i class="fa fa-trash" style="font-size:20px"></i></a></th>
-            </tr>
-        <?php
+                                    
+                                    // weekly 
+                                    <div class="accordion-item">
+    <?php
+    // get weekly book data for the current week
+    include 'connection.php';
+    $search_query = "SELECT WEEK(readed_date) AS week_num, YEAR(readed_date) AS year,
+             DATE_FORMAT(MIN(readed_date), '%M %d') AS start_date,
+             DATE_FORMAT(MAX(readed_date), '%M %d') AS end_date,
+             GROUP_CONCAT(bookname ORDER BY readed_date SEPARATOR ', ') AS books_read
+             FROM book_readed 
+             WHERE email = '$email' AND WEEK(readed_date) = $week_num AND YEAR(readed_date) = YEAR(NOW())
+             GROUP BY week_num, year
+             ORDER BY year DESC";
+    $result = mysqli_query($con, $search_query);
+    
+    // set collapse ID and aria-labelledby attributes
+    $collapse_id = 'collapse' . $week_num;
+    $parent_id = 'accordionExample';
 
-    $a++;
-}
-?>
-
-    </table>
-</div>
-
-  </div>
-<div class="tab-pane" id="issued-tab" role="tabpanel" aria-labelledby="issued-tab">
-    <?php
-// Code for displaying issued table goes here
-include 'connection.php';
-// to delete book from issued book
-if (isset($_GET['del_issue_id'])) {
-    $id = $_GET['del_issue_id'];
-
-    $sql = "DELETE FROM issue_book WHERE book_id = '$id'";
-    $result = mysqli_query($con, $sql);
-
-    if ($result) {
-        // avalable book
-        $search_query = "SELECT available_book FROM addbook WHERE id ='$id' ";
-        $result = mysqli_query($con, $search_query);
-        $row = mysqli_num_rows($result);
-
-        if ($row){
-          $book_record = mysqli_fetch_assoc($result);
-          $available_book = $book_record['available_book'];
-
-          $update_query = "UPDATE addbook SET available_book = $available_book + 1 WHERE id = '$id' ";
-          $update_result = mysqli_query($con, $update_query);
-        }
-    }
-}
-
-// issued button
-$search_query = "SELECT * FROM issue_book";
-$result = mysqli_query($con, $search_query);
-$row = mysqli_num_rows($result);
-?>
-    <div class="">
-        <table class="table table-bordered table-hover table-sm text-center" style=" border: 1px solid black;" >
-            <tr class="table-dark text-capitalize">
-                <th>S no.</th>
-                <th>Id</th>
-                <th>Book Name</th>
-                <th>User Name</th>
-                <th>Email</th>
-                <th>Number of Book</th>
-                <th>Issued Date</th>
-                <th>Return Date</th>
-                <th class="text-center">Book Image</th>
-                <th class="text-center">Return Book</th>
-            </tr>
-
-            <tr>
-                <?php
-$a = 1;
-while ($row = mysqli_fetch_array($result)) {
-
-    ?>
-                    <th class="fw-normal"><?php echo $a; ?></th>
-                    <th class="fw-normal"><?php echo $row['book_id']; ?></th>
-                    <th class="fw-normal"><?php echo $row['book_name']; ?></th>
-                    <th class="fw-normal"><?php echo $row['user_name']; ?></th>
-                    <th class="fw-normal"><?php echo $row['email']; ?></th>
-                    <th class="fw-normal"><?php echo $row['no_of_book']; ?></th>
-                    <th class="fw-normal"><?php echo $row['issue_date']; ?></th>
-                    <th class="fw-normal"><?php echo $row['return_date']; ?></th>
-                    <th class="text-center"><img class="indeximg" src="bookimage/<?=$row['bookimg'];?>" style="width: 20px; height:30px;"></th>
-                    <th class="text-center"><a href="?del_issue_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to return this book?')"><i class="fa fa-rotate-left"style="font-size:20px ; color: red;"></i></a></th>
-
-            </tr>
-        <?php
-$a++;
-}
-?>
-        </table>
-    </div>
-</div>
-<div class="tab-pane" id="readed-tab" role="tabpanel" aria-labelledby="readed-tab">
-    <?php
-// to delete book from book readed
-if (isset($_GET['delete_reader'])) {
-    $id = $_GET['delete_reader'];
-
-    $sql = "DELETE FROM book_readed WHERE book_id = '$id'";
-    $result = mysqli_query($con, $sql);
-}
-
-// book readed button
-if (isset($_GET['readed_id'])) {
-    $id_book = $_GET['readed_id'];
-
-    // get user data from session
-    $data = $_SESSION['record'];
-    $username = $data['1'];
-    $email = $data['2'];
-
-    // get book data from bookdetail table
-    $query = "SELECT bookname,uploadimage FROM addbook WHERE id = '$id_book' ";
-    $result = mysqli_query($con, $query);
-    $row = mysqli_fetch_array($result);
-    $bookname = $row['bookname'];
-    $bookimage = $row['uploadimage'];
-
-    // check the book in book_readed
-    $duplicacy_query = "SELECT book_id FROM book_readed WHERE book_id = '$id_book'";
-    $duplicacy_result = mysqli_query($con, $duplicacy_query);
-    $record = mysqli_fetch_assoc($duplicacy_result);
-    $db_book_id = $record['book_id'];
-
-    if ($id_book !== $db_book_id) {
-        // insert data into user_book_details when click on book_readed button
-        $query = "INSERT INTO book_readed (book_id,username, email, bookname, bookimg) VALUES('$id_book','$username','$email','$bookname','$bookimage')";
-        $results = mysqli_query($con, $query);
-        echo '<script>alert("Book added to book readed"); window.location.href = "mainpage.php";</script>';
-    } else {
-        echo '<script>alert("Book already added in book readed"); window.location.href = "mainpage.php";</script>';
-    }
-}
-
-// Code for displaying readed table goes here
-
-$search_query = "SELECT * FROM book_readed";
-$result = mysqli_query($con, $search_query);
-$row = mysqli_num_rows($result);
-
-?>
-  <div class="">
-      <table class="table table-bordered table-hover table-sm text-center">
-          <tr class="table-dark text-capitalize">
-              <th>S no.</th>
-              <th>book id</th>
-              <th>bookname</th>
-              <th>username</th>
-              <th>email</th>
-              <th class="text-center">book image</th>
-              <th class="text-center">delete</th>
-          </tr>
-
-          <tr>
-              <?php $a = 1;while ($row = mysqli_fetch_array($result)) {?>
-                  <th class="fw-normal"><?php echo $a; ?></th>
-                  <th class="fw-normal"><?php echo $row['book_id']; ?></th>
-                  <th class="fw-normal"><?php echo $row['bookname']; ?></th>
-                  <th class="fw-normal"><?php echo $row['username']; ?></th>
-                  <th class="fw-normal"><?php echo $row['email']; ?></th>
-                  <th class="text-center"><img class="indeximg" src="bookimage/<?=$row['bookimg'];?>" style="width: 20px; height:30px;"></th>
-                  <th class="text-center"><a href="?delete_reader=<?php echo $row['book_id']; ?>"><i class="fa fa-trash text-danger"></i></a></th>
-          </tr>
-      <?php
-$a++;
-}
-
-?>
-</table>
-    </div>
-</div>
+    if (mysqli_num_rows($result) > 0) {
+        // fetch the data for the first row
+        $row = mysqli_fetch_assoc($result);
+    ?>
+        <h2 class="accordion-header" id="heading<?= $week_num ?>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapse_id ?>" aria-expanded="false" aria-controls="<?= $collapse_id ?>">
+                Week <?= $week_num ?>: <?= $row['start_date'] ?> - <?= $row['end_date'] ?> &nbsp;<span class="badge bg-dark"><?= mysqli_num_rows($result); ?></span>
+            </button>
+        </h2>
+        <div id="<?= $collapse_id ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $week_num ?>" data-bs-parent="#<?= $parent_id ?>">
+            <div class="accordion-body">
+                <?php
+                // loop through the result set and display the data
+                $a = 1;
+                while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                    <div>
+                        <small class="fw-bold"><?= $a ?>.</small>
+                        <small class="fw-bold"><?= date('l, F jS', strtotime($row['readed_date'])) ?></small>
+                        <small class="fw-bold"><?= $row['bookname'] ?></small>
+                    </div>
+                <?php
+                    $a++;
+                }
+                mysqli_free_result($result);
+                mysqli_close($con);
+                ?>
+            </div>
+        </div>
+    <?php
+    } else {
+        // display message if no data is found
+        ?>
+        <h2 class="accordion-header" id="heading<?= $week_num ?>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapse_id ?>" aria-expanded="false" aria-controls="<?= $collapse_id ?>">
+                Week <?= $week_num ?>: No books read
+            </button>
+        </h2>
+        <?php
+    }
+    ?>
 </div>
 
 
+<!-- modal bootstrap -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+	</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="https://sourcecodester.com">Sourcecodester</a>
+		</div>
+	</nav>
+	<div class="col-md-3"></div>
+	<div class="col-md-6 well">
+		<h3 class="text-primary">PHP - Delete MySQLi Data In Modal</h3>
+		<hr style="border-top:1px dotted #ccc;"/>
+		<div class="col-md-4">
+			<form method="POST" action="insert.php">	
+				<div class="form-group">
+					<label>Firstname</label>
+					<input type="text" name="firstname" class="form-control" required="required"/>
+				</div>
+				<div class="form-group">
+					<label>Lastname</label>
+					<input type="text" name="lastname" class="form-control" required="required" />
+				</div>
+				<div class="form-group">
+					<label>Address</label>
+					<input type="text" name="address" class="form-control" required="required"/>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-8">	
+			<table class="table table-bordered">
+				<thead class="alert-info">
+					<tr>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Address</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						require 'conn.php';
+						$count=0;
+						$query = mysqli_query($conn, "SELECT * FROM `member` ORDER BY `lastname` ASC") or die();
+						while($fetch = mysqli_fetch_array($query)){
+						$count++;
+					?>
+					<tr class="del_mem<?php echo $fetch['mem_id']?>">
+						<td><?php echo $fetch['firstname']?></td>
+						<td><?php echo $fetch['lastname']?></td>				
+						<td><?php echo $fetch['address']?></td>				
+						<td><button type="button" class="btn btn-danger" data-target="#modal_delete<?php echo $count?>" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+			</td>				
+					</tr>
  
+					<div class="modal fade" id="modal_delete<?php echo $count?>" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3 class="modal-title">System</h3>
+								</div>
+								<div class="modal-body">
+									
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+									<a type="button" class="btn btn-danger" href="delete.php?mem_id=<?php echo $fetch['mem_id']?>">Yes</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php
+						}
+					?>
+				</tbody>
+			</table>
+		</div>	
+	</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>	
+</html>
