@@ -1,5 +1,5 @@
 <?php
-include '../connection.php';
+include '../config/connection.php';
 
 // get id of book
 if (isset($_GET['id'])) {

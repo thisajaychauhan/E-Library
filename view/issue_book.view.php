@@ -1,17 +1,25 @@
 <!-- session IN -->
-<?php include 'session/sessionIN.php'; ?>
+<?php include '../session/sessionIN.php'; ?>
 
 <!-- html header -->
-<?php include 'partials/html-header.php'; ?>
+<?php include '../partials/html-header.php'; ?>
 
 <!-- navbar -->
-<?php include 'partials/navbar.php'; ?>
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
-<!-- /tagline -->
+            <!-- Back button -->
+            <a href="../view/main_page.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+    </div>
+</nav>
+
+<!-- /modal -->
 <?php include '../partials/tagline.php'; ?>
 
 <!-- controller -->
-<?php include '../partials/tagline.php'; ?>
+<?php include '../controller/issue_book.php'; ?>
 
 
 <!-- main -->
@@ -22,7 +30,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-3">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <label class="mb-1 fw-bold fs-5 text-capitalize text-dark text-center">book cover</label>
-                        <img src="uploadimg/<?= $bookimage; ?>" style="width:380px" class="img-fluid rounded-start">
+                        <img src="../uploadimg/<?= $bookimage; ?>" style="width:380px" class="img-fluid rounded-start">
                     </div>
                 </div>
 
@@ -70,7 +78,7 @@
 
 
 <!-- footer -->
-<?php include 'partials/footer.php'; ?>
+<?php include '../partials/footer.php'; ?>
 
 </body>
 

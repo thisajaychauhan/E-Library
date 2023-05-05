@@ -51,10 +51,10 @@ $results = mysqli_query($con, $query);
                 <div class="d-flex justify-content-between">
                     <div>
                         <!-- wishlist card-button -->
-                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" id="success" href="../wishlist.php?wish_id=<?= $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></a>
+                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="wish to read" name="wish" id="success" href="../view/wishlist.view.php?wish_id=<?= $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></a>
                        
                         <!-- readed card button -->
-                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="../wishlist.php?readed_id=<?= $row['id']; ?>"><i class="fa fa-check stroke-transparent"></i></a>
+                        <a class="btn text-light align-self-start px-1 py-0 bg-light svg-shadow shadow-gray shadow-intensity-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="readed" name="read" href="../view/wishlist.view.php?readed_id=<?= $row['id']; ?>"><i class="fa fa-check stroke-transparent"></i></a>
 
                         <?php
                         $id_book = $row['id'];
@@ -77,7 +77,7 @@ $results = mysqli_query($con, $query);
                     </div>
 
                     <!-- detail button -->
-                    <a class="btn text-dark mt-auto align-self-end fw-bold px-1 py-0 text-decoration-none" type="button" style="background-color: wheat;" href="../read_more.php?id=<?= $row['id']; ?>">detail <i class="fa fa-arrow-right"></i></a>
+                    <a class="btn text-dark mt-auto align-self-end fw-bold px-1 py-0 text-decoration-none" type="button" style="background-color: wheat;" href="../view/read_more.view.php?id=<?= $row['id']; ?>">detail <i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
         <?php

@@ -28,7 +28,7 @@
                 }
                 ?>
                 <!-- book issue button -->
-                <li><a href="/wishlist.php" class="btn btn-success text-white ml-1"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="../view/wishlist.view.php" class="btn btn-success text-white ml-1"><i class="fa fa-shopping-cart"></i></a></li>
 
                 <!-- sorting button -->
                 <div class="ms-1 d-flex">
@@ -92,7 +92,7 @@
                                
                                 if ($role == 'admin' || $role == 'superadmin') { ?>
                                     <!-- all admins button -->
-                                    <li><a href="../alladmins.php" class="dropdown-item">Admin Detail</a></li>
+                                    <li><a href="../view/all_admin.view.php" class="dropdown-item">Admin Detail</a></li>
 
                                     <?php if (isset($_SESSION['user_data'])) {
                                         $data = $_SESSION['user_data'];
@@ -109,7 +109,7 @@
                                 <?php } else { ?>
                                     <!--user logout button -->
                                     <li><a href="../session/sessionOUT.php" class="dropdown-item text-danger"><i class="fa fa-sign-out text-danger"></i> Log Out</a></li>
-                                    <li><a href="../toastr.php" class="m-1 btn btn-danger" role="button">verify</a></li>
+                                    <!-- <li><a href="../toastr.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
                             <?php }
                             } ?>
                         </ul>
