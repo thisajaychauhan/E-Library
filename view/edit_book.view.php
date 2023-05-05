@@ -1,8 +1,8 @@
 <!-- session IN -->
-<?php include 'session/sessionIN.php'; ?>
+<?php include '../session/sessionIN.php'; ?>
 
 <!-- html header -->
-<?php include 'partials/html-header.php'; ?>
+<?php include '../partials/html-header.php'; ?>
 
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg bg-dark">
@@ -11,63 +11,16 @@
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
       <!-- Back button -->
-      <a href="main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+      <a href="../main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
   </div>
 </nav>
 
 <!-- /tagline -->
-<?php include 'partials/tagline.php'; ?>
+<?php include '../partials/tagline.php'; ?>
 
+<!-- controller -->
+<?php include '../controller/edit_book.php'; ?>
 
-<?php
-include 'connection.php';
-
-if (isset($_GET['id'])) {
-  $edit_id = $_GET['id'];
-
-  $edit_query = "SELECT * FROM bookdetail WHERE id = '$edit_id' ";
-  $result = mysqli_query($con, $edit_query);
-  $single_row = mysqli_fetch_array($result);
-}
-
-if (isset($_POST['submit'])) {
-  $edit_id = $_GET['id'];
-
-
-  $update_bookname = $_POST['bookname'];
-  $update_authorname = $_POST['authorname'];
-  $update_description = $_POST['description'];
-
-  if ($_FILES['upload']['name'] != "") {
-    $update_imgname = $_FILES['upload']['name'];
-    $tempname = $_FILES['upload']['tmp_name'];
-    move_uploaded_file($tempname, 'uploadimg/' . $update_imgname);
-  } else {
-    $update_imgname = $_POST['oldimg'];
-  }
-
-  $edit_query = "SELECT * FROM bookdetail WHERE id = '$edit_id' ";
-  $result = mysqli_query($con, $edit_query);
-  $single_row = mysqli_fetch_array($result);
-
-  if ($single_row['bookname'] == $update_bookname && $single_row['authorname'] == $update_authorname && $single_row['description'] == $update_description && $single_row['uploadimgDB'] == $update_imgname) {
-    echo "<script>alert('No changes have been made to the book details.')</script>";
-?>
-    <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
-    <?php
-  } else {
-    $save_bookdetail = "UPDATE bookdetail SET bookname = '$update_bookname',authorname ='$update_authorname', description = '$update_description', uploadimgDB = '$update_imgname' WHERE id = '$edit_id' ";
-    $run_bookdetail = mysqli_query($con, $save_bookdetail);
-
-    if ($run_bookdetail) {
-      echo "<script>alert('Book Updated Successfully')</script>";
-    ?>
-      <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
-<?php
-    }
-  }
-}
-?>
 
 <!-- main -->
 <form action="" enctype="multipart/form-data" method="post">
@@ -77,7 +30,7 @@ if (isset($_POST['submit'])) {
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-3">
           <div class="d-flex flex-column justify-content-center align-items-center">
             <label class="mb-1 fw-bold fs-5 text-capitalize bg-dark text-light text-center" style="width:350px">current book</label>
-            <img src="uploadimg/<?php echo  $single_row['uploadimgDB'] ?>" style="width:350px" class="img-fluid rounded-start">
+            <img src="../uploadimg/<?php echo  $single_row['uploadimgDB'] ?>" style="width:350px" class="img-fluid rounded-start">
             <input type="hidden" name="oldimg" value="<?php echo  $single_row['uploadimgDB'] ?>">
           </div>
         </div>
@@ -114,7 +67,7 @@ if (isset($_POST['submit'])) {
 <!-- footer -->
 <footer class="bg-dark text-center bottom">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

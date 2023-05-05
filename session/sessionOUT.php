@@ -17,6 +17,6 @@ if (isset($_SESSION['record'])) {
 session_destroy();
 
 // Redirect to login page
-header("Location: login.php");
+header("Location: /view/login.view.php");
 exit;
 ?>

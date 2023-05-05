@@ -1,6 +1,6 @@
 <div class="offcanvas offcanvas-start w-50vh" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
     <div class="offcanvas-header">
-        <h6 class="offcanvas-title d-none d-sm-block text center fs-3" id="offcanvas">Reading History</h6>
+        <h6 class="offcanvas-title d-none d-sm-block fw-bold fs-4" id="offcanvas">Reading History</h6>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
@@ -20,7 +20,7 @@
             <div class="tab-pane active" id="month">
 
                 <?php
-                include 'connection.php';
+                include '../config/connection.php';
 
                 // get email from session
                 $data = $_SESSION['user_data'];
@@ -32,7 +32,7 @@
                 <h6 class="my-1 text-danger text-center text-capitalize">total book readed = <?php echo $count ?></h6>
 
                 <?php
-                include 'connection.php';
+                include '../config/connection.php';
                 for ($i = 1; $i <= 12; $i++) {
                     // get month name and year
                     $month_name = date('F', mktime(0, 0, 0, $i, 1));
@@ -43,7 +43,7 @@
                     $parent_id = 'accordionFlushExample';
 
                     // retrieve book data for the current month
-                    include 'connection.php';
+                    include '../config/connection.php';
                     $search_query = "SELECT * FROM book_readed WHERE email = '$email' AND MONTH(readed_date) = $i";
                     $result = mysqli_query($con, $search_query); ?>
 
@@ -94,21 +94,21 @@
                 <!-- start accordion container -->
                 <div class="accordion" id="accordionExample">
                     <?php
-                    include 'connection.php';
+                    include '../config/connection.php';
                     $search_query = "SELECT * FROM book_readed WHERE email = '$email' ";
                     $result = mysqli_query($con, $search_query);
                     $count = mysqli_num_rows($result); ?>
                     <h6 class="my-1 text-danger text-center text-capitalize">total book readed = <?php echo $count ?></h6>
 
                     <?php
-                    include 'connection.php';
+                    include '../config/connection.php';
                     for ($month = 1; $month <= 12; $month++) {
                         // get month name and year
                         $month_name = date('F', mktime(0, 0, 0, $month, 1));
                         $year = date('Y');
 
                         // get weekly book data for the current month
-                        include 'connection.php';
+                        include '../config/connection.php';
                         $search_query = "SELECT WEEK(readed_date) AS week_num, DAY(readed_date) AS day_num, DATE_FORMAT(readed_date, '%W') AS day_name, GROUP_CONCAT(bookname ORDER BY readed_date SEPARATOR ', ') AS books_read 
                          FROM book_readed WHERE email = '$email' AND MONTH(readed_date) = $month AND YEAR(readed_date) = $year GROUP BY week_num, day_num ORDER BY week_num, day_num";
                         $result = mysqli_query($con, $search_query);

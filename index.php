@@ -14,7 +14,7 @@
             <h1 class="text-center text-capitalize">welcome to the <br> e-library</h1>
         </div>
         <div class="card-body">
-      <a href="login.php" role="button" class="btn btn-light m-1 col-12 text-dark border rounded-0" name="registerbtn">login</a>
+      <a href="../view/login.view.php" role="button" class="btn btn-light m-1 col-12 text-dark border rounded-0" name="registerbtn">login</a>
       <a href="register.php" role="button" class="btn btn-light m-1 col-12 text-dark border rounded-0" name="registerbtn">register</a>
     </div>
   </div>

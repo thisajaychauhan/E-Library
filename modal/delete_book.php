@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 $del_id = $_GET['id'];
 
 $del_query = "DELETE FROM bookdetail WHERE id='$del_id' ";

@@ -1,8 +1,8 @@
 <!-- session IN -->
-<?php include 'session/sessionIN.php'; ?>
+<?php include '../session/sessionIN.php'; ?>
 
 <!-- html header -->
-<?php include 'partials/html-header.php'; ?>
+<?php include '../partials/html-header.php'; ?>
 
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg bg-dark">
@@ -11,20 +11,17 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
             <!-- Back button -->
-            <a href="main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+            <a href="./main_page.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
     </div>
 </nav>
 
 <!-- profile card -->
 <form action="" method="post">
-    <?php include 'connection.php';
+    <?php
 
-    $data = $_SESSION['user_data'];
-    $email = $data['1'];
+    // modal
+    include '../modal/profile.php';
 
-    $query = "SELECT * FROM registration WHERE email = '$email' ";
-    $result = mysqli_query($con, $query);
-    $row = mysqli_fetch_array($result);
     if ($row) {
     ?>
         <div class="container d-flex justify-content-center align-items-center">
@@ -34,7 +31,7 @@
                 </div>
                 <div class="row g-0">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-1 d-flex justify-content-center align-items-center">
-                        <img src="demo.jpg" style="width:200px" class="img-fluid rounded-0">
+                        <img src="../image/demo.jpg" style="width:200px" class="img-fluid rounded-0">
                     </div>
 
                     <div class="text-capitalize col-12 col-sm-12 col-md-6 col-lg-6 mt-3 justify-content-center align-items-center">
@@ -65,6 +62,6 @@
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>

@@ -1,8 +1,8 @@
 <!-- session IN -->
-<?php include 'session/sessionIN.php'; ?>
+<?php include './session/sessionIN.php'; ?>
 
 <!-- html header -->
-<?php include 'partials/html-header.php'; ?>
+<?php include './partials/html-header.php'; ?>
 
 
 <!-- navbar -->
@@ -33,15 +33,15 @@
               $link = '?delete_book.php?id=' . $_GET['id'];
               $body = 'Are you sure you want to delete this item ?';
               $heading = 'Delete Item';
-              include 'modal_popup.php';
+              include './partials/modal_popup.php';
               ?>
 
               <!-- Back button -->
-              <li><a href="main-page.php" class="btn bg-light text-dark fw-bold m-1" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i></a></li>
+              <li><a href="./view/main_page.view.php" class="btn bg-light text-dark fw-bold m-1" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i></a></li>
             </div>
           <?php } else { ?>
             <!-- Back button -->
-            <a href="main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+            <a href="./view/main_page.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
         <?php
           }
         }
@@ -53,10 +53,10 @@
 </nav>
 
 <!-- tagline -->
-<?php include 'partials/tagline.php'; ?>
+<?php include './partials/tagline.php'; ?>
 
 <form action="" method="post">
-  <?php include 'connection.php';
+  <?php include './config/connection.php';
   $new_id = isset($_GET['id']) ? $_GET['id'] : '';
 
   $query = "SELECT * FROM bookdetail WHERE id = '$new_id' ";
@@ -93,7 +93,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center bottom">
   <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="./image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
   </div>
 </footer>
 

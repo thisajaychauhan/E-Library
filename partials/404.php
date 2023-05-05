@@ -30,7 +30,7 @@
                 <p class="display-1 text-danger fw-bold m-0 p-0">403</p>
                 <h1 class="text-danger fw-bold">Ooops...!!!</h1>
                 <h3>you dont have permission to access this page.</h3>
-                <h5 class="mb-5">please login first <a href="../login.php">Click here</a></h5>
+                <h5 class="mb-5">please login first <a href="/view/login.view.php">Click here</a></h5>
                 
             </div>
         </div>
@@ -40,7 +40,7 @@
     <!-- footer -->
     <footer class="bg-dark text-center fixed-bottom">
         <div class="container text-white p-1">
-            <small>&copy; E-Library 2023. Made with &#10084; in <a href="https://coloredcow.com/"><img style="width:16px" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+            <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img class="mb-1" style="width:16px" src="../ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
         </div>
     </footer>
 </body>
