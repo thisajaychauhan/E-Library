@@ -2,10 +2,10 @@
 <?php include 'partials/html-header.php'; ?>
 
 <!-- navbar -->
-<?php include 'partials/navbar.php'; ?>
+<?php include './partials/navbar.php'; ?>
 
 <!-- /tagline -->
-<?php include 'partials/tagline.php'; ?>
+<?php include './partials/tagline.php'; ?>
 
 <!-- card view -->
 <div class="container d-flex justify-content-center mt-5">
@@ -24,7 +24,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

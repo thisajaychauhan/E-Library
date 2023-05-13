@@ -29,6 +29,7 @@
     <div class="container">
         <table class="table table-bordered table-hover text-capitalize table-sm text-center">
             <tr class="table-dark">
+                <th>S no.</th>
                 <th>book id</th>
                 <th>book name</th>
                 <th>author name</th>
@@ -37,9 +38,11 @@
                 <th>book image</th>
             </tr>
             <?php
+                $a=1;
             foreach ($books as $book) {
             ?>
                 <tr>
+                    <td><?= $a; ?></td>
                     <td><?= $book['id']; ?></td>
                     <td><?= $book['bookname']; ?></td>
                     <td><?= $book['authorname']; ?></td>
@@ -48,6 +51,7 @@
                     <td><img class="indeximg" src="../uploadimg/<?= $book['uploadimgDB']; ?>" style="width: 20px; height:30px;"></td>
                 </tr>
             <?php
+            $a++;
             }
             ?>
         </table>
@@ -57,7 +61,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center fixed">
     <div class="container text-white p-1">
-        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

@@ -5,6 +5,7 @@
 <?php include '../partials/html-header.php'; ?>
 
 
+
 <!-- navbar -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,7 +31,7 @@
 
               <?php
               // modal popup
-              $link = '?delete_book.php?id=' . $_GET['id'];
+              $link = '../modal/delete_book.php?id=' . $_GET['id'];
               $body = 'Are you sure you want to delete this item ?';
               $heading = 'Delete Item';
               include '../partials/modal_popup.php';

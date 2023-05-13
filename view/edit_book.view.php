@@ -11,7 +11,7 @@
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
       <!-- Back button -->
-      <a href="../main-page.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+      <a href="../view/main_page.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
   </div>
 </nav>
 
@@ -20,7 +20,6 @@
 
 <!-- controller -->
 <?php include '../controller/edit_book.php'; ?>
-
 
 <!-- main -->
 <form action="" enctype="multipart/form-data" method="post">
@@ -67,7 +66,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center bottom">
     <div class="container text-white p-1">
-    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+    <small>&copy; E-Library 2023. Made in  <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

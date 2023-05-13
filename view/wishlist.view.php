@@ -253,8 +253,8 @@
             <?php
                 include '../config/connection.php';
                 // to delete book from issued book
-                if (isset($_GET['del_id'])) {
-                    $id = $_GET['del_id'];
+                if (isset($_GET['del_issue_id'])) {
+                    $id = $_GET['del_issue_id'];
 
                     // get user data from session
                     $data = $_SESSION['user_data'];
@@ -317,16 +317,8 @@
                             <td><?php echo $row['no_of_book']; ?></td>
                             <td><?php echo $row['issue_date']; ?></td>
                             <td><?php echo $row['return_date']; ?></td>
-                            <td class="text-center"><img class="indeximg" src="./uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
-                            <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-undo text-danger"></i></a></td>
-
-                            <?php
-                            // modal popup
-                            $link = '?del_id=' . $row['book_id'];
-                            $body = 'Are you sure you want to return this item ?';
-                            $heading = 'return Item';
-                            include './partials/modal_popup.php';
-                            ?>
+                            <td class="text-center"><img class="indeximg" src="../uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
+                            <td class="text-center"><a type="button" class="btn rounded-0" href="?del_issue_id=<?php echo $row['book_id']; ?>" onclick="return confirm('Are you sure you want to return this book?')"><i class="fa fa-undo text-danger"></i></a></td>
                         <?php
                             $a++;
                         }
@@ -354,15 +346,11 @@
                                 <tr>
                                     <?php
                                     include '../config/connection.php';
-                                    $a = 1;
 
-                                    // get data from session
-                                    $data = $_SESSION['user_data'];
-                                    $email = $data['1'];
-
-                                    // issued button
+                                    // all issued book list
                                     $search_query = "SELECT * FROM issued_book";
                                     $result = mysqli_query($con, $search_query);
+                                    $a = 1;
                                     while ($row = mysqli_fetch_array($result)) { ?>
                                         <td><?php echo $a; ?></td>
                                         <td><?php echo $row['book_id']; ?></td>
@@ -374,7 +362,9 @@
                                         <td><?php echo $row['return_date']; ?></td>
                                         <td class="text-center"><img class="indeximg" src="../uploadimg/<?= $row['bookimg']; ?>" style="width: 20px; height:30px;"></td>
                                 </tr>
-                        <?php }
+                        <?php
+                                        $a++;
+                                    }
                                 } ?>
                             </table>
                         </div>

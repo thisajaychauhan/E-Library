@@ -1,6 +1,7 @@
 <?php
-include '../connection.php';
+include '../config/connection.php';
 
+// edit book
 if (isset($_GET['id'])) {
   $edit_id = $_GET['id'];
 
@@ -31,8 +32,8 @@ if (isset($_POST['submit'])) {
 
   if ($single_row['bookname'] == $update_bookname && $single_row['authorname'] == $update_authorname && $single_row['description'] == $update_description && $single_row['uploadimgDB'] == $update_imgname) {
     echo "<script>alert('No changes have been made to the book details.')</script>";
-?>
-    <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
+  ?>
+    <meta http-equiv="refresh" content="0; url = http://localhost:8888/view/main_page.view.php" />
     <?php
   } else {
     $save_bookdetail = "UPDATE bookdetail SET bookname = '$update_bookname',authorname ='$update_authorname', description = '$update_description', uploadimgDB = '$update_imgname' WHERE id = '$edit_id' ";
@@ -41,7 +42,7 @@ if (isset($_POST['submit'])) {
     if ($run_bookdetail) {
       echo "<script>alert('Book Updated Successfully')</script>";
     ?>
-      <meta http-equiv="refresh" content="0; url = http://localhost:8888/main-page.php" />
+      <meta http-equiv="refresh" content="0; url = http://localhost:8888/view/main_page.view.php" />
 <?php
     }
   }

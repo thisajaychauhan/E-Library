@@ -1,5 +1,5 @@
 <?php
-include '../connection.php';
+include '../config/connection.php';
 
 if (isset($_GET['admin_id'])) {
     $admin_id = $_GET['admin_id'];
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     if ($run_admindetail) {
         echo "<script>alert('Admin Profile Updated Successfully')</script>";
 ?>
-        <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
+        <meta http-equiv="refresh" content="0; url = http://localhost:8888/view/all_admin.view.php" />
 <?php
     }
 }

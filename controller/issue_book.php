@@ -37,24 +37,25 @@ if (isset($_GET['id'])) {
             // check the book in issued book DB
             $duplicacy_query = "SELECT email FROM issued_book WHERE email = '$s_email'";
             $duplicacy_result = mysqli_query($con, $duplicacy_query);
-            $record = mysqli_fetch_assoc($duplicacy_result);
-            $db_email = $record['email'];
 
-            if ($s_email !== $db_email) {
+            // if(mysqli_num_rows($duplicacy_result) > 0) {
+              $record = mysqli_fetch_assoc($duplicacy_result);
+              $db_email = $record['email'];
 
-                // insert data into issued_book when click on wish-to-read button
-                $query = "INSERT INTO issued_book (book_id, username, email, bookname, bookimg, no_of_book, issue_date, return_date) VALUES('$id_book','$username','$s_email','$bookname','$bookimage',' $no_book','$issued_date',' $return_date')";
-                $results = mysqli_query($con, $query);
+                if ($s_email !== $db_email) {
+                    // insert data into issued_book when click on wish-to-read button
+                    $query = "INSERT INTO issued_book (book_id, username, email, bookname, bookimg, no_of_book, issue_date, return_date) VALUES('$id_book','$username','$s_email','$bookname','$bookimage',' $no_book','$issued_date',' $return_date')";
+                    $results = mysqli_query($con, $query);
 
-                if ($results) {
-                    $update_query = "UPDATE bookdetail SET available_book = $available_book-1 WHERE id = '$id_book' ";
-                    $update_result = mysqli_query($con, $update_query);
+                    if ($results) {
+                        $update_query = "UPDATE bookdetail SET available_book = $available_book-1 WHERE id = '$id_book' ";
+                        $update_result = mysqli_query($con, $update_query);
+                    }
+                    echo '<script>alert("Book added to issued book"); window.location.href = "main_page.view.php";</script>';
+                } else {
+                    echo '<script>alert("Please return existing issued book"); window.location.href = "main_page.view.php";</script>';
                 }
-                echo '<script>alert("Book added to issued book"); window.location.href = "main-page.php";</script>';
-            } else {
-                echo '<script>alert("Please return existing issued book"); window.location.href = "main-page.php";</script>';
             }
-        }
+        // }
     }
 }
-?>

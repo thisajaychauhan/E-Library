@@ -10,8 +10,16 @@
         <a class="navbar-brand fw-medium fs-3 text-white" href="#">E-library <i class="fa fa-book-open-cover"></i></a>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
-            <!-- Back button -->
-            <a href="login.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+            <?php
+            session_start();
+            if ($role == 'superadmin') { ?>
+                <!-- Back button -->
+                <a href="../view/main_page.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+
+            <?php } else { ?>
+                <!-- Back button -->
+                <a href="../view/login.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+            <?php } ?>
     </div>
 </nav>
 
@@ -36,8 +44,6 @@
 
                 <?php
                 $role = 'user';
-
-                session_start();
                 if (isset($_SESSION['user_data'])) {
                     $data = $_SESSION['user_data'];
                     $role = $data['0'];
@@ -71,7 +77,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 

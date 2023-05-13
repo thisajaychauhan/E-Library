@@ -19,7 +19,7 @@
                 <?php if (isset($_SESSION['user_data'])) {
                     $data = $_SESSION['user_data'];
                     $role = $data['0'];
-                    
+
                     if ($role == 'user') {
                 ?>
                         <!-- history sidebar button -->
@@ -89,7 +89,7 @@
                             if (isset($_SESSION['user_data'])) {
                                 $data = $_SESSION['user_data'];
                                 $role = $data['0'];
-                               
+
                                 if ($role == 'admin' || $role == 'superadmin') { ?>
                                     <!-- all admins button -->
                                     <li><a href="../view/all_admin.view.php" class="dropdown-item">Admin Detail</a></li>
@@ -109,7 +109,7 @@
                                 <?php } else { ?>
                                     <!--user logout button -->
                                     <li><a href="../session/sessionOUT.php" class="dropdown-item text-danger"><i class="fa fa-sign-out text-danger"></i> Log Out</a></li>
-                                    <!-- <li><a href="../toastr.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
+                                    <!-- <li><a href="../partials/demo.php" class="m-1 btn btn-danger" role="button">verify</a></li> -->
                             <?php }
                             } ?>
                         </ul>

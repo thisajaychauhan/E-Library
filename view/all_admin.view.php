@@ -1,8 +1,8 @@
 <!-- session IN -->
-<?php include 'session/sessionIN.php'; ?>
+<?php include '../session/sessionIN.php'; ?>
 
 <!-- html header -->
-<?php include 'partials/html-header.php'; ?>
+<?php include '../partials/html-header.php'; ?>
 
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg bg-dark">
@@ -11,12 +11,12 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 
             <!-- Back button -->
-            <a href="./view/main_page.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
+            <a href="../view/main_page.view.php" class="btn bg-light text-dark fw-bold" role="button" name="submit" type="submit"><i class="fa fa-chevron-left"></i> back</a>
     </div>
 </nav>
 
 <!-- /tagline -->
-<?php include 'partials/tagline.php'; ?>
+<?php include '../partials/tagline.php'; ?>
 
 
 <div class="container">
@@ -33,7 +33,7 @@
         <!-- admin detail tab -->
         <div class="tab-pane active" id="admin">
             <?php
-            include './config/connection.php';
+            include '../config/connection.php';
 
             // to delete admin from admin-list
 
@@ -45,7 +45,7 @@
 
                 if ($result) {
             ?>
-                    <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
+                    <meta http-equiv="refresh" content="0; url = http://localhost:8888/view/all_admin.view.php" />
                 <?php
                 }
             }
@@ -95,17 +95,8 @@
                                     $role = $data['0'];
                                     if ($role == 'superadmin') {
                                 ?>
-                                        <td><a href="../view/edit_admin.php?admin_id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></a></td>
-                                        <td><a data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-trash text-danger"></i></a></td>
-
-                                        <?php
-                                        // modal popup
-                                        $link = '?delete_id=' . $row['id'];
-                                        $body = 'Are you sure you want to delete the admin ?';
-                                        $heading = 'Delete admin';
-                                        include './partials/modal_popup.php';
-                                        ?>
-
+                                        <td><a class="text-primary text-decoration-none" href="../view/edit_admin.view.php?admin_id=<?php echo $row['id']; ?>"><i class="fa fa-edit"></i> Edit</a></td>
+                                        <td><a class="text-danger text-decoration-none" href="?delete_id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fa fa-trash text-danger"></i> Delete</a></td>
                                 <?php }
                                 } ?>
                         </tr>
@@ -120,7 +111,7 @@
 
         <!-- user detail tab -->
         <div class="tab-pane" id="user">
-            <?php include './config/connection.php';
+            <?php include '../config/connection.php';
 
             // to delete user from user-list
             if (isset($_GET['del_user_id'])) {
@@ -131,7 +122,7 @@
 
                 if ($result) {
             ?>
-                    <meta http-equiv="refresh" content="0; url = http://localhost:8888/alladmins.php" />
+                    <meta http-equiv="refresh" content="0; url = http://localhost:8888/view/all_admin.view.php" />
                 <?php
                 }
             }
@@ -164,7 +155,7 @@
                                 <td><?= $row['username']; ?></td>
                                 <td><?= $row['email']; ?></td>
                                 <td><?= $row['verify_status']; ?></td>
-                                <td><a data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-trash text-danger"></i></a></td>
+                                <td><a class="text-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-trash text-danger"></i> Delete</a></td>
 
 
                                 <?php
@@ -172,7 +163,7 @@
                                 $link = '?del_user_id=' . $row['id'];
                                 $body = 'Are you sure you want to delete the user ?';
                                 $heading = 'Delete user';
-                                include './partials/modal_popup.php';
+                                include '../partials/modal_popup.php';
                                 ?>
                         </tr>
                 <?php
@@ -190,7 +181,7 @@
 <!-- footer -->
 <footer class="bg-dark text-center fixed-bottom">
     <div class="container text-white p-1">
-        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="./image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
+        <small>&copy; E-Library 2023. Made in <a href="https://coloredcow.com/"><img style="width:16px" class="mb-1" src="../image/ColoredCow-logo-white.png" alt="logo"></a> ColoredCow Tehri. </small>
     </div>
 </footer>
 
@@ -198,7 +189,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <!-- bootstrap -->
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

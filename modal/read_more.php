@@ -1,7 +1,5 @@
 <?php
-
 class BookDetailModel {
-    
     public function getBookDetail($id) {
         include '../config/connection.php';
         $query = "SELECT * FROM bookdetail WHERE id = '$id' ";
@@ -10,5 +8,3 @@ class BookDetailModel {
         return $book;
     }
 }
-?>
-
