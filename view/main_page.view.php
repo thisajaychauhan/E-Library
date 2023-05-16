@@ -28,7 +28,7 @@
                 }
                 ?>
                 <!-- book issue button -->
-                <li><a href="../view/wishlist.view.php" class="btn btn-success text-white ml-1"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="../view/wishlist.view.php" class="btn btn-dark btn-outline-light ml-1"><i class="fa fa-shopping-cart"></i></a></li>
 
                 <!-- sorting button -->
                 <div class="ms-1 d-flex">
@@ -128,6 +128,10 @@
 
 <!-- /tagline -->
 <?php include '../partials/tagline.php'; ?>
+
+<!-- crousel -->
+<?php include '../partials/carousel.php'; ?>
+
 
 <!-- controller -->
 <?php include '../controller/main_pageController.php'; ?>
